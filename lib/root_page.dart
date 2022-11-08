@@ -3,7 +3,7 @@ import 'package:ewallet/pages/account_page.dart';
 import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
