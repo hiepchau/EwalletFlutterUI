@@ -1,5 +1,6 @@
 import 'package:ewallet/pages/widgets/ad_mini_panel.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
+import 'package:ewallet/pages/widgets/shortcut_panel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -24,30 +25,10 @@ class Dashboard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 150),
               child: Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 50),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 5,
-                            blurRadius: 7,
-                            offset: const Offset(
-                                0, 3), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      width: double.infinity,
-                      height: 200,
-                    ),
+                        EdgeInsets.only(left: 20, right: 20, bottom: 50),
+                    child: ShortcutPanel(),
                   ),
                   Container(
                     width: double.infinity,
@@ -77,49 +58,31 @@ class Dashboard extends StatelessWidget {
                       IconLabel(label: "Tất cả", icon: Icons.add_to_queue),
                     ],
                   ),
-                  Container(
-                    width: double.infinity,
-                    height: 200,
-                    color: Colors.yellow,
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("ZaloPay đề xuất")),
                   ),
                   SizedBox(
                     height: 50,
                     child: ListView(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      children: [
-                        Container(
-                          width: 100,
-                          color: Colors.green,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.purple,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.pink,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.orange,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.white,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.pink,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.purple,
-                        ),
-                        Container(
-                          width: 100,
-                          color: Colors.green,
-                        ),
+                      children: const [
+                        IconLabel(
+                            label: "Mua thẻ ĐT", icon: Icons.abc_outlined),
+                        IconLabel(
+                            label: "Giới thiệu nhận quà",
+                            icon: Icons.access_alarm_rounded),
+                        IconLabel(
+                            label: "1K Kỳ Diệu", icon: Icons.add_box_rounded),
+                        IconLabel(
+                            label: "Mua sắm Ẩm thực", icon: Icons.add_circle),
+                        IconLabel(label: "Big C", icon: Icons.access_alarm),
+                        IconLabel(label: "KFC Vietnam", icon: Icons.atm),
+                        IconLabel(label: "Ahamove", icon: Icons.add_to_queue),
+                        IconLabel(label: "LOSHIP", icon: Icons.add_to_queue),
                       ],
                     ),
                   ),
@@ -133,15 +96,11 @@ class Dashboard extends StatelessWidget {
                           width: 20,
                         ),
                       )),
-                  Container(
-                    width: double.infinity,
-                    height: 200,
-                    color: Colors.pink,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 200,
-                    color: Colors.brown,
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Dịch vụ đối tác")),
                   ),
                   GridView(
                     shrinkWrap: true,
