@@ -1,5 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:ewallet/pages/account_page.dart';
+import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _RootAppState extends State<RootApp> {
     return IndexedStack(
       index: pageIndex,
       children: [
-        Center(child: Text("Home")),
+        Dashboard(),
         Center(child: Text("History")),
         Center(child: Text("Wallet")),
         AccountPage(),
