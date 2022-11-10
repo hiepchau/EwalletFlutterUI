@@ -11,7 +11,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: const Text('Dashboard'),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
@@ -26,8 +26,7 @@ class Dashboard extends StatelessWidget {
               child: Column(
                 children: [
                   const Padding(
-                    padding:
-                        EdgeInsets.only(left: 20, right: 20, bottom: 50),
+                    padding: EdgeInsets.only(left: 20, right: 20, bottom: 50),
                     child: ShortcutPanel(),
                   ),
                   Container(
@@ -65,24 +64,48 @@ class Dashboard extends StatelessWidget {
                         child: Text("ZaloPay đề xuất")),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 60,
                     child: ListView(
                       shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
                       children: const [
                         IconLabel(
                             label: "Mua thẻ ĐT", icon: Icons.abc_outlined),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(
                             label: "Giới thiệu nhận quà",
                             icon: Icons.access_alarm_rounded),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(
                             label: "1K Kỳ Diệu", icon: Icons.add_box_rounded),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(
                             label: "Mua sắm Ẩm thực", icon: Icons.add_circle),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(label: "Big C", icon: Icons.access_alarm),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(label: "KFC Vietnam", icon: Icons.atm),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(label: "Ahamove", icon: Icons.add_to_queue),
+                        SizedBox(
+                          width: 20,
+                        ),
                         IconLabel(label: "LOSHIP", icon: Icons.add_to_queue),
+                        SizedBox(
+                          width: 20,
+                        ),
                       ],
                     ),
                   ),

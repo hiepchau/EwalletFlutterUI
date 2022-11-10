@@ -29,16 +29,16 @@ class ShortcutPanel extends StatelessWidget {
         height: 200,
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return Container(
+            return SizedBox(
               width: constraints.maxHeight,
               child: Column(
                 children: <Widget>[
-                  Container(
+                  SizedBox(
                     height: constraints.maxHeight * 0.3,
                     child: Center(
                       child: Stack(
-                        children: const [
-                          Align(
+                        children: [
+                          const Align(
                               alignment: Alignment.centerLeft,
                               child: Padding(
                                   padding: EdgeInsets.only(left: 15),
@@ -46,17 +46,30 @@ class ShortcutPanel extends StatelessWidget {
                           Align(
                               alignment: Alignment.centerRight,
                               child: Padding(
-                                  padding: EdgeInsets.only(right: 15),
-                                  child: Text("0 xu"))),
+                                  padding: const EdgeInsets.only(right: 15),
+                                  child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: const [
+                                        Icon(Icons.currency_exchange),
+                                        Text("0 xu"),
+                                        Icon(Icons.arrow_forward_ios_rounded)
+                                      ]))),
+                          Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                  width: double.infinity,
+                                  height: 1,
+                                  color: Colors.grey))
                         ],
                       ),
                     ),
                   ),
                   Container(
-                      height: constraints.maxHeight * 0.7, //30%
+                      color: Colors.white,
+                      height: constraints.maxHeight * 0.7,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: const [
                           IconLabel(
                               label: "Chuyển tiền", icon: Icons.access_alarm),
@@ -71,26 +84,6 @@ class ShortcutPanel extends StatelessWidget {
             );
           },
         ),
-        /*child: Column(
-          children: [
-            Stack(
-              children: const [
-                Text("31.198đ"),
-                Text("0 xu"),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              mainAxisSize: MainAxisSize.max,
-              children: const [
-                IconLabel(label: "Chuyển tiền", icon: Icons.access_alarm),
-                IconLabel(label: "Mã thanh toán", icon: Icons.ac_unit),
-                IconLabel(label: "Nạp/Rút", icon: Icons.accessible),
-                IconLabel(label: "Ưu đãi", icon: Icons.back_hand),
-              ],
-            )
-          ],
-        ),*/
       ),
     );
   }
