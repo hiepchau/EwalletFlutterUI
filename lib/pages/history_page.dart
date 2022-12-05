@@ -96,3 +96,5 @@ class HistoryPage extends StatelessWidget{
     return Container(child: Text("Rut tien"),);
   }
 }
+
+
