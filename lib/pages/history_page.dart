@@ -1,7 +1,9 @@
+import 'package:ewallet/history_lists.dart';
+import 'package:ewallet/pages/widgets/history_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
-
+import '../history_lists.dart';
 class HistoryPage extends StatelessWidget{
   const HistoryPage({Key? key}) : super(key: key);
 
@@ -78,7 +80,14 @@ class HistoryPage extends StatelessWidget{
   }
 
   Widget everythingHistoryScreen(){
-    return Container(child: Text("Tat ca"),);
+    List<Widget> listWidget = List<Widget>.empty(growable: true);
+    for (Map element in historyList) {
+      if(element["type"]=="receive") listWidget.add(HistoryWidget(icon: Icons.monetization_on_outlined, iconColor: Colors.green, title: "Nhan tien", subtitle: "Nhan tien tu " + element["from"],));
+    }
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: listWidget,
+    );
   }
   Widget depositHistoryScreen(){
     return Container(child: Text("Nap tien"),);
