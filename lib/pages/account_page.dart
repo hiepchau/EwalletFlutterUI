@@ -1,7 +1,7 @@
 import 'package:ewallet/pages/widgets/profile_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import '../balance_lists.dart';
 

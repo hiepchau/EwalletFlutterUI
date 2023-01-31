@@ -1,9 +1,10 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:ewallet/pages/account_page.dart';
+import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
@@ -24,8 +25,9 @@ class _RootAppState extends State<RootApp> {
             selectedTab(4);
           });
         },
-        child: Icon(AntDesign.qrcode, size: 30,),
         backgroundColor: secondary,
+        child:  Image.asset('assets/images/icons/qr.gif',
+          height: 30, width: 30,),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: getBody(),
@@ -61,7 +63,7 @@ class _RootAppState extends State<RootApp> {
     return IndexedStack(
       index: pageIndex,
       children: [
-        Center(child: Text("Home")),
+        Dashboard(),
         Center(child: Text("History")),
         Center(child: Text("Wallet")),
         AccountPage(),
