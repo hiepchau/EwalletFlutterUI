@@ -1,3 +1,4 @@
+import 'package:ewallet/pages/login_page.dart';
 import 'package:ewallet/root_page.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +6,6 @@ void main() {
   runApp(MaterialApp(
     theme: ThemeData(
       primaryColor: Colors.lightBlueAccent,
-      accentColor: Colors.white,
       scaffoldBackgroundColor: Colors.white,
       fontFamily: 'SVN-Gotham',
       textTheme: const TextTheme(
@@ -17,6 +17,6 @@ void main() {
       )
     ),
     debugShowCheckedModeBanner: false,
-    home: RootApp(),
+    home: LoginPage(),
   ));
 }

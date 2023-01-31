@@ -25,8 +25,9 @@ class _RootAppState extends State<RootApp> {
             selectedTab(4);
           });
         },
-        child: Icon(AntDesign.qrcode, size: 30,),
         backgroundColor: secondary,
+        child:  Image.asset('assets/images/icons/qr.gif',
+          height: 30, width: 30,),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: getBody(),
