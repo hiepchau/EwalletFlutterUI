@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:ewallet/pages/account_page.dart';
 import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
@@ -12,8 +13,40 @@ class RootApp extends StatefulWidget {
   @override
   State<RootApp> createState() => _RootAppState();
 }
-class _RootAppState extends State<RootApp> {
+
+class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   int pageIndex = 0;
+  GlobalKey key = GlobalKey();
+  late AnimationController animationController;
+  late Animation<double> animation;
+  @override
+  void didUpdateWidget(covariant RootApp oldWidget) {
+    _startAnimation();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
+  void initState() {
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 700));
+    animation =
+        CurvedAnimation(parent: animationController, curve: Curves.easeIn);
+    animationController.forward();
+    super.initState();
+  }
+
+  _startAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+    animation = CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeIn,
+    );
+    animationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +66,16 @@ class _RootAppState extends State<RootApp> {
       body: getBody(),
     );
   }
-  Widget getTabs(){
-    List<IconData> iconsItems=[
+
+  Widget getTabs() {
+    List<IconData> iconsItems = [
       MaterialCommunityIcons.home,
       MaterialCommunityIcons.history,
       MaterialCommunityIcons.wallet,
       MaterialCommunityIcons.account,
     ];
     return AnimatedBottomNavigationBar(
+      key: key,
       activeColor: secondary,
       splashColor: secondary,
       inactiveColor: grey,
@@ -51,7 +86,7 @@ class _RootAppState extends State<RootApp> {
       iconSize: 25,
       rightCornerRadius: 10,
       activeIndex: pageIndex,
-      onTap: (index ) {
+      onTap: (index) {
         setState(() {
           selectedTab(index);
         });
@@ -59,22 +94,40 @@ class _RootAppState extends State<RootApp> {
     );
   }
 
-  Widget getBody(){
+  Widget getBody() {
     return IndexedStack(
       index: pageIndex,
       children: [
-        Dashboard(),
-        Center(child: Text("History")),
-        Center(child: Text("Wallet")),
-        AccountPage(),
-        Center(child: Text("QR")),
+        CircularRevealAnimation(
+            animation: animation,
+            centerAlignment: Alignment.bottomLeft,
+            child: Center(child: Text("Home"))),
+        CircularRevealAnimation(
+            animation: animation,
+            centerAlignment: Alignment.bottomLeft,
+            child: HistoryPage()),
+        CircularRevealAnimation(
+            animation: animation,
+            centerAlignment: Alignment.bottomCenter,
+            child: Center(child: Text("Wallet"))),
+        CircularRevealAnimation(
+            animation: animation,
+            centerAlignment: Alignment.bottomRight,
+            child: AccountPage()),
+        CircularRevealAnimation(
+            animation: animation,
+            centerAlignment: Alignment.bottomRight,
+            child: Center(child: Text("QR"))),
       ],
     );
   }
 
   selectedTab(index) {
     setState(() {
-      pageIndex = index;
+      if (pageIndex != index) {
+        pageIndex = index;
+        _startAnimation();
+      }
     });
   }
 }
