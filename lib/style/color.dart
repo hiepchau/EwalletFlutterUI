@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 const Color primary = Color(0xFF008fe5);
 const Color secondary = Color(0xFF0144db);
@@ -14,3 +15,18 @@ const Color teal = Color(0xFF009688);
 const Color purple = Color(0xFF9c27b0);
 const Color deepPurple = Color(0xFF673ab7);
 
+class CustomTheme {
+  const CustomTheme();
+
+  static const Color loginGradientStart = primary;
+  static const Color loginGradientEnd = green;
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+
+  static const LinearGradient primaryGradient = LinearGradient(
+    colors: <Color>[loginGradientStart, loginGradientEnd],
+    stops: <double>[0.0, 1.0],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+  );
+}

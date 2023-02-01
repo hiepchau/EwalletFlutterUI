@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:ewallet/pages/account_page.dart';
+import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
@@ -57,11 +58,9 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
             selectedTab(4);
           });
         },
-        child: Icon(
-          AntDesign.qrcode,
-          size: 30,
-        ),
         backgroundColor: secondary,
+        child:  Image.asset('assets/images/icons/qr.gif',
+          height: 30, width: 30,),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: getBody(),
