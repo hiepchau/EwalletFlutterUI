@@ -101,7 +101,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
         CircularRevealAnimation(
             animation: animation,
             centerAlignment: Alignment.bottomLeft,
-            child: Center(child: Text("Home"))),
+            child: Dashboard()),
         CircularRevealAnimation(
             animation: animation,
             centerAlignment: Alignment.bottomLeft,
