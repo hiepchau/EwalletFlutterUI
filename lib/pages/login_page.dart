@@ -1,3 +1,4 @@
+import 'package:ewallet/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ewallet/pages/widgets/sign_in.dart';
 import 'package:ewallet/pages/widgets/sign_up.dart';
