@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/pages/widgets/snackbar.dart';
 
+import '../../root_page.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -160,8 +162,14 @@ class _SignInState extends State<SignIn> {
                           fontFamily: 'WorkSansBold'),
                     ),
                   ),
-                  onPressed: () => CustomSnackBar(
-                      context, const Text('Login button pressed')),
+                  onPressed: () {
+                    CustomSnackBar(
+                        context, const Text('Login button pressed'));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RootApp()),
+                    );
+                  }
                 ),
               )
             ],

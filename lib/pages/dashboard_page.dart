@@ -13,6 +13,7 @@ class Dashboard extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Dashboard'),
         backgroundColor: Colors.blue,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Stack(alignment: Alignment.topCenter, children: [
