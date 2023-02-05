@@ -8,9 +8,15 @@ import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../history_lists.dart';
 
-class HistoryPage extends StatelessWidget {
+class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
+  @override
+  _HistoryPage createState() => _HistoryPage();
+}
+
+class _HistoryPage extends State<HistoryPage> {
+  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -58,24 +64,52 @@ class HistoryPage extends StatelessWidget {
   Widget getAppBar(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      height: 100,
+      height: 125,
       width: MediaQuery.of(context).size.width,
       child: Column(children: [
         const Text("Lịch sử"),
         const SizedBox(height: 10),
-        Expanded(
-            child: TextFormField(
-          decoration: const InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            prefixIcon: Icon(Icons.search),
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            hintText: "Tìm kiếm",
-            border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-          ),
-        ))
+        ConstrainedBox(
+            constraints:
+                BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
+            child: Row(
+                children: [
+                  Expanded(
+                      child: TextFormField(
+                    decoration: const InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      prefixIcon: Icon(Icons.search),
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      hintText: "Tìm kiếm",
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    ),
+                  )),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Column(children:[
+                  GestureDetector(
+                    onTap: _toggleVisibility,
+                    child: Icon(
+                      obscureText
+                          ? FontAwesomeIcons.eye
+                          : FontAwesomeIcons.eyeSlash,
+                      size: 15.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                  Text(
+                    obscureText
+                      ? "Hiện số dư" : "Ẩn số dư",
+                    style: TextStyle(
+                      fontSize: 10,
+                    ),)
+                  ])
+                ]))
       ]),
     );
   }
@@ -93,7 +127,25 @@ class HistoryPage extends StatelessWidget {
 
   Widget everythingHistoryScreen() {
     List<Widget> listWidget = List<Widget>.empty(growable: true);
+    historyList.sort(((a, b) {
+      DateTime dateA = DateTime.parse(a["time"]);
+      DateTime dateB = DateTime.parse(b["time"]);
+      return dateB.compareTo(dateA);
+    }));
+    int temp = 0;
     for (Map element in historyList) {
+      if (DateTime.parse(element["time"]).month != temp) {
+        temp = DateTime.parse(element["time"]).month;
+        listWidget.add(Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Tháng $temp",
+              style: const TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'SVN-Gotham',
+                  fontWeight: FontWeight.w700),
+            )));
+      }
       if (element["type"] == "receive") {
         listWidget.add(HistoryWidget(
             icon: Icons.arrow_downward_rounded,
@@ -101,7 +153,7 @@ class HistoryPage extends StatelessWidget {
             title: "Nhận tiền",
             subtitle: "Nhận tiền từ " + element["from"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "+" + element["amount"]));
       }
       if (element["type"] == "transfer") {
@@ -111,7 +163,7 @@ class HistoryPage extends StatelessWidget {
             title: "Chuyển tiền",
             subtitle: "Chuyển tiền đến " + element["to"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "-" + element["amount"]));
       }
       if (element["type"] == "withdraw") {
@@ -121,7 +173,7 @@ class HistoryPage extends StatelessWidget {
             title: "Rút tiền",
             subtitle: "Rút tiền về " + element["to"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "-" + element["amount"]));
       }
       if (element["type"] == "phone") {
@@ -131,18 +183,18 @@ class HistoryPage extends StatelessWidget {
             title: "Nạp tiền điện thoại",
             subtitle: "Nạp cho số " + element["to"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "-" + element["amount"]));
       }
       if (element["type"] == "deposit") {
         listWidget.add(HistoryWidget(
-          icon: Icons.monetization_on_outlined,
-          iconColor: Colors.green,
-          title: "Nạp tiền",
-          subtitle: "Nạp tiền từ " + element["from"],
-          time: element["time"],
-          balance: "Số dư ví: " + element["balance"],
-          amount: "+" + element["balance"]));
+            icon: Icons.monetization_on_outlined,
+            iconColor: Colors.green,
+            title: "Nạp tiền",
+            subtitle: "Nạp tiền từ " + element["from"],
+            time: element["time"],
+            balance:element["balance"],
+            amount: "+" + element["balance"]));
       }
     }
     return ListView(
@@ -161,7 +213,7 @@ class HistoryPage extends StatelessWidget {
           title: "Nạp tiền",
           subtitle: "Nạp tiền từ " + element["from"],
           time: element["time"],
-          balance: "Số dư ví: " + element["balance"],
+          balance:element["balance"],
           amount: "+" + element["balance"],
         ));
       }
@@ -182,7 +234,7 @@ class HistoryPage extends StatelessWidget {
             title: "Chuyển tiền",
             subtitle: "Chuyển tiền đến " + element["to"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "-" + element["amount"]));
       }
     }
@@ -202,7 +254,7 @@ class HistoryPage extends StatelessWidget {
             title: "Nhận tiền",
             subtitle: "Nhận tiền từ " + element["from"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "+" + element["amount"]));
       }
     }
@@ -222,7 +274,7 @@ class HistoryPage extends StatelessWidget {
             title: "Nạp tiền điện thoại",
             subtitle: "Nạp cho số " + element["to"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "-" + element["amount"]));
       }
     }
@@ -242,7 +294,7 @@ class HistoryPage extends StatelessWidget {
             title: "Rút tiền",
             subtitle: "Rút tiền về " + element["to"],
             time: element["time"],
-            balance: "Số dư ví: " + element["balance"],
+            balance:element["balance"],
             amount: "-" + element["amount"]));
       }
     }
@@ -250,5 +302,12 @@ class HistoryPage extends StatelessWidget {
       padding: const EdgeInsets.all(5),
       children: listWidget,
     );
+  }
+
+  void _toggleVisibility() {
+    setState(() {
+      obscureText = !obscureText;
+      HistoryWidget.isObscure = obscureText;
+    });
   }
 }

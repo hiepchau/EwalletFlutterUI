@@ -30,12 +30,6 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb) {}
-    return buildMobile(context);
-  }
-
-  //#region Mobile
-  Widget buildMobile(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 23.0),
       child: Column(
@@ -49,12 +43,19 @@ class _SignInState extends State<SignIn> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
-                  width: kIsWeb ? MediaQuery.of(context).size.width/3 : 400,
-                  height: kIsWeb ? MediaQuery.of(context).size.height/4 : 190,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: kIsWeb ? 150 : 100,
+                    minWidth: 150,
+                    maxWidth:
+                        kIsWeb ? MediaQuery.of(context).size.width / 3 : 400,
+                    maxHeight:
+                        kIsWeb ? MediaQuery.of(context).size.height / 4 : 190,
+                  ),
                   child: Column(
                     children: <Widget>[
-                      Padding(
+                      Flexible(
+                          child: Padding(
                         padding: const EdgeInsets.only(
                             top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                         child: TextField(
@@ -80,13 +81,16 @@ class _SignInState extends State<SignIn> {
                             focusNodePassword.requestFocus();
                           },
                         ),
-                      ),
+                      )),
                       Container(
-                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
+                        width: kIsWeb
+                            ? MediaQuery.of(context).size.width / 3 - 150
+                            : 250,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
-                      Padding(
+                      Flexible(
+                          child: Padding(
                         padding: const EdgeInsets.only(
                             top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                         child: TextField(
@@ -123,7 +127,7 @@ class _SignInState extends State<SignIn> {
                           },
                           textInputAction: TextInputAction.go,
                         ),
-                      ),
+                      )),
                     ],
                   ),
                 ),
@@ -181,7 +185,9 @@ class _SignInState extends State<SignIn> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10.0),
+            padding: kIsWeb
+                ? const EdgeInsets.only(top: 30.0)
+                : const EdgeInsets.only(top: 10),
             child: TextButton(
                 onPressed: () {},
                 child: const Text(

@@ -1,12 +1,12 @@
-const List historyList = [
+List historyList = [
   {
     "ID":"EWR001",
     "type":"receive",
     "amount":"30.000VND",
     "from":"Hiep Chau",
     "to":"Khanh Tran",
-    "time":"17:05 12/2/2022",
-    "balance":"500.000VND"
+    "time":"2022-02-20 17:05:00",
+    "balance":"500.000VND",
   },
   {
     "ID":"EWR002",
@@ -14,7 +14,7 @@ const List historyList = [
     "amount":"50.000VND",    
     "from":"Hiep Chau",
     "to":"Khanh Tran",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"
   },
   {
@@ -23,7 +23,7 @@ const List historyList = [
     "amount":"10.000VND",
     "from":"Hiep Chau",
     "to":"Khanh Tran",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -32,7 +32,7 @@ const List historyList = [
     "amount":"30.000VND",
     "from":"Khanh Tran",
     "to":"Khoi Nghi",
-    "time":"17:05 12/2/2022",
+    "time":"2022-02-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -41,7 +41,7 @@ const List historyList = [
     "amount":"300.000VND",
     "from":"Khanh Tran",
     "to":"Hiep Chau",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"    
   },
   {
@@ -50,7 +50,7 @@ const List historyList = [
     "amount":"30.000.000VND",
     "from":"Khanh Tran",
     "to":"Tri Tran",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"    
   },
   {
@@ -59,7 +59,7 @@ const List historyList = [
     "amount":"900.000.000VND",
     "from":"wallet",
     "to":"TP Bank",
-    "time":"17:05 12/2/2022",
+    "time":"2022-02-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -68,7 +68,7 @@ const List historyList = [
     "amount":"1.000.000.000VND",
     "from":"wallet",
     "to":"TP Bank",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"
   },
   {
@@ -77,7 +77,7 @@ const List historyList = [
     "amount":"3.000VND",
     "from":"wallet",
     "to":"TP Bank",
-    "time":"17:05 12/2/2022",
+    "time":"2022-02-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -86,7 +86,7 @@ const List historyList = [
     "amount":"50.000VND",
     "from":"TP Bank",
     "to":"wallet",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -95,7 +95,7 @@ const List historyList = [
     "amount":"1.000VND",
     "from":"Vietcom Bank",
     "to":"wallet",
-    "time":"17:05 12/2/2022",
+    "time":"2022-02-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -104,7 +104,7 @@ const List historyList = [
     "amount":"5.000VND",
     "from":"TechcomBank",
     "to":"wallet",
-    "time":"17:05 12/2/2022",
+    "time":"2022-02-20 17:05:00",
     "balance":"500.000VND"  
   },
     {
@@ -113,7 +113,7 @@ const List historyList = [
     "amount":"50.000VND",
     "from":"wallet",
     "to":"0908988982",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -122,7 +122,7 @@ const List historyList = [
     "amount":"10.000VND",
     "from":"wallet",
     "to":"0908988982",
-    "time":"17:05 12/2/2022",
+    "time":"2022-01-20 17:05:00",
     "balance":"500.000VND"  
   },
   {
@@ -131,7 +131,7 @@ const List historyList = [
     "amount":"500.000VND",
     "from":"wallet",
     "to":"0908988982",
-    "time":"17:05 12/2/2022",
+    "time":"2022-02-20 17:05:00",
     "balance":"500.000VND"  
   },
 ];

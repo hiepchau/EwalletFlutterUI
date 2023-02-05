@@ -2,28 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import '../../style/color.dart';
 
-class HistoryWidget extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
-  final Color subtitleColor;
-  final String time;
-  final String balance;
-  final String amount;
-  // final Function onTap;
-
-  const HistoryWidget(
-      {Key? key,
+class HistoryWidget extends StatefulWidget {
+  const HistoryWidget({Key? key,
       required this.icon,
       required this.iconColor,
       required this.title,
       required this.subtitle,
       required this.time,
       required this.balance,
-      required this.amount,
-      this.subtitleColor = black})
-      : super(key: key);
+      required this.amount,});
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final String subtitle;
+  final String time;
+  final String balance;
+  final String amount;
+  static bool isObscure = true;
+  @override
+  _HistoryWidget createState() => _HistoryWidget();
+}
+class _HistoryWidget extends State<HistoryWidget>{
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -53,8 +52,8 @@ class HistoryWidget extends StatelessWidget {
                       height: 50,
                       child: Center(
                         child: Icon(
-                          icon,
-                          color: iconColor,
+                          widget.icon,
+                          color: widget.iconColor,
                           size: 55,
                         ),
                       ),
@@ -66,13 +65,13 @@ class HistoryWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            title,
+                            widget.title,
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                                 fontSize: 18, fontFamily: 'SVN-Gotham'),
                           ),
                           Text(
-                            time,
+                            widget.time,
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                                 color: Color.fromARGB(125, 0, 0, 0),
@@ -80,7 +79,9 @@ class HistoryWidget extends StatelessWidget {
                                 fontFamily: 'SVN-Gotham'),
                           ),
                           Text(
-                            balance,
+                            HistoryWidget.isObscure
+                                ? "Số dư ví: ******"
+                                : "Số dư ví: "+ widget.balance,
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                                 color: Color.fromARGB(125, 0, 0, 0),
@@ -96,15 +97,14 @@ class HistoryWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            amount,
-                            style: TextStyle(
+                            widget.amount,
+                            style: const TextStyle(
                                 fontSize: 15,
-                                color: subtitleColor,
                                 fontFamily: 'SVN-Gotham'),
                           ),
                           const Text(
                             "Thành công",
-                            style: TextStyle(                            
+                            style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.green,
                                 fontFamily: 'SVN-Gotham'),
