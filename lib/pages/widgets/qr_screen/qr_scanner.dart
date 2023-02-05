@@ -13,7 +13,7 @@ class _QRScannerState extends State<QRScanner> {
 
   Future _scanQR() async {
     try {
-      String qrResult = await BarcodeScanner.scan().toString();
+      String qrResult = (await BarcodeScanner.scan()).rawContent;
       setState(() {
         _scanResult = qrResult;
       });
@@ -49,9 +49,9 @@ class _QRScannerState extends State<QRScanner> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
-              child: Text("Scan QR code"),
+            TextButton(
               onPressed: _scanQR,
+              child: const Text("Scan QR code"),
             ),
             Text(_scanResult),
           ],
