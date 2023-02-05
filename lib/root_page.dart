@@ -18,35 +18,13 @@ class RootApp extends StatefulWidget {
 class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   int pageIndex = 0;
   GlobalKey key = GlobalKey();
-  late AnimationController animationController;
-  late Animation<double> animation;
-  @override
-  void didUpdateWidget(covariant RootApp oldWidget) {
-    _startAnimation();
-    super.didUpdateWidget(oldWidget);
-  }
+  late final tabController = TabController(length: 5, vsync: this);
 
   @override
   void initState() {
-    animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 700));
-    animation =
-        CurvedAnimation(parent: animationController, curve: Curves.easeIn);
-    animationController.forward();
     super.initState();
   }
 
-  _startAnimation() {
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 700),
-    );
-    animation = CurvedAnimation(
-      parent: animationController,
-      curve: Curves.easeIn,
-    );
-    animationController.forward();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +38,12 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
           });
         },
         backgroundColor: secondary,
-        child:  Image.asset('assets/images/icons/qr.gif',
-          height: 30, width: 30,),
+        child: Image.asset(
+          'assets/images/icons/qrcode.gif',
+          height: 30,
+          width: 30,
+          
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: getBody(),
@@ -96,29 +78,14 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   }
 
   Widget getBody() {
-    return IndexedStack(
-      index: pageIndex,
+    return TabBarView(
+      controller: tabController,
       children: [
-        CircularRevealAnimation(
-            animation: animation,
-            centerAlignment: Alignment.bottomLeft,
-            child: Dashboard()),
-        CircularRevealAnimation(
-            animation: animation,
-            centerAlignment: Alignment.bottomLeft,
-            child: HistoryPage()),
-        CircularRevealAnimation(
-            animation: animation,
-            centerAlignment: Alignment.bottomCenter,
-            child: Center(child: Text("Wallet"))),
-        CircularRevealAnimation(
-            animation: animation,
-            centerAlignment: Alignment.bottomRight,
-            child: AccountPage()),
-        CircularRevealAnimation(
-            animation: animation,
-            centerAlignment: Alignment.bottomRight,
-            child: QRScanner()),
+        Dashboard(),
+        HistoryPage(),
+        Center(child: Text("Wallet")),
+        AccountPage(),
+        QRScanner(),
       ],
     );
   }
@@ -126,8 +93,8 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   selectedTab(index) {
     setState(() {
       if (pageIndex != index) {
+        tabController.index = index;
         pageIndex = index;
-        _startAnimation();
       }
     });
   }

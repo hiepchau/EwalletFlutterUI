@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/pages/widgets/snackbar.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Container(
-                  width: 300.0,
+                  width: kIsWeb ? MediaQuery.of(context).size.width/3 :400,
                   height: 360.0,
                   child: Column(
                     children: <Widget>[
@@ -83,7 +83,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        width: 250.0,
+                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
@@ -115,7 +115,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        width: 250.0,
+                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
@@ -157,7 +157,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        width: 250.0,
+                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),

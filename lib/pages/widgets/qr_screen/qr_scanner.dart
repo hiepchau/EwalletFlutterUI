@@ -49,7 +49,7 @@ class _QRScannerState extends State<QRScanner> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
+            TextButton(
               child: Text("Scan QR code"),
               onPressed: _scanQR,
             ),

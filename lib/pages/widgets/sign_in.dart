@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/pages/widgets/snackbar.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../root_page.dart';
 
@@ -15,7 +16,6 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
-
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodePassword = FocusNode();
 
@@ -30,6 +30,12 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    if (kIsWeb) {}
+    return buildMobile(context);
+  }
+
+  //#region Mobile
+  Widget buildMobile(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 23.0),
       child: Column(
@@ -44,8 +50,8 @@ class _SignInState extends State<SignIn> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: Container(
-                  width: 300.0,
-                  height: 190.0,
+                  width: kIsWeb ? MediaQuery.of(context).size.width/3 : 400,
+                  height: kIsWeb ? MediaQuery.of(context).size.height/4 : 190,
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -76,7 +82,7 @@ class _SignInState extends State<SignIn> {
                         ),
                       ),
                       Container(
-                        width: 250.0,
+                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
@@ -149,28 +155,28 @@ class _SignInState extends State<SignIn> {
                       tileMode: TileMode.clamp),
                 ),
                 child: MaterialButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: CustomTheme.loginGradientEnd,
-                  child: const Padding(
-                    padding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
-                          fontFamily: 'WorkSansBold'),
+                    highlightColor: Colors.transparent,
+                    splashColor: CustomTheme.loginGradientEnd,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 42.0),
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontFamily: 'WorkSansBold'),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    CustomSnackBar(
-                        context, const Text('Login button pressed'));
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RootApp()),
-                    );
-                  }
-                ),
+                    onPressed: () {
+                      CustomSnackBar(
+                          context, const Text('Login button pressed'));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RootApp()),
+                      );
+                    }),
               )
             ],
           ),
@@ -291,3 +297,4 @@ class _SignInState extends State<SignIn> {
     });
   }
 }
+  //#endregion

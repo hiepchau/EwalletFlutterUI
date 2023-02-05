@@ -1,64 +1,76 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings
+
 import 'package:ewallet/history_lists.dart';
 import 'package:ewallet/pages/widgets/history_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../history_lists.dart';
-class HistoryPage extends StatelessWidget{
+
+class HistoryPage extends StatelessWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
-      child: Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 130,
-        title: getAppBar(),
-        bottom: PreferredSize(child: getTabBar(), preferredSize: Size.fromHeight(35),),
-      ),
-      body: getBody(),
-    ));
+        length: 6,
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 130,
+            automaticallyImplyLeading: false,
+            title: getAppBar(context),
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(35),
+              child: getTabBar(),
+            ),
+          ),
+          body: getBody(),
+        ));
   }
 
   Widget getTabBar() {
     return Container(
-      height: 48,
-      decoration: BoxDecoration(color: white,
-      border: Border(bottom: BorderSide(width: 1, color: Colors.grey))),
-      child: TabBar(
-      isScrollable: true,
-      unselectedLabelColor: Colors.black.withOpacity(0.3),
-      indicator: UnderlineTabIndicator(borderSide:BorderSide(width: 2, color: Colors.blue)),
-      indicatorColor: Colors.blue,
-      labelColor: Colors.blue,
-      tabs: [
-      Text("Tat ca"),
-      Text("Nap tien"),
-      Text("Chuyen tien"),
-      Text("Nhan tien"),
-      Text("Dien thoai"),
-      Text("Rut tien"),
-    ]));
+        height: 48,
+        decoration: const BoxDecoration(
+            color: white,
+            borderRadius: BorderRadius.horizontal(
+                left: Radius.circular(10), right: Radius.circular(10))
+            //border: Border(bottom: BorderSide(width: 1, color: Colors.grey))
+            ),
+        child: TabBar(
+            isScrollable: true,
+            unselectedLabelColor: Colors.black.withOpacity(0.3),
+            indicator: const UnderlineTabIndicator(
+                borderSide: BorderSide(width: 2, color: Colors.blue)),
+            indicatorColor: Colors.blue,
+            labelColor: Colors.blue,
+            tabs: const [
+              Text("Tất cả"),
+              Text("Nạp tiền"),
+              Text("Chuyển tiền"),
+              Text("Nhận tiền"),
+              Text("Điện thoại"),
+              Text("Rút tiền"),
+            ]));
   }
 
-  Widget getAppBar() {
+  Widget getAppBar(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
       height: 100,
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width,
       child: Column(children: [
-        const Text("History"),
+        const Text("Lịch sử"),
         const SizedBox(height: 10),
         Expanded(
             child: TextFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             filled: true,
             fillColor: Colors.white,
             prefixIcon: Icon(Icons.search),
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            hintText: "Tim kiem",
+            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            hintText: "Tìm kiếm",
             border: OutlineInputBorder(
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -79,31 +91,164 @@ class HistoryPage extends StatelessWidget{
     ]);
   }
 
-  Widget everythingHistoryScreen(){
+  Widget everythingHistoryScreen() {
     List<Widget> listWidget = List<Widget>.empty(growable: true);
     for (Map element in historyList) {
-      if(element["type"]=="receive") listWidget.add(HistoryWidget(icon: Icons.monetization_on_outlined, iconColor: Colors.green, title: "Nhan tien", subtitle: "Nhan tien tu " + element["from"],));
+      if (element["type"] == "receive") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.arrow_downward_rounded,
+            iconColor: Colors.green,
+            title: "Nhận tiền",
+            subtitle: "Nhận tiền từ " + element["from"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "+" + element["amount"]));
+      }
+      if (element["type"] == "transfer") {
+        listWidget.add(HistoryWidget(
+            icon: FontAwesomeIcons.moneyBillTransfer,
+            iconColor: Colors.green,
+            title: "Chuyển tiền",
+            subtitle: "Chuyển tiền đến " + element["to"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "-" + element["amount"]));
+      }
+      if (element["type"] == "withdraw") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.account_balance_wallet_rounded,
+            iconColor: Colors.redAccent,
+            title: "Rút tiền",
+            subtitle: "Rút tiền về " + element["to"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "-" + element["amount"]));
+      }
+      if (element["type"] == "phone") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.phone_android,
+            iconColor: Colors.blueAccent,
+            title: "Nạp tiền điện thoại",
+            subtitle: "Nạp cho số " + element["to"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "-" + element["amount"]));
+      }
+      if (element["type"] == "deposit") {
+        listWidget.add(HistoryWidget(
+          icon: Icons.monetization_on_outlined,
+          iconColor: Colors.green,
+          title: "Nạp tiền",
+          subtitle: "Nạp tiền từ " + element["from"],
+          time: element["time"],
+          balance: "Số dư ví: " + element["balance"],
+          amount: "+" + element["balance"]));
+      }
     }
     return ListView(
       padding: const EdgeInsets.all(5),
       children: listWidget,
     );
   }
-  Widget depositHistoryScreen(){
-    return Container(child: Text("Nap tien"),);
+
+  Widget depositHistoryScreen() {
+    List<Widget> listWidget = List<Widget>.empty(growable: true);
+    for (Map element in historyList) {
+      if (element["type"] == "deposit") {
+        listWidget.add(HistoryWidget(
+          icon: Icons.monetization_on_outlined,
+          iconColor: Colors.green,
+          title: "Nạp tiền",
+          subtitle: "Nạp tiền từ " + element["from"],
+          time: element["time"],
+          balance: "Số dư ví: " + element["balance"],
+          amount: "+" + element["balance"],
+        ));
+      }
+    }
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: listWidget,
+    );
   }
-  Widget transferistoryScreen(){
-    return Container(child: Text("Chuyen tien"),);
+
+  Widget transferistoryScreen() {
+    List<Widget> listWidget = List<Widget>.empty(growable: true);
+    for (Map element in historyList) {
+      if (element["type"] == "transfer") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.repeat_rounded,
+            iconColor: Colors.green,
+            title: "Chuyển tiền",
+            subtitle: "Chuyển tiền đến " + element["to"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "-" + element["amount"]));
+      }
+    }
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: listWidget,
+    );
   }
-  Widget receiveHistoryScreen(){
-    return Container(child: Text("Nhan tien"),);
+
+  Widget receiveHistoryScreen() {
+    List<Widget> listWidget = List<Widget>.empty(growable: true);
+    for (Map element in historyList) {
+      if (element["type"] == "receive") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.arrow_downward_rounded,
+            iconColor: Colors.green,
+            title: "Nhận tiền",
+            subtitle: "Nhận tiền từ " + element["from"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "+" + element["amount"]));
+      }
+    }
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: listWidget,
+    );
   }
-  Widget mobileHistoryScreen(){
-    return Container(child: Text("Dien thoai"),);
+
+  Widget mobileHistoryScreen() {
+    List<Widget> listWidget = List<Widget>.empty(growable: true);
+    for (Map element in historyList) {
+      if (element["type"] == "phone") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.phone_android,
+            iconColor: Colors.blueAccent,
+            title: "Nạp tiền điện thoại",
+            subtitle: "Nạp cho số " + element["to"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "-" + element["amount"]));
+      }
+    }
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: listWidget,
+    );
   }
-  Widget withdrawHistoryScreen(){
-    return Container(child: Text("Rut tien"),);
+
+  Widget withdrawHistoryScreen() {
+    List<Widget> listWidget = List<Widget>.empty(growable: true);
+    for (Map element in historyList) {
+      if (element["type"] == "withdraw") {
+        listWidget.add(HistoryWidget(
+            icon: Icons.account_balance_wallet_rounded,
+            iconColor: Colors.redAccent,
+            title: "Rút tiền",
+            subtitle: "Rút tiền về " + element["to"],
+            time: element["time"],
+            balance: "Số dư ví: " + element["balance"],
+            amount: "-" + element["amount"]));
+      }
+    }
+    return ListView(
+      padding: const EdgeInsets.all(5),
+      children: listWidget,
+    );
   }
 }
-
-

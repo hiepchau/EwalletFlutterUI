@@ -19,6 +19,7 @@ dependencies:
   circular_reveal_animation: ^2.0.1
   qr_flutter: ^4.0.0
   barcode_scan2: ^4.2.3
+  flutter_gif: ^0.0.4
 
 
 dev_dependencies:
