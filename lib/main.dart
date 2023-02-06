@@ -18,6 +18,6 @@ void main() {
       )
     ),
     debugShowCheckedModeBanner: false,
-    home: LoginPage(),
+    home: const LoginPage(),
   ));
 }
