@@ -7,7 +7,7 @@ void main() {
     theme: ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      scaffoldBackgroundColor: ColorScheme.fromSeed(seedColor: Colors.blue).onInverseSurface,
+      scaffoldBackgroundColor: Colors.white,
       fontFamily: 'SVN-Gotham',
       textTheme: const TextTheme(
         headlineSmall: TextStyle(
