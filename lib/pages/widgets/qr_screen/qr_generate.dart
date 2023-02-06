@@ -10,9 +10,6 @@ class _GenerateQRPageState extends State<GenerateQRScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('QR GENERATOR'),
-      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(

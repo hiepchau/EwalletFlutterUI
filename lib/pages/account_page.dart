@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import '../balance_lists.dart';
+import '../style/constants.dart';
 
 class AccountPage extends StatelessWidget {
   @override
@@ -76,18 +77,11 @@ class AccountPage extends StatelessWidget {
                         children: const [
                           Text(
                             "Hiep Chau",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'SVN-Gotham',
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: wBoldTextStyle
                           ),
                           Text(
                             "0999000999",
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: grey,
-                                fontFamily: 'SVN-Gotham'),
+                            style: wGreyTextStyle,
                           ),
                         ],
                       ),

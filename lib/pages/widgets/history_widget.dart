@@ -2,29 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import '../../style/color.dart';
 
-class HistoryWidget extends StatelessWidget{
+class HistoryWidget extends StatefulWidget {
+  const HistoryWidget({Key? key,
+      required this.icon,
+      required this.iconColor,
+      required this.title,
+      required this.subtitle,
+      required this.time,
+      required this.balance,
+      required this.amount,});
   final IconData icon;
   final Color iconColor;
   final String title;
   final String subtitle;
-  final Color subtitleColor;
-  // final Function onTap;
-
-  const HistoryWidget({
-    Key? key,
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.subtitle,
-    this.subtitleColor = black}) : super(key: key);
+  final String time;
+  final String balance;
+  final String amount;
+  static bool isObscure = true;
   @override
-  Widget build(BuildContext context){
+  _HistoryWidget createState() => _HistoryWidget();
+}
+class _HistoryWidget extends State<HistoryWidget>{
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        
-      },
+      onTap: () {},
       child: Container(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: white,
           boxShadow: [
@@ -40,52 +44,77 @@ class HistoryWidget extends StatelessWidget{
           padding: const EdgeInsets.all(18),
           child: Column(
             children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          child: Center(
-                            child: Icon(
-                              icon,
-                              color: iconColor,
-                              size: 50,
-                            ),
-                          ),
+                    SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Center(
+                        child: Icon(
+                          widget.icon,
+                          color: widget.iconColor,
+                          size: 55,
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          children:[
-                        Text(
-                          title,
-                          style: const TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'SVN-Gotham'
-                          ),
-                        )
-                        ])
-                      ],
+                      ),
                     ),
-                    Expanded(child: Text(
-                      subtitle,
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: subtitleColor,
-                          fontFamily: 'SVN-Gotham'),
-                    ),),
-
-                    const Icon(
-                      Icons.keyboard_arrow_right,
-                      color: grey,
-                    )
-                  ]
-              )
+                    const SizedBox(
+                      width: 50,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.title,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                                fontSize: 18, fontFamily: 'SVN-Gotham'),
+                          ),
+                          Text(
+                            widget.time,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                                color: Color.fromARGB(125, 0, 0, 0),
+                                fontSize: 13,
+                                fontFamily: 'SVN-Gotham'),
+                          ),
+                          Text(
+                            HistoryWidget.isObscure
+                                ? "Số dư ví: ******"
+                                : "Số dư ví: "+ widget.balance,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                                color: Color.fromARGB(125, 0, 0, 0),
+                                fontSize: 13,
+                                fontFamily: 'SVN-Gotham'),
+                          )
+                        ])
+                  ],
+                ),
+                Flexible(
+                    fit: FlexFit.tight,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            widget.amount,
+                            style: const TextStyle(
+                                fontSize: 15,
+                                fontFamily: 'SVN-Gotham'),
+                          ),
+                          const Text(
+                            "Thành công",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.green,
+                                fontFamily: 'SVN-Gotham'),
+                          )
+                        ])),
+                const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: grey,
+                )
+              ])
             ],
           ),
         ),

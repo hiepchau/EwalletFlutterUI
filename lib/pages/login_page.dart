@@ -4,6 +4,9 @@ import 'package:ewallet/pages/widgets/sign_in.dart';
 import 'package:ewallet/pages/widgets/sign_up.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/utils/bubble_indicator_painter.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+import '../style/constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -58,7 +61,7 @@ class _LoginPageState extends State<LoginPage>
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(top: 75.0),
+                    padding: kIsWeb ? EdgeInsets.only(top: 50.0) : EdgeInsets.only(top: 75.0),
                     child: Image(
                         height:
                         MediaQuery.of(context).size.height > 800 ? 191.0 : 150,
@@ -131,7 +134,7 @@ class _LoginPageState extends State<LoginPage>
                   style: TextStyle(
                       color: left,
                       fontSize: 16.0,
-                      fontFamily: 'WorkSansSemiBold'),
+                      fontFamily: 'SVN-Gotham Bold'),
                 ),
               ),
             ),
@@ -147,7 +150,7 @@ class _LoginPageState extends State<LoginPage>
                   style: TextStyle(
                       color: right,
                       fontSize: 16.0,
-                      fontFamily: 'WorkSansSemiBold'),
+                      fontFamily: 'SVN-Gotham'),
                 ),
               ),
             ),

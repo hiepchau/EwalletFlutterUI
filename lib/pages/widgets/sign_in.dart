@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/pages/widgets/snackbar.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../root_page.dart';
 
@@ -15,7 +16,6 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   TextEditingController loginEmailController = TextEditingController();
   TextEditingController loginPasswordController = TextEditingController();
-
   final FocusNode focusNodeEmail = FocusNode();
   final FocusNode focusNodePassword = FocusNode();
 
@@ -43,12 +43,19 @@ class _SignInState extends State<SignIn> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
-                  width: 300.0,
-                  height: 190.0,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: kIsWeb ? 150 : 100,
+                    minWidth: 150,
+                    maxWidth:
+                        kIsWeb ? MediaQuery.of(context).size.width / 3 : 400,
+                    maxHeight:
+                        kIsWeb ? MediaQuery.of(context).size.height / 4 : 190,
+                  ),
                   child: Column(
                     children: <Widget>[
-                      Padding(
+                      Flexible(
+                          child: Padding(
                         padding: const EdgeInsets.only(
                             top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                         child: TextField(
@@ -74,13 +81,16 @@ class _SignInState extends State<SignIn> {
                             focusNodePassword.requestFocus();
                           },
                         ),
-                      ),
+                      )),
                       Container(
-                        width: 250.0,
+                        width: kIsWeb
+                            ? MediaQuery.of(context).size.width / 3 - 150
+                            : 250,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
-                      Padding(
+                      Flexible(
+                          child: Padding(
                         padding: const EdgeInsets.only(
                             top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
                         child: TextField(
@@ -117,7 +127,7 @@ class _SignInState extends State<SignIn> {
                           },
                           textInputAction: TextInputAction.go,
                         ),
-                      ),
+                      )),
                     ],
                   ),
                 ),
@@ -149,33 +159,35 @@ class _SignInState extends State<SignIn> {
                       tileMode: TileMode.clamp),
                 ),
                 child: MaterialButton(
-                  highlightColor: Colors.transparent,
-                  splashColor: CustomTheme.loginGradientEnd,
-                  child: const Padding(
-                    padding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
-                    child: Text(
-                      'LOGIN',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25.0,
-                          fontFamily: 'WorkSansBold'),
+                    highlightColor: Colors.transparent,
+                    splashColor: CustomTheme.loginGradientEnd,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 42.0),
+                      child: Text(
+                        'LOGIN',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25.0,
+                            fontFamily: 'WorkSansBold'),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    CustomSnackBar(
-                        context, const Text('Login button pressed'));
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RootApp()),
-                    );
-                  }
-                ),
+                    onPressed: () {
+                      CustomSnackBar(
+                          context, const Text('Login button pressed'));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RootApp()),
+                      );
+                    }),
               )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 10.0),
+            padding: kIsWeb
+                ? const EdgeInsets.only(top: 30.0)
+                : const EdgeInsets.only(top: 10),
             child: TextButton(
                 onPressed: () {},
                 child: const Text(
@@ -291,3 +303,4 @@ class _SignInState extends State<SignIn> {
     });
   }
 }
+  //#endregion

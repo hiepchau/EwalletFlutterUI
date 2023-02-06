@@ -41,17 +41,14 @@ class _QRScannerState extends State<QRScanner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("QR Scanner"),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             TextButton(
+              child: Text("Scan QR code"),
               onPressed: _scanQR,
-              child: const Text("Scan QR code"),
             ),
             Text(_scanResult),
           ],
