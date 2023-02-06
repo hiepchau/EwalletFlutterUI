@@ -34,6 +34,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
         onPressed: () {
           setState(() {
             selectedTab(4);
+            // Navigator.push(context, MaterialPageRoute(builder: (context) => const QRScreen()));
           });
         },
         backgroundColor: primary,
