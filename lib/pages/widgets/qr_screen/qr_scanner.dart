@@ -3,12 +3,12 @@ import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class QRScanner extends StatefulWidget {
+class QRScannerScreen extends StatefulWidget {
   @override
   _QRScannerState createState() => _QRScannerState();
 }
 
-class _QRScannerState extends State<QRScanner> {
+class _QRScannerState extends State<QRScannerScreen> {
   String _scanResult = "";
 
   Future _scanQR() async {
@@ -40,19 +40,17 @@ class _QRScannerState extends State<QRScanner> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            TextButton(
-              child: Text("Scan QR code"),
-              onPressed: _scanQR,
-            ),
-            Text(_scanResult),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          TextButton(
+            child: Text("Scan QR code"),
+            onPressed: _scanQR,
+          ),
+          Text(_scanResult),
+        ],
       ),
     );
   }

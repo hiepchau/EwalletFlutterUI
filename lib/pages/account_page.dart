@@ -11,8 +11,8 @@ class AccountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Account'),
-        backgroundColor: primary,
+        title: const Text('Tài khoản'),
+        automaticallyImplyLeading: false,
       ),
       body: getBody(),
     );
@@ -35,7 +35,7 @@ class AccountPage extends StatelessWidget {
 
   Widget getAccountSection() {
     return Padding(
-      padding: const EdgeInsets.all(0),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -44,25 +44,27 @@ class AccountPage extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 color: white,
                 boxShadow: [
                   BoxShadow(
-                    color: grey.withOpacity(0.1),
-                    spreadRadius: 10,
-                    blurRadius: 10,
+                    color: grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: Offset(0,2)
                   ),
                 ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, top: 20, right: 20, bottom: 30),
+              child: Container(              
+                padding: const EdgeInsets.fromLTRB(
+                    20,  15,  20, 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    const SizedBox(
                       width: 45,
                       height: 45,
-                      child: const CircleAvatar(
+                      child: CircleAvatar(
                         backgroundImage: NetworkImage(
                             "https://www.woolha.com/media/2020/03/eevee.png"),
                         backgroundColor: Colors.transparent,
@@ -74,14 +76,33 @@ class AccountPage extends StatelessWidget {
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Hiep Chau",
-                            style: wBoldTextStyle
+                        children: [
+                          const Text(
+                            "Hiệp Châu",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                            )
                           ),
-                          Text(
+                          const Text(
                             "0999000999",
                             style: wGreyTextStyle,
+                          ),
+                          const SizedBox(height: 5,),
+                          Container(
+                            alignment: Alignment.center,
+                            height: 25,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: green
+                            ),
+                          child: Text("Đã xác thực",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                            color: onPrimary
+                          ),),
                           ),
                         ],
                       ),
@@ -98,6 +119,7 @@ class AccountPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
+          Text("Quản lí ví"),
           const ProfileWidget(
               icon: AntDesign.qrcode,
               iconColor: green,
@@ -113,7 +135,7 @@ class AccountPage extends StatelessWidget {
               iconColor: yellow,
               title: 'Coin',
               subtitle: 'Earn coin'),
-          const ProfileWidget(
+          ProfileWidget(
               icon: Icons.card_giftcard,
               iconColor: red,
               title: 'Gift cards',
@@ -122,19 +144,19 @@ class AccountPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const ProfileWidget(
+           ProfileWidget(
             icon: AntDesign.bank,
-            iconColor: secondary,
+            iconColor: primary,
             title: 'Bank',
             subtitle: '1connected',
           ),
-          const ProfileWidget(
+          ProfileWidget(
             icon: Icons.production_quantity_limits,
             iconColor: secondary,
             title: 'Bills',
             subtitle: '',
           ),
-          const ProfileWidget(
+          ProfileWidget(
             icon: Icons.history_edu,
             iconColor: primary,
             title: 'Lien ket thanh toan',

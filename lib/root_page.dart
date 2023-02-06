@@ -34,9 +34,11 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
         onPressed: () {
           setState(() {
             selectedTab(4);
+            // Navigator.push(context, MaterialPageRoute(builder: (context) => const QRScreen()));
           });
         },
-        backgroundColor: secondary,
+        backgroundColor: primary,
+        shape: const CircleBorder(),
         child: Image.asset(
           'assets/images/icons/qrcode.gif',
           height: 30,
@@ -58,9 +60,9 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     ];
     return AnimatedBottomNavigationBar(
       key: key,
-      activeColor: secondary,
-      splashColor: secondary,
-      inactiveColor: grey,
+      activeColor: primary,
+      splashColor: primary,
+      inactiveColor: secondary,
       icons: iconsItems,
       gapLocation: GapLocation.center,
       notchSmoothness: NotchSmoothness.softEdge,

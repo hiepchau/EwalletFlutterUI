@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_font_icons/flutter_font_icons.dart';
 import '../../style/color.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HistoryWidget extends StatefulWidget {
-  const HistoryWidget({Key? key,
-      required this.icon,
-      required this.iconColor,
-      required this.title,
-      required this.subtitle,
-      required this.time,
-      required this.balance,
-      required this.amount,});
+  const HistoryWidget({
+    Key? key,
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    required this.subtitle,
+    required this.time,
+    required this.balance,
+    required this.amount,
+  });
   final IconData icon;
   final Color iconColor;
   final String title;
@@ -22,7 +24,8 @@ class HistoryWidget extends StatefulWidget {
   @override
   _HistoryWidget createState() => _HistoryWidget();
 }
-class _HistoryWidget extends State<HistoryWidget>{
+
+class _HistoryWidget extends State<HistoryWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -48,18 +51,18 @@ class _HistoryWidget extends State<HistoryWidget>{
                 Row(
                   children: [
                     SizedBox(
-                      width: 50,
+                      width: kIsWeb ? 50 : 30,
                       height: 50,
                       child: Center(
                         child: Icon(
                           widget.icon,
                           color: widget.iconColor,
-                          size: 55,
+                          size: kIsWeb ? 55 : 40,
                         ),
                       ),
                     ),
                     const SizedBox(
-                      width: 50,
+                      width: kIsWeb ? 50 : 30,
                     ),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,24 +71,25 @@ class _HistoryWidget extends State<HistoryWidget>{
                             widget.title,
                             textAlign: TextAlign.start,
                             style: const TextStyle(
-                                fontSize: 18, fontFamily: 'SVN-Gotham'),
+                                fontSize: kIsWeb ? 18 : 16,
+                                fontFamily: 'SVN-Gotham'),
                           ),
                           Text(
                             widget.time,
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                                 color: Color.fromARGB(125, 0, 0, 0),
-                                fontSize: 13,
+                                fontSize: kIsWeb ? 13 : 12,
                                 fontFamily: 'SVN-Gotham'),
                           ),
                           Text(
                             HistoryWidget.isObscure
                                 ? "Số dư ví: ******"
-                                : "Số dư ví: "+ widget.balance,
+                                : "Số dư ví: " + widget.balance,
                             textAlign: TextAlign.start,
                             style: const TextStyle(
                                 color: Color.fromARGB(125, 0, 0, 0),
-                                fontSize: 13,
+                                fontSize: kIsWeb ? 13 : 12,
                                 fontFamily: 'SVN-Gotham'),
                           )
                         ])
@@ -99,13 +103,13 @@ class _HistoryWidget extends State<HistoryWidget>{
                           Text(
                             widget.amount,
                             style: const TextStyle(
-                                fontSize: 15,
+                                fontSize: kIsWeb ? 18 : 15,
                                 fontFamily: 'SVN-Gotham'),
                           ),
                           const Text(
                             "Thành công",
                             style: TextStyle(
-                                fontSize: 15,
+                                fontSize: kIsWeb ? 15 : 13,
                                 color: Colors.green,
                                 fontFamily: 'SVN-Gotham'),
                           )
