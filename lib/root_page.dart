@@ -1,9 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:circular_reveal_animation/circular_reveal_animation.dart';
 import 'package:ewallet/pages/account_page.dart';
 import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
-import 'package:ewallet/pages/widgets/qr_screen/qr_scanner.dart';
+import 'package:ewallet/pages/qr_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
@@ -85,7 +84,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
         HistoryPage(),
         Center(child: Text("Wallet")),
         AccountPage(),
-        QRScanner(),
+        QRScreen(),
       ],
     );
   }
