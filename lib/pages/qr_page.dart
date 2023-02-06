@@ -17,7 +17,7 @@ class QRScreen extends StatefulWidget {
 }
 
 class _QRScreenState extends State<QRScreen> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   Color left = Colors.black;
   Color right = Colors.white;
@@ -26,61 +26,57 @@ class _QRScreenState extends State<QRScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Row(
-            children: [
-              Expanded(
-                child: Stack(
-                  alignment: AlignmentDirectional.centerStart,
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: ExpandablePageView(
-                        controller: _pageController,
-                        physics: const ClampingScrollPhysics(),
-                        onPageChanged: (int i) {
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          if (i == 0) {
-                            setState(() {
-                              right = Colors.white;
-                              left = Colors.black;
-                            });
-                          } else if (i == 1) {
-                            setState(() {
-                              right = Colors.black;
-                              left = Colors.white;
-                            });
-                          }
-                        },
-                        children: <Widget>[
-                          SizedBox(
-                            child: GenerateQRScreen(),
-                          ),
-                          SizedBox(
-                            child: QRScannerScreen(),
-                          ),
-                        ],
+            body: GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Row(
+        children: [
+          Expanded(
+            child: Stack(
+              alignment: AlignmentDirectional.bottomEnd,
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: ExpandablePageView(
+                    controller: _pageController,
+                    physics: const ClampingScrollPhysics(),
+                    onPageChanged: (int i) {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      if (i == 0) {
+                        setState(() {
+                          right = Colors.white;
+                          left = Colors.black;
+                        });
+                      } else if (i == 1) {
+                        setState(() {
+                          right = Colors.black;
+                          left = Colors.white;
+                        });
+                      }
+                    },
+                    children: <Widget>[
+                      SizedBox(
+                        child: GenerateQRScreen(),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 0.0),
-                        child: _buildMenuBar(context),
+                      SizedBox(
+                        child: QRScannerScreen(),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 25.0),
+                    child: _buildMenuBar(context),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     )));
   }
 
