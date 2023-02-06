@@ -11,8 +11,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
-        backgroundColor: Colors.blue,
+        title: const Text('Trang chủ'),
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(

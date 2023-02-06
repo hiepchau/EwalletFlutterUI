@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage>
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: <Color>[
                       CustomTheme.loginGradientStart,

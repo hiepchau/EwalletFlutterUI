@@ -4,9 +4,9 @@ import 'package:ewallet/history_lists.dart';
 import 'package:ewallet/pages/widgets/history_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../history_lists.dart';
+import 'package:ewallet/style/color.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -47,12 +47,12 @@ class _HistoryPage extends State<HistoryPage> {
         child: TabBar(
             isScrollable: true,
             unselectedLabelColor: Colors.black.withOpacity(0.3),
-            indicator: const UnderlineTabIndicator(
-                borderSide: BorderSide(width: 2, color: Colors.blue)),
-            indicatorColor: Colors.blue,
-            labelColor: Colors.blue,
+            indicator:  UnderlineTabIndicator(
+                borderSide: BorderSide(width: 2, color: primary)),
+            indicatorColor: primary,
+            labelColor: primary,
             tabs: const [
-              Text("Tất cả"),
+              Text("Tất cả",),
               Text("Nạp tiền"),
               Text("Chuyển tiền"),
               Text("Nhận tiền"),
@@ -70,46 +70,47 @@ class _HistoryPage extends State<HistoryPage> {
         const Text("Lịch sử"),
         const SizedBox(height: 10),
         ConstrainedBox(
-            constraints:
-                BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 2),
-            child: Row(
-                children: [
-                  Expanded(
-                      child: TextFormField(
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      prefixIcon: Icon(Icons.search),
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      hintText: "Tìm kiếm",
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                    ),
-                  )),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  Column(children:[
-                  GestureDetector(
-                    onTap: _toggleVisibility,
-                    child: Icon(
-                      obscureText
-                          ? FontAwesomeIcons.eye
-                          : FontAwesomeIcons.eyeSlash,
-                      size: 15.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Text(
+            constraints: BoxConstraints(
+                maxWidth: kIsWeb
+                    ? MediaQuery.of(context).size.width / 2
+                    : MediaQuery.of(context).size.width),
+            child: Row(children: [
+              Expanded(
+                  child: TextFormField(
+                decoration: InputDecoration(
+                  focusColor: ColorScheme.fromSeed(seedColor: Colors.blue).primary,
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: Icon(Icons.search),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  hintText: "Tìm kiếm",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                ),
+              )),
+              const SizedBox(
+                width: 20,
+              ),
+              Column(children: [
+                GestureDetector(
+                  onTap: _toggleVisibility,
+                  child: Icon(
                     obscureText
-                      ? "Hiện số dư" : "Ẩn số dư",
-                    style: TextStyle(
-                      fontSize: 10,
-                    ),)
-                  ])
-                ]))
+                        ? FontAwesomeIcons.eye
+                        : FontAwesomeIcons.eyeSlash,
+                    size: 15.0,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  obscureText ? "Hiện số dư" : "Ẩn số dư",
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
+                )
+              ])
+            ]))
       ]),
     );
   }
@@ -153,7 +154,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Nhận tiền",
             subtitle: "Nhận tiền từ " + element["from"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "+" + element["amount"]));
       }
       if (element["type"] == "transfer") {
@@ -163,7 +164,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Chuyển tiền",
             subtitle: "Chuyển tiền đến " + element["to"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "-" + element["amount"]));
       }
       if (element["type"] == "withdraw") {
@@ -173,7 +174,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Rút tiền",
             subtitle: "Rút tiền về " + element["to"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "-" + element["amount"]));
       }
       if (element["type"] == "phone") {
@@ -183,7 +184,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Nạp tiền điện thoại",
             subtitle: "Nạp cho số " + element["to"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "-" + element["amount"]));
       }
       if (element["type"] == "deposit") {
@@ -193,7 +194,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Nạp tiền",
             subtitle: "Nạp tiền từ " + element["from"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "+" + element["balance"]));
       }
     }
@@ -213,7 +214,7 @@ class _HistoryPage extends State<HistoryPage> {
           title: "Nạp tiền",
           subtitle: "Nạp tiền từ " + element["from"],
           time: element["time"],
-          balance:element["balance"],
+          balance: element["balance"],
           amount: "+" + element["balance"],
         ));
       }
@@ -234,7 +235,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Chuyển tiền",
             subtitle: "Chuyển tiền đến " + element["to"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "-" + element["amount"]));
       }
     }
@@ -254,7 +255,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Nhận tiền",
             subtitle: "Nhận tiền từ " + element["from"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "+" + element["amount"]));
       }
     }
@@ -274,7 +275,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Nạp tiền điện thoại",
             subtitle: "Nạp cho số " + element["to"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "-" + element["amount"]));
       }
     }
@@ -294,7 +295,7 @@ class _HistoryPage extends State<HistoryPage> {
             title: "Rút tiền",
             subtitle: "Rút tiền về " + element["to"],
             time: element["time"],
-            balance:element["balance"],
+            balance: element["balance"],
             amount: "-" + element["amount"]));
       }
     }

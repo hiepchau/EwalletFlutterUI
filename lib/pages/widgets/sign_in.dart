@@ -134,7 +134,7 @@ class _SignInState extends State<SignIn> {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 170.0),
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
