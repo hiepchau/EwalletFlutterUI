@@ -8,6 +8,7 @@ class ProfileWidget extends StatelessWidget{
   final String title;
   final String subtitle;
   final Color subtitleColor;
+  final Color color;
   // final Function onTap;
 
   const ProfileWidget({
@@ -16,6 +17,7 @@ class ProfileWidget extends StatelessWidget{
     required this.iconColor,
     required this.title,
     required this.subtitle,
+    this.color = white,
     this.subtitleColor = black}) : super(key: key);
   @override
   Widget build(BuildContext context){
@@ -27,7 +29,7 @@ class ProfileWidget extends StatelessWidget{
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: white,
+          color: color,
           boxShadow: [
             BoxShadow(
               color: grey.withOpacity(0.01),
