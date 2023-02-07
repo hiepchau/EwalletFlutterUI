@@ -21,7 +21,11 @@ class _AccountPage extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tài khoản'),
+        backgroundColor: primary,
+        title: Text(
+          'Tài khoản',
+          style: TextStyle(color: onPrimary),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: getBody(context),
@@ -127,9 +131,10 @@ class _AccountPage extends State<AccountPage> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+          Text(
             "Quản lí ví",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.w700, color: primary),
           ),
           const SizedBox(
             height: 10,
@@ -161,9 +166,9 @@ class _AccountPage extends State<AccountPage> {
                   )),
               Visibility(
                 visible: isVisible,
-                child: const Text(
+                child: Text(
                   "Xem tất cả (3)",
-                  style: TextStyle(color: Colors.blue),
+                  style: TextStyle(color: primary),
                 ),
               ),
               const ProfileWidget(
@@ -183,9 +188,10 @@ class _AccountPage extends State<AccountPage> {
           const SizedBox(
             height: 10,
           ),
-          const Text(
+          Text(
             "Khác",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            style: TextStyle(
+                fontSize: 18, fontWeight: FontWeight.w700, color: primary),
           ),
           const SizedBox(
             height: 10,
@@ -237,13 +243,13 @@ class _AccountPage extends State<AccountPage> {
                 "ĐĂNG XUẤT",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontWeight: FontWeight.w700, 
-                  fontSize: 18,
-                  color: onPrimary),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                    color: onPrimary),
               )),
-            const SizedBox(
+          const SizedBox(
             height: 50,
-          ),  
+          ),
         ],
       ),
     );

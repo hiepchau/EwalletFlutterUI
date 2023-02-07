@@ -70,9 +70,11 @@ class _HistoryWidget extends State<HistoryWidget> {
                           Text(
                             widget.title,
                             textAlign: TextAlign.start,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontSize: kIsWeb ? 18 : 16,
-                                fontFamily: 'SVN-Gotham'),
+                                fontFamily: 'SVN-Gotham',
+                                color: primary
+                                ),
                           ),
                           Text(
                             widget.time,
@@ -102,9 +104,10 @@ class _HistoryWidget extends State<HistoryWidget> {
                         children: [
                           Text(
                             widget.amount,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontSize: kIsWeb ? 18 : 15,
-                                fontFamily: 'SVN-Gotham'),
+                                fontFamily: 'SVN-Gotham',
+                                color: primary),
                           ),
                           const Text(
                             "Thành công",

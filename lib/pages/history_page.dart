@@ -24,7 +24,9 @@ class _HistoryPage extends State<HistoryPage> {
         child: Scaffold(
           appBar: AppBar(
             toolbarHeight: 130,
+            backgroundColor: primary,
             automaticallyImplyLeading: false,
+            shadowColor: grey,
             title: getAppBar(context),
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(35),
@@ -40,9 +42,7 @@ class _HistoryPage extends State<HistoryPage> {
         height: 48,
         decoration: const BoxDecoration(
             color: white,
-            borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(10), right: Radius.circular(10))
-            //border: Border(bottom: BorderSide(width: 1, color: Colors.grey))
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10))
             ),
         child: TabBar(
             isScrollable: true,
@@ -67,7 +67,7 @@ class _HistoryPage extends State<HistoryPage> {
       height: 125,
       width: MediaQuery.of(context).size.width,
       child: Column(children: [
-        const Text("Lịch sử"),
+        Text("Lịch sử", style: TextStyle(color: onPrimary),),
         const SizedBox(height: 10),
         ConstrainedBox(
             constraints: BoxConstraints(
@@ -78,14 +78,16 @@ class _HistoryPage extends State<HistoryPage> {
               Expanded(
                   child: TextFormField(
                 decoration: InputDecoration(
-                  focusColor: ColorScheme.fromSeed(seedColor: Colors.blue).primary,
+                  hoverColor: primaryContainer,
+                  focusColor: primary,
                   filled: true,
                   fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   hintText: "Tìm kiếm",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
                 ),
               )),
@@ -100,13 +102,14 @@ class _HistoryPage extends State<HistoryPage> {
                         ? FontAwesomeIcons.eye
                         : FontAwesomeIcons.eyeSlash,
                     size: 15.0,
-                    color: Colors.black,
+                    color: onPrimary,
                   ),
                 ),
                 Text(
                   obscureText ? "Hiện số dư" : "Ẩn số dư",
                   style: TextStyle(
                     fontSize: 10,
+                    color: onPrimary
                   ),
                 )
               ])
@@ -116,14 +119,23 @@ class _HistoryPage extends State<HistoryPage> {
   }
 
   Widget getBody() {
-    return TabBarView(children: [
-      everythingHistoryScreen(),
-      depositHistoryScreen(),
-      transferistoryScreen(),
-      receiveHistoryScreen(),
-      mobileHistoryScreen(),
-      withdrawHistoryScreen(),
-    ]);
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: MediaQuery.of(context).size.width < 900 ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width /2,
+          maxWidth: MediaQuery.of(context).size.width >= 900 ? MediaQuery.of(context).size.width /2 : MediaQuery.of(context).size.width
+          ),
+        
+        child: 
+      TabBarView(children: [
+        everythingHistoryScreen(),
+        depositHistoryScreen(),
+        transferistoryScreen(),
+        receiveHistoryScreen(),
+        mobileHistoryScreen(),
+        withdrawHistoryScreen(),
+      ])),
+    );
   }
 
   Widget everythingHistoryScreen() {
@@ -141,8 +153,9 @@ class _HistoryPage extends State<HistoryPage> {
             padding: const EdgeInsets.only(left: 20),
             child: Text(
               "Tháng $temp",
-              style: const TextStyle(
+              style: TextStyle(
                   fontSize: 30,
+                  color: primary,
                   fontFamily: 'SVN-Gotham',
                   fontWeight: FontWeight.w700),
             )));

@@ -30,7 +30,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       padding: const EdgeInsets.only(top: 23.0),
       child: Column(
         children: <Widget>[
@@ -45,12 +45,12 @@ class _SignInState extends State<SignIn> {
                 ),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                    minHeight: kIsWeb ? 150 : 100,
-                    minWidth: 150,
+                    minHeight: MediaQuery.of(context).size.height < 250 ? 150 : MediaQuery.of(context).size.height / 4,
+                    minWidth: MediaQuery.of(context).size.width < 700 ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width / 3,
                     maxWidth:
-                        kIsWeb ? MediaQuery.of(context).size.width / 3 : 400,
+                        MediaQuery.of(context).size.width >= 700 ? MediaQuery.of(context).size.width / 3 : MediaQuery.of(context).size.width,
                     maxHeight:
-                        kIsWeb ? MediaQuery.of(context).size.height / 4 : 190,
+                        MediaQuery.of(context).size.height >= 250 ? MediaQuery.of(context).size.height / 4 : 150,
                   ),
                   child: Column(
                     children: <Widget>[
@@ -83,9 +83,9 @@ class _SignInState extends State<SignIn> {
                         ),
                       )),
                       Container(
-                        width: kIsWeb
+                        width: MediaQuery.of(context).size.width >= 900
                             ? MediaQuery.of(context).size.width / 3 - 150
-                            : 250,
+                            : MediaQuery.of(context).size.width - 150,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),

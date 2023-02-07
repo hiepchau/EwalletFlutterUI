@@ -4,11 +4,15 @@ import 'package:flutter/cupertino.dart';
 final Color primary = ColorScheme.fromSeed(seedColor: Colors.blue).primary;
 final Color onPrimary = ColorScheme.fromSeed(seedColor: Colors.blue).onPrimary;
 final Color secondary = ColorScheme.fromSeed(seedColor: Colors.blue).secondary;
-final Color primaryContainer = ColorScheme.fromSeed(seedColor: Colors.blue).primaryContainer;
+final Color primaryContainer =
+    ColorScheme.fromSeed(seedColor: Colors.blue).primaryContainer;
 final Color onPrimaryContainer =
     ColorScheme.fromSeed(seedColor: Colors.blue).onPrimaryContainer;
-final Color outline =
-    ColorScheme.fromSeed(seedColor: Colors.blue).outline;
+final Color outline = ColorScheme.fromSeed(seedColor: Colors.blue).outline;
+final Color secondaryContainer =
+    ColorScheme.fromSeed(seedColor: Colors.blue).secondaryContainer;
+final Color surfaceVariant =
+    ColorScheme.fromSeed(seedColor: Colors.blue).surfaceVariant;
 const Color white = Color(0xFFFFFFFF);
 const Color black = Color(0xFF000000);
 const Color grey = Color(0xFF8e8e93);

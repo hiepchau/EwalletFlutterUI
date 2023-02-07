@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/pages/widgets/snackbar.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
 
@@ -23,7 +24,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController signupNameController = TextEditingController();
   TextEditingController signupPasswordController = TextEditingController();
   TextEditingController signupConfirmPasswordController =
-  TextEditingController();
+      TextEditingController();
 
   @override
   void dispose() {
@@ -36,7 +37,7 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
       padding: const EdgeInsets.only(top: 23.0),
       child: Column(
         children: <Widget>[
@@ -49,9 +50,14 @@ class _SignUpState extends State<SignUp> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                child: Container(
-                  width: kIsWeb ? MediaQuery.of(context).size.width/3 :400,
-                  height: 360.0,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: MediaQuery.of(context).size.width < 900 ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width/3,
+                    minHeight: MediaQuery.of(context).size.height < 250 ? 150 : 360 ,
+                    maxWidth:
+                        MediaQuery.of(context).size.width >=900 ? MediaQuery.of(context).size.width / 3 : MediaQuery.of(context).size.width,
+                    maxHeight: MediaQuery.of(context).size.height >= 250 ? 360 : 150,
+                  ),
                   child: Column(
                     children: <Widget>[
                       Padding(
@@ -83,7 +89,9 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
+                        width: MediaQuery.of(context).size.width >= 900
+                            ? MediaQuery.of(context).size.width / 3 -150
+                            : MediaQuery.of(context).size.width -150,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
@@ -115,7 +123,9 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
+                        width: MediaQuery.of(context).size.width >= 900
+                            ? MediaQuery.of(context).size.width / 3 - 150
+                            : MediaQuery.of(context).size.width - 150,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
@@ -157,7 +167,9 @@ class _SignUpState extends State<SignUp> {
                         ),
                       ),
                       Container(
-                        width: kIsWeb ? MediaQuery.of(context).size.width/3 - 150 : 250,
+                        width: MediaQuery.of(context).size.width >= 900
+                            ? MediaQuery.of(context).size.width / 3 - 150
+                            : MediaQuery.of(context).size.width - 150,
                         height: 1.0,
                         color: Colors.grey[400],
                       ),
@@ -235,7 +247,7 @@ class _SignUpState extends State<SignUp> {
                   //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
                   child: const Padding(
                     padding:
-                    EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 42.0),
                     child: Text(
                       'SIGN UP',
                       style: TextStyle(
