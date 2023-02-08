@@ -1,89 +1,73 @@
 import 'package:ewallet/pages/widgets/icon_label.dart';
 import 'package:flutter/material.dart';
 
+class _ShortcutIcon extends StatelessWidget {
+  final IconData iconData;
+  final String text;
+
+  const _ShortcutIcon(this.iconData, this.text, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SizedBox(
+          width: constraints.maxWidth > 50 ? constraints.maxWidth : 50,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 15,
+                      offset: Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: Icon(iconData),
+              ),
+              const SizedBox(height: 5),
+              Flexible(
+                  child: Text(
+                text,
+                textAlign: TextAlign.center,
+              )),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
 class ShortcutPanel extends StatelessWidget {
   const ShortcutPanel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const iconWidth = 50.0;
     return AspectRatio(
-      aspectRatio: 3 / 1,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.tealAccent,
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        width: double.infinity,
-        height: 200,
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            return SizedBox(
-              width: constraints.maxHeight,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: constraints.maxHeight * 0.3,
-                    child: Center(
-                      child: Stack(
-                        children: [
-                          const Align(
-                              alignment: Alignment.centerLeft,
-                              child: Padding(
-                                  padding: EdgeInsets.only(left: 15),
-                                  child: Text("31.198đ"))),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Icon(Icons.currency_exchange),
-                                        Text("0 xu"),
-                                        Icon(Icons.arrow_forward_ios_rounded)
-                                      ]))),
-                          Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Container(
-                                  width: double.infinity,
-                                  height: 1,
-                                  color: Colors.grey))
-                        ],
-                      ),
-                    ),
-                  ),
-                  Container(
-                      color: Colors.white,
-                      height: constraints.maxHeight * 0.7,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          IconLabel(
-                              label: "Chuyển tiền", icon: Icons.access_alarm),
-                          IconLabel(
-                              label: "Mã thanh toán", icon: Icons.ac_unit),
-                          IconLabel(label: "Nạp/Rút", icon: Icons.accessible),
-                          IconLabel(label: "Ưu đãi", icon: Icons.back_hand),
-                        ],
-                      )),
-                ],
-              ),
-            );
-          },
-        ),
+      aspectRatio: 70 / 23,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: const [
+          SizedBox(
+              width: iconWidth,
+              child: _ShortcutIcon(Icons.swap_horiz, 'Nạp tiền')),
+          SizedBox(
+              width: iconWidth, child: _ShortcutIcon(Icons.wallet, 'Rút tiền')),
+          SizedBox(
+              width: iconWidth, child: _ShortcutIcon(Icons.qr_code, 'QR Pay')),
+          SizedBox(
+              width: iconWidth,
+              child: _ShortcutIcon(Icons.qr_code, 'Mã thanh toán')),
+        ],
       ),
     );
   }

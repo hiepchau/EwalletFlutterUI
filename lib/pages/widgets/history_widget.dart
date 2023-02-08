@@ -1,30 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_font_icons/flutter_font_icons.dart';
 import '../../style/color.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
-class HistoryWidget extends StatelessWidget{
-  final IconData icon;
-  final Color iconColor;
-  final String title;
-  final String subtitle;
-  final Color subtitleColor;
-  // final Function onTap;
-
+class HistoryWidget extends StatefulWidget {
   const HistoryWidget({
     Key? key,
     required this.icon,
     required this.iconColor,
     required this.title,
     required this.subtitle,
-    this.subtitleColor = black}) : super(key: key);
+    required this.time,
+    required this.balance,
+    required this.amount,
+  });
+  final IconData icon;
+  final Color iconColor;
+  final String title;
+  final String subtitle;
+  final String time;
+  final String balance;
+  final String amount;
+  static bool isObscure = true;
   @override
-  Widget build(BuildContext context){
+  _HistoryWidget createState() => _HistoryWidget();
+}
+
+class _HistoryWidget extends State<HistoryWidget> {
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        
-      },
+      onTap: () {},
       child: Container(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: white,
           boxShadow: [
@@ -40,52 +47,81 @@ class HistoryWidget extends StatelessWidget{
           padding: const EdgeInsets.all(18),
           child: Column(
             children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          child: Center(
-                            child: Icon(
-                              icon,
-                              color: iconColor,
-                              size: 50,
-                            ),
-                          ),
+                    SizedBox(
+                      width: kIsWeb ? 50 : 30,
+                      height: 50,
+                      child: Center(
+                        child: Icon(
+                          widget.icon,
+                          color: widget.iconColor,
+                          size: kIsWeb ? 55 : 40,
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          children:[
-                        Text(
-                          title,
-                          style: const TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'SVN-Gotham'
-                          ),
-                        )
-                        ])
-                      ],
+                      ),
                     ),
-                    Expanded(child: Text(
-                      subtitle,
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: subtitleColor,
-                          fontFamily: 'SVN-Gotham'),
-                    ),),
-
-                    const Icon(
-                      Icons.keyboard_arrow_right,
-                      color: grey,
-                    )
-                  ]
-              )
+                    const SizedBox(
+                      width: kIsWeb ? 50 : 30,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            widget.title,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontSize: kIsWeb ? 18 : 16,
+                                fontFamily: 'SVN-Gotham',
+                                color: primary
+                                ),
+                          ),
+                          Text(
+                            widget.time,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                                color: Color.fromARGB(125, 0, 0, 0),
+                                fontSize: kIsWeb ? 13 : 12,
+                                fontFamily: 'SVN-Gotham'),
+                          ),
+                          Text(
+                            HistoryWidget.isObscure
+                                ? "Số dư ví: ******"
+                                : "Số dư ví: " + widget.balance,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                                color: Color.fromARGB(125, 0, 0, 0),
+                                fontSize: kIsWeb ? 13 : 12,
+                                fontFamily: 'SVN-Gotham'),
+                          )
+                        ])
+                  ],
+                ),
+                Flexible(
+                    fit: FlexFit.tight,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            widget.amount,
+                            style: TextStyle(
+                                fontSize: kIsWeb ? 18 : 15,
+                                fontFamily: 'SVN-Gotham',
+                                color: primary),
+                          ),
+                          const Text(
+                            "Thành công",
+                            style: TextStyle(
+                                fontSize: kIsWeb ? 15 : 13,
+                                color: Colors.green,
+                                fontFamily: 'SVN-Gotham'),
+                          )
+                        ])),
+                const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: grey,
+                )
+              ])
             ],
           ),
         ),

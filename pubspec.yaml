@@ -17,6 +17,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_bottom_navigation_bar: ^1.1.0
   circular_reveal_animation: ^2.0.1
+  barcode_scan2: ^4.2.3
+  flutter_gif: ^0.0.4
+  expandable_page_view: ^1.0.17
+  barcode_widget: ^2.0.1
+  flutter_countdown_timer: ^4.1.0
+
 
 dev_dependencies:
   flutter_test:

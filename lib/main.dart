@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     theme: ThemeData(
-      primaryColor: Colors.lightBlueAccent,
-      scaffoldBackgroundColor: Colors.white,
-      fontFamily: 'SVN-Gotham',
-      textTheme: const TextTheme(
-        headlineSmall: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),
-      )
-    ),
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'SVN-Gotham',
+        textTheme: const TextTheme(
+          headlineSmall: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        )),
     debugShowCheckedModeBanner: false,
-    home: LoginPage(),
+    home: const LoginPage(),
   ));
 }

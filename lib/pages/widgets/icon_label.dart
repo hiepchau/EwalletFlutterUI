@@ -27,10 +27,8 @@ class IconLabel extends StatelessWidget {
               SizedBox(
                 width: constraints.maxWidth,
                 child: Center(
-                  child: Text(
-                    label,
-                    style: Theme.of(context).textTheme.headlineSmall
-                  ),
+                  child: Text(label,
+                      style: Theme.of(context).textTheme.headlineSmall),
                 ),
               ),
             ],
