@@ -1,4 +1,3 @@
-import 'package:ewallet/pages/components/CustomSeparator.dart';
 import 'package:ewallet/pages/widgets/profile_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/wallet_lists.dart';
@@ -37,9 +36,18 @@ class _AccountPage extends State<AccountPage> {
       children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: getAccountSection(context),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width < 900
+                      ? MediaQuery.of(context).size.width
+                      : MediaQuery.of(context).size.width / 2,
+                  maxWidth: MediaQuery.of(context).size.width >= 900
+                        ? MediaQuery.of(context).size.width / 2
+                        : MediaQuery.of(context).size.width
+                ),
+                child: getAccountSection(context),
+              ),
             ),
           ),
         ),
@@ -133,6 +141,7 @@ class _AccountPage extends State<AccountPage> {
           ),
           Text(
             "Quản lí ví",
+            textAlign: TextAlign.start,
             style: TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w700, color: primary),
           ),

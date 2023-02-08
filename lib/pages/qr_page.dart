@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
-
+import 'package:ewallet/pages/widgets/snackbar.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:ewallet/pages/widgets/qr_screen/qr_generate.dart';
 import 'package:ewallet/pages/widgets/qr_screen/qr_scanner.dart';
 import 'package:flutter/material.dart';
@@ -133,7 +134,11 @@ class _QRScreenState extends State<QRScreen> {
   }
 
   void _onSignUpButtonPress() {
-    _pageController.animateToPage(1,
-        duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
+    kIsWeb
+        ? CustomSnackBar(
+            context, const Text("Không thể sử dụng QR Scanner khi ở bản web!"))
+        : _pageController.animateToPage(1,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.decelerate);
   }
 }
