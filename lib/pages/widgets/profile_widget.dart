@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import '../../style/color.dart';
 
-class ProfileWidget extends StatelessWidget{
+class ProfileWidget extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final String title;
@@ -11,18 +11,19 @@ class ProfileWidget extends StatelessWidget{
   final Color color;
   // final Function onTap;
 
-  const ProfileWidget({
-    Key? key,
-    required this.icon,
-    required this.iconColor,
-    required this.title,
-    required this.subtitle,
-    this.color = white,
-    this.subtitleColor = black}) : super(key: key);
+  const ProfileWidget(
+      {Key? key,
+      required this.icon,
+      required this.iconColor,
+      required this.title,
+      required this.subtitle,
+      this.color = white,
+      this.subtitleColor = black})
+      : super(key: key);
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         // Navigator.push(context, MaterialPageRoute(builder: (_) => CardPage()));
         // onTap();
       },
@@ -43,49 +44,45 @@ class ProfileWidget extends StatelessWidget{
           padding: const EdgeInsets.all(18),
           child: Column(
             children: [
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          child: Center(
-                            child: Icon(
-                              icon,
-                              color: iconColor,
-                              size: 20,
-                            ),
-                          ),
+                    Container(
+                      width: 40,
+                      height: 40,
+                      child: Center(
+                        child: Icon(
+                          icon,
+                          color: iconColor,
+                          size: 20,
                         ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          title,
-                          style: const TextStyle(
-                              fontSize: 15,
-                              fontFamily: 'SVN-Gotham'
-                          ),
-                        )
-                      ],
+                      ),
                     ),
-                    Expanded(child: Text(
-                      subtitle,
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: subtitleColor,
-                          fontFamily: 'SVN-Gotham'),
-                    ),),
-
-                    const Icon(
-                      Icons.keyboard_arrow_right,
-                      color: grey,
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      title,
+                      style: const TextStyle(
+                          fontSize: 15, fontFamily: 'SVN-Gotham'),
                     )
-                  ]
-              )
+                  ],
+                ),
+                Expanded(
+                  child: Text(
+                    subtitle,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                        fontSize: 15,
+                        color: subtitleColor,
+                        fontFamily: 'SVN-Gotham'),
+                  ),
+                ),
+                const Icon(
+                  Icons.keyboard_arrow_right,
+                  color: grey,
+                )
+              ])
             ],
           ),
         ),

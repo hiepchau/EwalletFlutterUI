@@ -24,7 +24,6 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +42,6 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
           'assets/images/icons/qrcode.gif',
           height: 30,
           width: 30,
-          
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

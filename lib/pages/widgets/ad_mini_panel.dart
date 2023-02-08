@@ -50,8 +50,8 @@ class AdMiniPanel extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(right: 15),
                         child: TextButton(
-                            style:
-                                TextButton.styleFrom(backgroundColor: Colors.red),
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.red),
                             onPressed: () => {},
                             child: const Text('Button')),
                       ))

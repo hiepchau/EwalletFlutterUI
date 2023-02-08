@@ -47,7 +47,6 @@ class _ShortcutIcon extends StatelessWidget {
 }
 
 class ShortcutPanel extends StatelessWidget {
-
   const ShortcutPanel({Key? key}) : super(key: key);
 
   @override

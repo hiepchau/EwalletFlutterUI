@@ -2,7 +2,6 @@
 
 import 'package:ewallet/pages/widgets/qr_screen/qr_generate.dart';
 import 'package:ewallet/pages/widgets/qr_screen/qr_scanner.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:expandable_page_view/expandable_page_view.dart';
 import '../utils/bubble_indicator_painter.dart';

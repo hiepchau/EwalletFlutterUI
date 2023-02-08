@@ -17,6 +17,7 @@ const Color white = Color(0xFFFFFFFF);
 const Color black = Color(0xFF000000);
 const Color grey = Color(0xFF8e8e93);
 const Color orange = Color(0xFFFF8647);
+const Color blue = Color(0xFF2094FF);
 const Color yellow = Color(0xFFFED200);
 const Color neon = Color(0xFF0FFdc1);
 const Color red = Color(0xFFff3b30);
