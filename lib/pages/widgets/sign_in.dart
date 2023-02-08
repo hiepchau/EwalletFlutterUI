@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 import '../../root_page.dart';
 
+import '../../root_page.dart';
+
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
 
@@ -172,15 +174,15 @@ class _SignInState extends State<SignIn> {
                             fontFamily: 'WorkSansBold'),
                       ),
                     ),
-                    onPressed: () {
-                      CustomSnackBar(
-                          context, const Text('Login button pressed'));
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const RootApp()),
-                      );
-                    }),
+                  onPressed: () {
+                    CustomSnackBar(
+                        context, const Text('Login button pressed'));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const RootApp()),
+                    );
+                  }
+                ),
               )
             ],
           ),
