@@ -55,7 +55,7 @@ class _QRScreenState extends State<QRScreen> {
                       }
                     },
                     children: <Widget>[
-                      SizedBox(
+                      const SizedBox(
                         child: GenerateQRScreen(),
                       ),
                       SizedBox(

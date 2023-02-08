@@ -4,10 +4,13 @@ import 'package:ewallet/style/color.dart';
 import 'package:ewallet/style/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:flutter_countdown_timer/current_remaining_time.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
+
 class GenerateQRScreen extends StatefulWidget {
+  const GenerateQRScreen({Key? key}) : super(key: key);
+
   @override
+  // ignore: library_private_types_in_public_api
   _GenerateQRPageState createState() => _GenerateQRPageState();
 }
 
