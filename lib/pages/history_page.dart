@@ -42,17 +42,18 @@ class _HistoryPage extends State<HistoryPage> {
         height: 48,
         decoration: const BoxDecoration(
             color: white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10))
-            ),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
         child: TabBar(
             isScrollable: true,
             unselectedLabelColor: Colors.black.withOpacity(0.3),
-            indicator:  UnderlineTabIndicator(
+            indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(width: 2, color: primary)),
             indicatorColor: primary,
             labelColor: primary,
             tabs: const [
-              Text("Tất cả",),
+              Text(
+                "Tất cả",
+              ),
               Text("Nạp tiền"),
               Text("Chuyển tiền"),
               Text("Nhận tiền"),
@@ -67,11 +68,17 @@ class _HistoryPage extends State<HistoryPage> {
       height: 125,
       width: MediaQuery.of(context).size.width,
       child: Column(children: [
-        Text("Lịch sử", style: TextStyle(color: onPrimary),),
+        Text(
+          "Lịch sử",
+          style: TextStyle(color: onPrimary),
+        ),
         const SizedBox(height: 10),
         ConstrainedBox(
             constraints: BoxConstraints(
-                maxWidth: kIsWeb
+                minWidth: MediaQuery.of(context).size.width < 900
+                    ? MediaQuery.of(context).size.width
+                    : MediaQuery.of(context).size.width / 2,
+                maxWidth: MediaQuery.of(context).size.width >= 900
                     ? MediaQuery.of(context).size.width / 2
                     : MediaQuery.of(context).size.width),
             child: Row(children: [
@@ -107,10 +114,7 @@ class _HistoryPage extends State<HistoryPage> {
                 ),
                 Text(
                   obscureText ? "Hiện số dư" : "Ẩn số dư",
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: onPrimary
-                  ),
+                  style: TextStyle(fontSize: 10, color: onPrimary),
                 )
               ])
             ]))
@@ -121,20 +125,21 @@ class _HistoryPage extends State<HistoryPage> {
   Widget getBody() {
     return Center(
       child: ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: MediaQuery.of(context).size.width < 900 ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width /2,
-          maxWidth: MediaQuery.of(context).size.width >= 900 ? MediaQuery.of(context).size.width /2 : MediaQuery.of(context).size.width
-          ),
-        
-        child: 
-      TabBarView(children: [
-        everythingHistoryScreen(),
-        depositHistoryScreen(),
-        transferistoryScreen(),
-        receiveHistoryScreen(),
-        mobileHistoryScreen(),
-        withdrawHistoryScreen(),
-      ])),
+          constraints: BoxConstraints(
+              minWidth: MediaQuery.of(context).size.width < 900
+                  ? MediaQuery.of(context).size.width
+                  : MediaQuery.of(context).size.width / 2,
+              maxWidth: MediaQuery.of(context).size.width >= 900
+                  ? MediaQuery.of(context).size.width / 2
+                  : MediaQuery.of(context).size.width),
+          child: TabBarView(children: [
+            everythingHistoryScreen(),
+            depositHistoryScreen(),
+            transferistoryScreen(),
+            receiveHistoryScreen(),
+            mobileHistoryScreen(),
+            withdrawHistoryScreen(),
+          ])),
     );
   }
 
@@ -154,7 +159,12 @@ class _HistoryPage extends State<HistoryPage> {
             child: Text(
               "Tháng $temp",
               style: TextStyle(
-                  fontSize: 30,
+                  fontSize: MediaQuery.of(context).size.width > 900
+                      ? 30
+                      : MediaQuery.of(context).size.width > 350
+                          ? 25
+                          : 20,
+                  
                   color: primary,
                   fontFamily: 'SVN-Gotham',
                   fontWeight: FontWeight.w700),
@@ -219,7 +229,31 @@ class _HistoryPage extends State<HistoryPage> {
 
   Widget depositHistoryScreen() {
     List<Widget> listWidget = List<Widget>.empty(growable: true);
+    historyList.sort(((a, b) {
+      DateTime dateA = DateTime.parse(a["time"]);
+      DateTime dateB = DateTime.parse(b["time"]);
+      return dateB.compareTo(dateA);
+    }));
+    int temp = 0;
     for (Map element in historyList) {
+      if (DateTime.parse(element["time"]).month != temp) {
+        temp = DateTime.parse(element["time"]).month;
+        listWidget.add(Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Tháng $temp",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width > 900
+                      ? 30
+                      : MediaQuery.of(context).size.width > 350
+                          ? 25
+                          : 20,
+                  
+                  color: primary,
+                  fontFamily: 'SVN-Gotham',
+                  fontWeight: FontWeight.w700),
+            )));
+      }
       if (element["type"] == "deposit") {
         listWidget.add(HistoryWidget(
           icon: Icons.monetization_on_outlined,
@@ -239,11 +273,34 @@ class _HistoryPage extends State<HistoryPage> {
   }
 
   Widget transferistoryScreen() {
+    historyList.sort(((a, b) {
+      DateTime dateA = DateTime.parse(a["time"]);
+      DateTime dateB = DateTime.parse(b["time"]);
+      return dateB.compareTo(dateA);
+    }));
+    int temp = 0;
     List<Widget> listWidget = List<Widget>.empty(growable: true);
     for (Map element in historyList) {
+      if (DateTime.parse(element["time"]).month != temp) {
+        temp = DateTime.parse(element["time"]).month;
+        listWidget.add(Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Tháng $temp",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width > 900
+                      ? 30
+                      : MediaQuery.of(context).size.width > 350
+                          ? 25
+                          : 20,
+                  color: primary,
+                  fontFamily: 'SVN-Gotham',
+                  fontWeight: FontWeight.w700),
+            )));
+      }
       if (element["type"] == "transfer") {
         listWidget.add(HistoryWidget(
-            icon: Icons.repeat_rounded,
+            icon: FontAwesomeIcons.moneyBillTransfer,
             iconColor: Colors.green,
             title: "Chuyển tiền",
             subtitle: "Chuyển tiền đến " + element["to"],
@@ -259,8 +316,31 @@ class _HistoryPage extends State<HistoryPage> {
   }
 
   Widget receiveHistoryScreen() {
+    historyList.sort(((a, b) {
+      DateTime dateA = DateTime.parse(a["time"]);
+      DateTime dateB = DateTime.parse(b["time"]);
+      return dateB.compareTo(dateA);
+    }));
+    int temp = 0;
     List<Widget> listWidget = List<Widget>.empty(growable: true);
     for (Map element in historyList) {
+      if (DateTime.parse(element["time"]).month != temp) {
+        temp = DateTime.parse(element["time"]).month;
+        listWidget.add(Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Tháng $temp",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width > 900
+                      ? 30
+                      : MediaQuery.of(context).size.width > 350
+                          ? 25
+                          : 20,
+                  color: primary,
+                  fontFamily: 'SVN-Gotham',
+                  fontWeight: FontWeight.w700),
+            )));
+      }
       if (element["type"] == "receive") {
         listWidget.add(HistoryWidget(
             icon: Icons.arrow_downward_rounded,
@@ -279,8 +359,31 @@ class _HistoryPage extends State<HistoryPage> {
   }
 
   Widget mobileHistoryScreen() {
+    historyList.sort(((a, b) {
+      DateTime dateA = DateTime.parse(a["time"]);
+      DateTime dateB = DateTime.parse(b["time"]);
+      return dateB.compareTo(dateA);
+    }));
+    int temp = 0;
     List<Widget> listWidget = List<Widget>.empty(growable: true);
     for (Map element in historyList) {
+      if (DateTime.parse(element["time"]).month != temp) {
+        temp = DateTime.parse(element["time"]).month;
+        listWidget.add(Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Tháng $temp",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width > 900
+                      ? 30
+                      : MediaQuery.of(context).size.width > 350
+                          ? 25
+                          : 20,
+                  color: primary,
+                  fontFamily: 'SVN-Gotham',
+                  fontWeight: FontWeight.w700),
+            )));
+      }
       if (element["type"] == "phone") {
         listWidget.add(HistoryWidget(
             icon: Icons.phone_android,
@@ -299,8 +402,31 @@ class _HistoryPage extends State<HistoryPage> {
   }
 
   Widget withdrawHistoryScreen() {
+    historyList.sort(((a, b) {
+      DateTime dateA = DateTime.parse(a["time"]);
+      DateTime dateB = DateTime.parse(b["time"]);
+      return dateB.compareTo(dateA);
+    }));
+    int temp = 0;
     List<Widget> listWidget = List<Widget>.empty(growable: true);
     for (Map element in historyList) {
+      if (DateTime.parse(element["time"]).month != temp) {
+        temp = DateTime.parse(element["time"]).month;
+        listWidget.add(Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              "Tháng $temp",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width > 900
+                      ? 30
+                      : MediaQuery.of(context).size.width > 350
+                          ? 25
+                          : 20,
+                  color: primary,
+                  fontFamily: 'SVN-Gotham',
+                  fontWeight: FontWeight.w700),
+            )));
+      }
       if (element["type"] == "withdraw") {
         listWidget.add(HistoryWidget(
             icon: Icons.account_balance_wallet_rounded,

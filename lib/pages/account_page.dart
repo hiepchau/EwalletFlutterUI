@@ -33,7 +33,7 @@ class _AccountPage extends State<AccountPage> {
 
   Widget getBody(BuildContext context) {
     return Column(
-      children: [
+      children: [         
         Expanded(
           child: SingleChildScrollView(
             child: Center(
@@ -143,7 +143,11 @@ class _AccountPage extends State<AccountPage> {
             "Quản lí ví",
             textAlign: TextAlign.start,
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w700, color: primary),
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 18
+                    : MediaQuery.of(context).size.width > 350
+                        ? 16
+                        : 13, fontWeight: FontWeight.w700, color: primary),
           ),
           const SizedBox(
             height: 10,
@@ -187,7 +191,7 @@ class _AccountPage extends State<AccountPage> {
                 subtitle: "",
               ),
               const ProfileWidget(
-                icon: Icons.shield_rounded,
+                icon: Icons.shield,
                 iconColor: Colors.green,
                 title: 'Bảo mật',
                 subtitle: "",
@@ -200,7 +204,11 @@ class _AccountPage extends State<AccountPage> {
           Text(
             "Khác",
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w700, color: primary),
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 18
+                    : MediaQuery.of(context).size.width > 350
+                        ? 16
+                        : 13, fontWeight: FontWeight.w700, color: primary),
           ),
           const SizedBox(
             height: 10,
@@ -253,7 +261,11 @@ class _AccountPage extends State<AccountPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    fontSize: MediaQuery.of(context).size.width > 900
+                        ? 18
+                        : MediaQuery.of(context).size.width > 350
+                            ? 16
+                            : 13,
                     color: onPrimary),
               )),
           const SizedBox(
@@ -276,7 +288,13 @@ class _AccountPage extends State<AccountPage> {
               Expanded(
                 child: Text(
                   content["name"],
-                  style: const TextStyle(fontSize: 15.0),
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width > 900
+                        ? 15
+                        : MediaQuery.of(context).size.width > 350
+                            ? 15
+                            : 13,
+                  ),
                 ),
               ),
               Expanded(
@@ -285,13 +303,19 @@ class _AccountPage extends State<AccountPage> {
                       children: [
                     Text(
                       content["card_Number"],
-                      style: const TextStyle(fontSize: 13),
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width > 900
+                            ? 13
+                            : MediaQuery.of(context).size.width > 350
+                                ? 12
+                                : 12,
+                      ),
                     )
                   ]))
             ]),
             leading: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child: Image.asset('assets/images/icons/tpbankIcon.png')),
+                child: Image.asset('assets/images/icons/tpbankIcon.png',width: 25, height: 25,)),
           ),
         );
       }
@@ -302,7 +326,13 @@ class _AccountPage extends State<AccountPage> {
               Expanded(
                 child: Text(
                   content["name"],
-                  style: const TextStyle(fontSize: 15.0),
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width > 900
+                        ? 15
+                        : MediaQuery.of(context).size.width > 350
+                            ? 15
+                            : 13,
+                  ),
                 ),
               ),
               Expanded(
@@ -311,13 +341,19 @@ class _AccountPage extends State<AccountPage> {
                       children: [
                     Text(
                       content["card_Number"],
-                      style: TextStyle(fontSize: 13),
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width > 900
+                            ? 13
+                            : MediaQuery.of(context).size.width > 350
+                                ? 12
+                                : 12,
+                      ),
                     )
                   ]))
             ]),
             leading: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child: Image.asset('assets/images/icons/vietcombankIcon.png')),
+                child: Image.asset('assets/images/icons/vietcombankIcon.png', width: 25, height: 25,)),
           ),
         );
       }
@@ -328,7 +364,13 @@ class _AccountPage extends State<AccountPage> {
               Expanded(
                 child: Text(
                   content["name"],
-                  style: const TextStyle(fontSize: 15.0),
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width > 900
+                        ? 15
+                        : MediaQuery.of(context).size.width > 350
+                            ? 15
+                            : 13,
+                  ),
                 ),
               ),
               Expanded(
@@ -337,7 +379,13 @@ class _AccountPage extends State<AccountPage> {
                       children: [
                     Text(
                       content["balance"],
-                      style: const TextStyle(fontSize: 13),
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width > 900
+                            ? 13
+                            : MediaQuery.of(context).size.width > 350
+                                ? 12
+                                : 12,
+                      ),
                     )
                   ]))
             ]),

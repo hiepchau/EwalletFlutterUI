@@ -62,7 +62,7 @@ class _SignUpState extends State<SignUp> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                            top: 15.0, bottom: 15.0, left: 25.0, right: 25.0),
                         child: TextField(
                           focusNode: focusNodeName,
                           controller: signupNameController,
@@ -97,7 +97,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                            top: 15.0, bottom: 15.0, left: 25.0, right: 25.0),
                         child: TextField(
                           focusNode: focusNodeEmail,
                           controller: signupEmailController,
@@ -131,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                            top: 15.0, bottom: 15.0, left: 25.0, right: 25.0),
                         child: TextField(
                           focusNode: focusNodePassword,
                           controller: signupPasswordController,
@@ -175,7 +175,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 20.0, bottom: 20.0, left: 25.0, right: 25.0),
+                            top: 15.0, bottom: 15.0, left: 25.0, right: 25.0),
                         child: TextField(
                           focusNode: focusNodeConfirmPassword,
                           controller: signupConfirmPasswordController,

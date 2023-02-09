@@ -48,23 +48,30 @@ class ProfileWidget extends StatelessWidget {
                 Row(
                   children: [
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: MediaQuery.of(context).size.width > 350 ? 40 : 20,
+                      height: MediaQuery.of(context).size.width > 350 ? 40 : 20,
                       child: Center(
                         child: Icon(
                           icon,
                           color: iconColor,
-                          size: 20,
+                          size: MediaQuery.of(context).size.width > 350
+                              ? 30
+                              : 25,
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 10,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width > 350 ? 10 : 25,
                     ),
                     Text(
                       title,
-                      style: const TextStyle(
-                          fontSize: 15, fontFamily: 'SVN-Gotham'),
+                      style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width > 900
+                              ? 15
+                              : MediaQuery.of(context).size.width > 350
+                                  ? 15
+                                  : 13,
+                          fontFamily: 'SVN-Gotham'),
                     )
                   ],
                 ),
@@ -73,7 +80,11 @@ class ProfileWidget extends StatelessWidget {
                     subtitle,
                     textDirection: TextDirection.rtl,
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: MediaQuery.of(context).size.width > 900
+                            ? 15
+                            : MediaQuery.of(context).size.width > 350
+                                ? 15
+                                : 13,
                         color: subtitleColor,
                         fontFamily: 'SVN-Gotham'),
                   ),

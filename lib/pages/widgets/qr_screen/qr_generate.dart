@@ -48,21 +48,28 @@ class _GenerateQRPageState extends State<GenerateQRScreen> {
                             offset: const Offset(0, 2))
                       ]),
                   child: Column(children: [
-                    const Text(
+                    Text(
                       "Đưa mã này cho thu ngân để thanh toán",
-                      style: wBoldTitleStyle,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: MediaQuery.of(context).size.height <= 600
+                              ? 13
+                              : 15),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height:
+                          MediaQuery.of(context).size.height <= 600 ? 10 : 20,
                     ),
                     BarcodeWidget(
                       barcode: Barcode.qrCode(),
                       data: data,
                       width: 250,
-                      height: 250,
+                      height:
+                          MediaQuery.of(context).size.height <= 600 ? 150 : 250,
                     ),
-                    const SizedBox(
-                      height: 20,
+                    SizedBox(
+                      height:
+                          MediaQuery.of(context).size.height <= 600 ? 10 : 20,
                     ),
                     BarcodeWidget(
                       barcode: Barcode.code128(),
@@ -70,6 +77,7 @@ class _GenerateQRPageState extends State<GenerateQRScreen> {
                       width: 300,
                       height: 50,
                     ),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -81,7 +89,8 @@ class _GenerateQRPageState extends State<GenerateQRScreen> {
                           endTime: endTime,
                           onEnd: () {
                             setState(() {
-                              endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60;
+                              endTime = DateTime.now().millisecondsSinceEpoch +
+                                  1000 * 60;
                               data = Random().nextInt(100000).toString();
                             });
                           },
@@ -91,9 +100,9 @@ class _GenerateQRPageState extends State<GenerateQRScreen> {
                     ),
                   ]),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizedBox(
+                    height:
+                        MediaQuery.of(context).size.height <= 600 ? 10 : 20),
                 GestureDetector(
                   onTap: () {},
                   child: Container(
@@ -115,34 +124,42 @@ class _GenerateQRPageState extends State<GenerateQRScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const SizedBox(
-                            width: 45,
-                            height: 45,
+                            width: 30,
+                            height: 30,
                             child: CircleAvatar(
-                              backgroundImage: AssetImage("assets/images/icons/vietcombankIcon.png"),
+                              backgroundImage: AssetImage(
+                                  "assets/images/icons/vietcombankIcon.png"),
                               backgroundColor: Colors.transparent,
                             ),
                           ),
-                          const SizedBox(
-                            width: 20,
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width <= 350
+                                ? 10
+                                : 20,
                           ),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children:  [
-                                const Text("Nguồn tiền thanh toán",
-                                    style: wBoldTitleStyle),
-                                Row(
-                                  children: const [
-                                    Text(
-                                      "Số dư: ",
-                                      style: wBlackTextStyle,
-                                    ),
-                                    Text(
-                                      "2.000.000",
-                                      style: wBlackTextStyle,
-                                    ),
-                                  ],
+                              children: [
+                                Text(
+                                  "Nguồn tiền thanh toán",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize:
+                                          MediaQuery.of(context).size.height <=
+                                                  600
+                                              ? 13
+                                              : 15),
                                 ),
+                                Text("Số dư: 2.000.000",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.normal,
+                                        fontSize: MediaQuery.of(context)
+                                                    .size
+                                                    .height <=
+                                                600
+                                            ? 13
+                                            : 15)),
                               ],
                             ),
                           ),
