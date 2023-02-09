@@ -91,7 +91,7 @@ class _NotificationWidget extends State<NotificationWidget> {
                                   fontSize: MediaQuery.of(context).size.width > 900
                                       ? 15
                                       : MediaQuery.of(context).size.width > 350
-                                          ? 13
+                                          ? 12
                                           : 12,
                                   fontFamily: 'SVN-Gotham'),
                             ),
