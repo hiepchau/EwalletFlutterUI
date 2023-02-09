@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:ewallet/pages/account_page.dart';
 import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
+import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
       children: [
         Dashboard(),
         HistoryPage(),
-        Center(child: Text("Wallet")),
+        PromoPage(),
         AccountPage(),
         QRScreen(),
       ],
