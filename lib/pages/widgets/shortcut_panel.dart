@@ -1,73 +1,49 @@
+import 'dart:math';
+
 import 'package:ewallet/pages/widgets/icon_label.dart';
+import 'package:ewallet/pages/widgets/shortcut_icon.dart';
+import 'package:ewallet/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
-
-class _ShortcutIcon extends StatelessWidget {
-  final IconData iconData;
-  final String text;
-
-  const _ShortcutIcon(this.iconData, this.text, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SizedBox(
-          width: constraints.maxWidth > 50 ? constraints.maxWidth : 50,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black45,
-                      blurRadius: 15,
-                      offset: Offset(0, 6),
-                    ),
-                  ],
-                ),
-                child: Icon(iconData),
-              ),
-              const SizedBox(height: 5),
-              Flexible(
-                  child: Text(
-                text,
-                textAlign: TextAlign.center,
-              )),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
 
 class ShortcutPanel extends StatelessWidget {
   const ShortcutPanel({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const iconWidth = 50.0;
+    const iconWidth = 40.0;
     return AspectRatio(
       aspectRatio: 70 / 23,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: const [
-          SizedBox(
-              width: iconWidth,
-              child: _ShortcutIcon(Icons.swap_horiz, 'Nạp tiền')),
-          SizedBox(
-              width: iconWidth, child: _ShortcutIcon(Icons.wallet, 'Rút tiền')),
-          SizedBox(
-              width: iconWidth, child: _ShortcutIcon(Icons.qr_code, 'QR Pay')),
-          SizedBox(
-              width: iconWidth,
-              child: _ShortcutIcon(Icons.qr_code, 'Mã thanh toán')),
-        ],
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black45,
+              blurRadius: 15,
+              offset: Offset(0, 0),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              var width = constraints.maxWidth;
+              var maxWidth = iconWidth * 1.5;
+              return Stack(
+                children: WidgetUtils.stackEvenlyWidthDivide(width, maxWidth, [
+                  ShortcutIcon(
+                      Icons.swap_horiz, 'Nạp tiền', iconWidth, maxWidth),
+                  ShortcutIcon(Icons.wallet, 'Rút tiền', iconWidth, maxWidth),
+                  ShortcutIcon(Icons.qr_code, 'QR Pay', iconWidth, maxWidth),
+                  ShortcutIcon(
+                      Icons.qr_code, 'Mã thanh toán', iconWidth, maxWidth),
+                ]),
+              );
+            },
+          ),
+        ),
       ),
     );
   }
