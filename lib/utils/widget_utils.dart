@@ -29,4 +29,29 @@ class WidgetUtils {
     }
     return result;
   }
+
+  static List<Widget> rowEvenlyWidthDivide(
+      double maxWidth, double perWidgetWidth, List<Widget> list) {
+    final widgets = <Widget>[];
+    double divideWidth =
+        (maxWidth - perWidgetWidth * list.length) / (list.length + 1);
+
+    widgets.add(SizedBox(width: divideWidth));
+
+    for (var i = 0; i < list.length; i++) {
+      widgets.add(list[i]);
+      widgets.add(SizedBox(width: divideWidth));
+    }
+
+    return widgets;
+  }
+
+  static List<List<Widget>> rowEvenlyWidthDivideWrap(double maxWidth, double perWidgetWidth, int itemPerRow, List<Widget> list) {
+    List<List<Widget>> rows = ListUtils.splitList(list, itemPerRow);
+    List<List<Widget>> result = [];
+    for (var i = 0; i < rows.length; i++) {
+      result.add(rowEvenlyWidthDivide(maxWidth, perWidgetWidth, rows[i]));
+    }
+    return result;
+  }
 }

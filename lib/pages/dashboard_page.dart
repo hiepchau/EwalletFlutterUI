@@ -46,9 +46,8 @@ class Dashboard extends StatelessWidget {
                       const iconLabelWidth = 40.0;
                       const labelWidth = iconLabelWidth * 1.5;
 
-                      List<Widget> shortcuts =
-                          WidgetUtils.stackEvenlyWidthDivideWrap(
-                                  width, labelWidth, 4, [
+                      List<Widget> shortcuts = WidgetUtils
+                              .rowEvenlyWidthDivideWrap(width, labelWidth, 4, [
                         const ShortcutIcon(Icons.abc_outlined, 'Nạp tiền ĐT',
                             iconLabelWidth, labelWidth),
                         const ShortcutIcon(Icons.access_alarm_rounded,
@@ -66,18 +65,16 @@ class Dashboard extends StatelessWidget {
                         const ShortcutIcon(Icons.add_to_queue, 'Tất cả',
                             iconLabelWidth, labelWidth),
                       ])
-                              .map((e) => Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: e,
-                                  ))
-                              .toList();
+                          .map((e) => Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: e,
+                              ))
+                          .toList();
 
                       return Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: ListUtils.join(
-                            shortcuts, (index) => const SizedBox(height: 10)),
-                      );
+                          mainAxisSize: MainAxisSize.max,
+                          children: ListUtils.join(
+                              shortcuts, (i) => const SizedBox(height: 10)));
                     },
                   ),
                   LayoutBuilder(
@@ -86,9 +83,8 @@ class Dashboard extends StatelessWidget {
                       const iconLabelWidth = 40.0;
                       const labelWidth = iconLabelWidth * 1.5;
 
-                      List<Widget> shortcuts =
-                          WidgetUtils.stackEvenlyWidthDivideWrap(
-                                  width, labelWidth, 4, [
+                      List<Widget> shortcuts = WidgetUtils
+                              .rowEvenlyWidthDivideWrap(width, labelWidth, 4, [
                         const ShortcutIcon(Icons.abc_outlined, 'Mua vé máy bay',
                             iconLabelWidth, labelWidth),
                         const ShortcutIcon(Icons.access_alarm_rounded, 'KFC',
@@ -98,23 +94,21 @@ class Dashboard extends StatelessWidget {
                         const ShortcutIcon(Icons.add_circle, 'Uniqlo',
                             iconLabelWidth, labelWidth),
                       ])
-                              .map((e) => Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: e,
-                                  ))
-                              .toList();
+                          .map((e) => Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: e,
+                              ))
+                          .toList();
 
                       return Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                              const Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text("Đề xuất:"))
-                            ] +
-                            ListUtils.join(shortcuts,
-                                (index) => const SizedBox(height: 10)),
-                      );
+                          mainAxisSize: MainAxisSize.max,
+                          children: <Widget>[
+                                const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text("Đề xuất:"))
+                              ] +
+                              ListUtils.join(shortcuts,
+                                  (i) => const SizedBox(height: 10)));
                     },
                   )
                 ],

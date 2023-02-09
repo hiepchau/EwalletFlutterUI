@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:ewallet/pages/payment_screen.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
 import 'package:ewallet/pages/widgets/shortcut_icon.dart';
 import 'package:ewallet/utils/widget_utils.dart';
@@ -34,7 +35,17 @@ class ShortcutPanel extends StatelessWidget {
               return Stack(
                 children: WidgetUtils.stackEvenlyWidthDivide(width, maxWidth, [
                   ShortcutIcon(
-                      Icons.swap_horiz, 'Nạp tiền', iconWidth, maxWidth),
+                    Icons.swap_horiz,
+                    'Chuyển khoản',
+                    iconWidth,
+                    maxWidth,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PaymentScreen()));
+                    },
+                  ),
                   ShortcutIcon(Icons.wallet, 'Rút tiền', iconWidth, maxWidth),
                   ShortcutIcon(Icons.qr_code, 'QR Pay', iconWidth, maxWidth),
                   ShortcutIcon(
