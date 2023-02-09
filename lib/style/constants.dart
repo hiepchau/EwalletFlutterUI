@@ -35,7 +35,7 @@ const wBoldTextStyle = TextStyle(
 const wBoldTitleStyle = TextStyle(
   fontFamily: 'SVN-Gotham',
   fontWeight: FontWeight.bold,
-  fontSize: 16,
+  fontSize: 15,
 );
 
 const wBlackTextStyle = TextStyle(

@@ -10,7 +10,7 @@ class QRScannerScreen extends StatefulWidget {
 
 class _QRScannerState extends State<QRScannerScreen> {
   String _scanResult = "";
-
+  
   Future _scanQR() async {
     try {
       String qrResult = (await BarcodeScanner.scan()).rawContent;

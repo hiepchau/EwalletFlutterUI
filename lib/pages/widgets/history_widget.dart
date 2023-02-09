@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../style/color.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -39,7 +40,6 @@ class _HistoryWidget extends State<HistoryWidget> {
               color: grey.withOpacity(0.01),
               spreadRadius: 5,
               blurRadius: 10,
-              // changes position of shadow
             ),
           ],
         ),
@@ -51,18 +51,30 @@ class _HistoryWidget extends State<HistoryWidget> {
                 Row(
                   children: [
                     SizedBox(
-                      width: kIsWeb ? 50 : 30,
+                      width: MediaQuery.of(context).size.width > 900
+                          ? 50
+                          : MediaQuery.of(context).size.width > 350
+                              ? 30
+                              : 25,
                       height: 50,
                       child: Center(
                         child: Icon(
                           widget.icon,
                           color: widget.iconColor,
-                          size: kIsWeb ? 55 : 40,
+                          size: MediaQuery.of(context).size.width > 900
+                              ? 55
+                              : MediaQuery.of(context).size.width > 350
+                                  ? 40
+                                  : 30,
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: kIsWeb ? 50 : 30,
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width > 900
+                          ? 50
+                          : MediaQuery.of(context).size.width > 350
+                              ? 30
+                              : 25,
                     ),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,17 +83,28 @@ class _HistoryWidget extends State<HistoryWidget> {
                             widget.title,
                             textAlign: TextAlign.start,
                             style: TextStyle(
-                                fontSize: kIsWeb ? 18 : 16,
+                                fontSize: MediaQuery.of(context).size.width >
+                                        900
+                                    ? 18
+                                    : MediaQuery.of(context).size.width > 350
+                                        ? 16
+                                        : 13,
                                 fontFamily: 'SVN-Gotham',
-                                color: primary
-                                ),
+                                fontWeight: FontWeight.bold,
+                                color: primary),
                           ),
                           Text(
-                            widget.time,
+                            DateFormat("HH:mm dd/MM/yyyy")
+                                .format(DateTime.parse(widget.time)),
                             textAlign: TextAlign.start,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Color.fromARGB(125, 0, 0, 0),
-                                fontSize: kIsWeb ? 13 : 12,
+                                fontSize: MediaQuery.of(context).size.width >
+                                        900
+                                    ? 13
+                                    : MediaQuery.of(context).size.width > 350
+                                        ? 12
+                                        : 12,
                                 fontFamily: 'SVN-Gotham'),
                           ),
                           Text(
@@ -89,9 +112,14 @@ class _HistoryWidget extends State<HistoryWidget> {
                                 ? "Số dư ví: ******"
                                 : "Số dư ví: " + widget.balance,
                             textAlign: TextAlign.start,
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Color.fromARGB(125, 0, 0, 0),
-                                fontSize: kIsWeb ? 13 : 12,
+                                fontSize: MediaQuery.of(context).size.width >
+                                        900
+                                    ? 13
+                                    : MediaQuery.of(context).size.width > 350
+                                        ? 12
+                                        : 12,
                                 fontFamily: 'SVN-Gotham'),
                           )
                         ])
@@ -105,14 +133,25 @@ class _HistoryWidget extends State<HistoryWidget> {
                           Text(
                             widget.amount,
                             style: TextStyle(
-                                fontSize: kIsWeb ? 18 : 15,
+                                fontWeight: FontWeight.bold,
+                                fontSize: MediaQuery.of(context).size.width >
+                                        900
+                                    ? 18
+                                    : MediaQuery.of(context).size.width > 350
+                                        ? 15
+                                        : 13,
                                 fontFamily: 'SVN-Gotham',
                                 color: primary),
                           ),
-                          const Text(
+                          Text(
                             "Thành công",
                             style: TextStyle(
-                                fontSize: kIsWeb ? 15 : 13,
+                                fontSize: MediaQuery.of(context).size.width >
+                                        900
+                                    ? 18
+                                    : MediaQuery.of(context).size.width > 350
+                                        ? 15
+                                        : 13,
                                 color: Colors.green,
                                 fontFamily: 'SVN-Gotham'),
                           )

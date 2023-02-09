@@ -59,11 +59,16 @@ class _LoginPageState extends State<LoginPage>
             children: <Widget>[
               Padding(
                 padding: kIsWeb
-                    ? const EdgeInsets.only(top: 50.0)
+                    ? (MediaQuery.of(context).size.height <= 600)
+                        ? const EdgeInsets.only(top: 25.0)
+                        : const EdgeInsets.only(top: 50.0)
                     : const EdgeInsets.only(top: 75.0),
                 child: Image(
-                    height:
-                        MediaQuery.of(context).size.height > 800 ? 191.0 : 150,
+                    height: MediaQuery.of(context).size.height > 800
+                        ? 191.0
+                        : (MediaQuery.of(context).size.height <= 600)
+                            ? 100
+                            : 150,
                     fit: BoxFit.fill,
                     image: const AssetImage('assets/images/login_logo.jpg')),
               ),

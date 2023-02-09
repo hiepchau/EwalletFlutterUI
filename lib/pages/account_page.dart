@@ -1,11 +1,7 @@
-import 'package:ewallet/pages/components/CustomSeparator.dart';
 import 'package:ewallet/pages/widgets/profile_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/wallet_lists.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_font_icons/flutter_font_icons.dart';
-import '../wallet_lists.dart';
-import '../balance_lists.dart';
 import '../style/constants.dart';
 
 class AccountPage extends StatefulWidget {
@@ -37,9 +33,17 @@ class _AccountPage extends State<AccountPage> {
       children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: getAccountSection(context),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                    minWidth: MediaQuery.of(context).size.width < 900
+                        ? MediaQuery.of(context).size.width
+                        : MediaQuery.of(context).size.width / 2,
+                    maxWidth: MediaQuery.of(context).size.width >= 900
+                        ? MediaQuery.of(context).size.width / 2
+                        : MediaQuery.of(context).size.width),
+                child: getAccountSection(context),
+              ),
             ),
           ),
         ),
@@ -133,8 +137,15 @@ class _AccountPage extends State<AccountPage> {
           ),
           Text(
             "Quản lí ví",
+            textAlign: TextAlign.start,
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w700, color: primary),
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 18
+                    : MediaQuery.of(context).size.width > 350
+                        ? 16
+                        : 13,
+                fontWeight: FontWeight.w700,
+                color: primary),
           ),
           const SizedBox(
             height: 10,
@@ -161,6 +172,7 @@ class _AccountPage extends State<AccountPage> {
                         isVisible = temp;
                       });
                     },
+                    childrenPadding: const EdgeInsets.all(5),
                     title: const Text("Tài khoản/Ví"),
                     children: _buildExpandableContent(walletList),
                   )),
@@ -178,7 +190,7 @@ class _AccountPage extends State<AccountPage> {
                 subtitle: "",
               ),
               const ProfileWidget(
-                icon: Icons.shield_rounded,
+                icon: Icons.shield,
                 iconColor: Colors.green,
                 title: 'Bảo mật',
                 subtitle: "",
@@ -191,7 +203,13 @@ class _AccountPage extends State<AccountPage> {
           Text(
             "Khác",
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w700, color: primary),
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 18
+                    : MediaQuery.of(context).size.width > 350
+                        ? 16
+                        : 13,
+                fontWeight: FontWeight.w700,
+                color: primary),
           ),
           const SizedBox(
             height: 10,
@@ -244,7 +262,11 @@ class _AccountPage extends State<AccountPage> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 18,
+                    fontSize: MediaQuery.of(context).size.width > 900
+                        ? 18
+                        : MediaQuery.of(context).size.width > 350
+                            ? 16
+                            : 13,
                     color: onPrimary),
               )),
           const SizedBox(
@@ -263,75 +285,92 @@ class _AccountPage extends State<AccountPage> {
       if (content["name"] == "TPBank") {
         columnContent.add(
           ListTile(
-            title: Row(children: [
-              Expanded(
-                child: Text(
-                  content["name"],
-                  style: const TextStyle(fontSize: 15.0),
-                ),
+            title: Text(
+              content["name"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
               ),
-              Expanded(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                    Text(
-                      content["card_Number"],
-                      style: const TextStyle(fontSize: 13),
-                    )
-                  ]))
-            ]),
+            ),
+            trailing: Text(
+              content["card_Number"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
             leading: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child: Image.asset('assets/images/icons/tpbankIcon.png')),
+                child: Image.asset(
+                  'assets/images/icons/tpbankIcon.png',
+                  width: 25,
+                  height: 25,
+                )),
           ),
         );
       }
       if (content["name"] == "VietcomBank") {
         columnContent.add(
           ListTile(
-            title: Row(children: [
-              Expanded(
-                child: Text(
-                  content["name"],
-                  style: const TextStyle(fontSize: 15.0),
-                ),
+            title: Text(
+              content["name"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
               ),
-              Expanded(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                    Text(
-                      content["card_Number"],
-                      style: TextStyle(fontSize: 13),
-                    )
-                  ]))
-            ]),
+            ),
+            trailing: Text(
+              content["card_Number"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
             leading: CircleAvatar(
                 backgroundColor: Colors.transparent,
-                child: Image.asset('assets/images/icons/vietcombankIcon.png')),
+                child: Image.asset(
+                  'assets/images/icons/vietcombankIcon.png',
+                  width: 25,
+                  height: 25,
+                )),
           ),
         );
       }
       if (content["name"] == "Ví") {
         columnContent.add(
           ListTile(
-            title: Row(children: [
-              Expanded(
-                child: Text(
-                  content["name"],
-                  style: const TextStyle(fontSize: 15.0),
-                ),
+            title: Text(
+              content["name"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
               ),
-              Expanded(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                    Text(
-                      content["balance"],
-                      style: const TextStyle(fontSize: 13),
-                    )
-                  ]))
-            ]),
+            ),
+            trailing: Text(
+              content["balance"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
             leading: CircleAvatar(
                 backgroundColor: Colors.transparent,
                 child: Image.asset(

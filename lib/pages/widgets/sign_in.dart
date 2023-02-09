@@ -47,12 +47,18 @@ class _SignInState extends State<SignIn> {
                 ),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height < 250 ? 150 : MediaQuery.of(context).size.height / 4,
-                    minWidth: MediaQuery.of(context).size.width < 700 ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width / 3,
-                    maxWidth:
-                        MediaQuery.of(context).size.width >= 700 ? MediaQuery.of(context).size.width / 3 : MediaQuery.of(context).size.width,
-                    maxHeight:
-                        MediaQuery.of(context).size.height >= 250 ? MediaQuery.of(context).size.height / 4 : 150,
+                    minHeight: MediaQuery.of(context).size.height < 250
+                        ? 150
+                        : MediaQuery.of(context).size.height / 4,
+                    minWidth: MediaQuery.of(context).size.width < 700
+                        ? MediaQuery.of(context).size.width
+                        : MediaQuery.of(context).size.width / 3,
+                    maxWidth: MediaQuery.of(context).size.width >= 700
+                        ? MediaQuery.of(context).size.width / 3
+                        : MediaQuery.of(context).size.width,
+                    maxHeight: MediaQuery.of(context).size.height >= 250
+                        ? MediaQuery.of(context).size.height / 4
+                        : 150,
                   ),
                   child: Column(
                     children: <Widget>[
@@ -136,7 +142,7 @@ class _SignInState extends State<SignIn> {
               ),
               Container(
                 margin: const EdgeInsets.only(top: 170.0),
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
@@ -174,21 +180,23 @@ class _SignInState extends State<SignIn> {
                             fontFamily: 'WorkSansBold'),
                       ),
                     ),
-                  onPressed: () {
-                    CustomSnackBar(
-                        context, const Text('Login button pressed'));
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RootApp()),
-                    );
-                  }
-                ),
+                    onPressed: () {
+                      CustomSnackBar(
+                          context, const Text('Login button pressed'));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RootApp()),
+                      );
+                    }),
               )
             ],
           ),
           Padding(
             padding: kIsWeb
-                ? const EdgeInsets.only(top: 30.0)
+                ? MediaQuery.of(context).size.height <= 600
+                    ? const EdgeInsets.only(top: 10)
+                    : EdgeInsets.only(top: 30.0)
                 : const EdgeInsets.only(top: 10),
             child: TextButton(
                 onPressed: () {},
