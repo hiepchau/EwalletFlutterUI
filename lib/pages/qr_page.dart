@@ -104,7 +104,7 @@ class _QRScreenState extends State<QRScreen> {
                   style: TextStyle(
                       color: left,
                       fontSize: 16.0,
-                      fontFamily: 'SVN-Gotham Bold'),
+                      fontFamily: 'SVN-Gotham'),
                 ),
               ),
             ),
