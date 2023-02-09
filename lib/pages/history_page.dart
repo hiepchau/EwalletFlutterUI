@@ -51,9 +51,7 @@ class _HistoryPage extends State<HistoryPage> {
             indicatorColor: primary,
             labelColor: primary,
             tabs: const [
-              Text(
-                "Tất cả",
-              ),
+              Text("Tất cả",),
               Text("Nạp tiền"),
               Text("Chuyển tiền"),
               Text("Nhận tiền"),
@@ -164,7 +162,6 @@ class _HistoryPage extends State<HistoryPage> {
                       : MediaQuery.of(context).size.width > 350
                           ? 25
                           : 20,
-                  
                   color: primary,
                   fontFamily: 'SVN-Gotham',
                   fontWeight: FontWeight.w700),
@@ -248,7 +245,6 @@ class _HistoryPage extends State<HistoryPage> {
                       : MediaQuery.of(context).size.width > 350
                           ? 25
                           : 20,
-                  
                   color: primary,
                   fontFamily: 'SVN-Gotham',
                   fontWeight: FontWeight.w700),

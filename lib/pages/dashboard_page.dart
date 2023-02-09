@@ -1,3 +1,4 @@
+import 'package:ewallet/pages/notification_page.dart';
 import 'package:ewallet/pages/widgets/ad_mini_panel.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
 import 'package:ewallet/pages/widgets/shortcut_panel.dart';
@@ -14,13 +15,20 @@ class Dashboard extends StatelessWidget {
         child: Column(
           children: [
             Stack(
-              children: const [
+              children: [
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Text('Hello, Hiep Chau')),
                 Align(
                     alignment: Alignment.centerRight,
-                    child: Icon(Icons.ac_unit))
+                    child: IconButton(
+                        icon: const Icon(Icons.notifications),
+                        onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const NotificationPage()),
+                            )))
               ],
             ),
             Padding(
