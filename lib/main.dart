@@ -1,8 +1,11 @@
+import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/pages/login_page.dart';
 import 'package:ewallet/root_page.dart';
+import 'package:ewallet/root_web_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  AppNav.init();
   runApp(MaterialApp(
     theme: ThemeData(
         useMaterial3: true,
@@ -17,6 +20,6 @@ void main() {
           ),
         )),
     debugShowCheckedModeBanner: false,
-    home: const LoginPage(),
+    home: const RootWebApp(), //TODO: change back to login page
   ));
 }

@@ -2,6 +2,27 @@ import 'package:ewallet/utils/list_utils.dart';
 import 'package:flutter/material.dart';
 
 class WidgetUtils {
+  static Widget toIconDisplay(Object object, double? size) {
+    Widget result;
+    if (object is IconData) {
+      result = Icon(object);
+    } else if (object is String) {
+      result = Text(object);
+    } else if (object is AssetImage) {
+      result = Image(image: object);
+    } else if (object is ImageProvider) {
+      result = Image(image: object);
+    } else if (object is Widget) {
+      result = object;
+    } else {
+      throw Exception('Invalid object type');
+    }
+    if (size == null || size <= 0) {
+      return result;
+    }
+    return SizedBox(width: size, height: size, child: result);
+  }
+
   static List<Widget> stackEvenlyWidthDivide(
       double maxWidth, double perWidgetWidth, List<Widget> list) {
     final widgets = <Widget>[];
@@ -21,7 +42,8 @@ class WidgetUtils {
     return widgets;
   }
 
-  static List<List<Widget>> stackEvenlyWidthDivideWrap(double maxWidth, double perWidgetWidth, int itemPerRow, List<Widget> list) {
+  static List<List<Widget>> stackEvenlyWidthDivideWrap(double maxWidth,
+      double perWidgetWidth, int itemPerRow, List<Widget> list) {
     List<List<Widget>> rows = ListUtils.splitList(list, itemPerRow);
     List<List<Widget>> result = [];
     for (var i = 0; i < rows.length; i++) {
@@ -46,7 +68,8 @@ class WidgetUtils {
     return widgets;
   }
 
-  static List<List<Widget>> rowEvenlyWidthDivideWrap(double maxWidth, double perWidgetWidth, int itemPerRow, List<Widget> list) {
+  static List<List<Widget>> rowEvenlyWidthDivideWrap(double maxWidth,
+      double perWidgetWidth, int itemPerRow, List<Widget> list) {
     List<List<Widget>> rows = ListUtils.splitList(list, itemPerRow);
     List<List<Widget>> result = [];
     for (var i = 0; i < rows.length; i++) {
