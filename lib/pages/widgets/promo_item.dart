@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class _DashedLine extends StatelessWidget {
   const _DashedLine({Key? key, this.height = 1, this.color = Colors.black})
@@ -43,11 +44,11 @@ class PromoItem extends StatelessWidget {
 
   const PromoItem(
       {Key? key,
-        required this.title,
-        required this.subTitle,
-        required this.description,
-        this.price = '',
-        required this.actionTitle})
+      required this.title,
+      required this.subTitle,
+      required this.description,
+      this.price = '',
+      required this.actionTitle})
       : super(key: key);
 
   @override
@@ -59,12 +60,12 @@ class PromoItem extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(15),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                  color: Colors.black45,
-                  blurRadius: 15,
-                  offset: Offset(0, 6),
-                )
+                    color: grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 5,
+                    offset: const Offset(0, 2)),
               ],
             ),
             child: LayoutBuilder(
@@ -77,9 +78,22 @@ class PromoItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Image.asset('assets/images/icons/baeminIcon.png'),
-                    Text(title),
-                    Text(subTitle),
-                    Text(description),
+                    Text(title,
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: primary)),
+                    Text(subTitle,
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: primary)),
+                    Text(description,
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                        )),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -87,21 +101,21 @@ class PromoItem extends StatelessWidget {
                               height: decorateHeight,
                               width: decorateHeight / 2,
                               decoration: const BoxDecoration(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 215, 215, 215),
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(100),
                                     bottomRight: Radius.circular(100),
                                   ))),
                           const Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(left: 4, right: 4),
-                                child: _DashedLine(),
-                              )),
+                            padding: EdgeInsets.only(left: 4, right: 4),
+                            child: _DashedLine(),
+                          )),
                           Container(
                               height: decorateHeight,
                               width: decorateHeight / 2,
                               decoration: const BoxDecoration(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 215, 215, 215),
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(100),
                                     bottomLeft: Radius.circular(100),
@@ -112,18 +126,34 @@ class PromoItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              children: [
-                                Icon(Icons.currency_exchange),
-                                Text(price)
-                              ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10,bottom: 5),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(FontAwesomeIcons.coins, size: 20, color: Colors.amber,),
+                                  SizedBox(width: 5,),
+                                  Text(price,
+                                      style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.green)),
+                                ],
+                              ),
                             ),
                           ),
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Text(actionTitle))
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10, bottom: 5),
+                            child: Align(
+                                alignment: Alignment.centerRight,
+                                child: Text(actionTitle,
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold,
+                                        color: primary))),
+                          )
                         ],
                       ),
                     )

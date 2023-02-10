@@ -130,18 +130,21 @@ class _PromoTabState extends State<_PromoTab> {
                   ),
                   Text(
                     'Deal \'hời\' chỉ từ 2 xu',
-                    style: TextStyle(color: Color.fromRGBO(237, 105, 74, 1)),
+                    style: TextStyle(color: Color.fromRGBO(237, 105, 74, 1),fontSize: 18),
                   ),
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             Column(
                 children: ListUtils.join(
                     promoRows, (_) => const SizedBox(height: 10))),
+                    SizedBox(height: 10,),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.0),
-              child: Text('Khám phá quà mới'),
+              child: Text('Khám phá quà mới',style: TextStyle(fontSize: 18),),
             ),
+            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -162,6 +165,8 @@ class _PromoTabState extends State<_PromoTab> {
                 }),
               ],
             ),
+            SizedBox(height: 10,),
+            
             Column(
                 children: ListUtils.join(
                     WidgetUtils.rowEvenlyWidthDivideWrap(
@@ -175,6 +180,7 @@ class _PromoTabState extends State<_PromoTab> {
                         .map((e) => Row(children: e))
                         .toList(),
                     (_) => const SizedBox(height: 10))),
+                    SizedBox(height: 30,),
           ],
         );
       },
@@ -184,16 +190,17 @@ class _PromoTabState extends State<_PromoTab> {
   Widget buildRoundButton(
       double suggestIconHeight, String text, void Function()? onTap) {
     return Container(
+      width: 100,
       height: suggestIconHeight,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: Colors.black45,
-            blurRadius: 10,
-            offset: Offset(0, 6),
-          )
+              color: grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 2)),
         ],
       ),
       child: FittedBox(
@@ -201,7 +208,7 @@ class _PromoTabState extends State<_PromoTab> {
         child: Center(
           child: TextButton(
             onPressed: onTap,
-            child: Text(text, style: const TextStyle(fontSize: 20)),
+            child: Text(text, style: const TextStyle(fontSize: 30)),
           ),
         ),
       ),
@@ -260,21 +267,22 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
                                 fontSize,
                                 contentWidth,
                                 FontAwesomeIcons.coins,
-                                Color.fromRGBO(238, 191, 1, 1),
-                                '100.000đ',
-                                primary, () {
+                                Colors.amber,
+                                '100.000',
+                                onPrimary, () {
                               setState(() {
                                 _tabController.index = 0;
                               });
                             }),
+                            SizedBox(width: 10,),
                             decorateFlexButton(
                                 iconWidth,
                                 fontSize,
                                 contentWidth,
                                 FontAwesomeIcons.gifts,
-                                onPrimaryContainer,
+                                green,
                                 'Quà của tôi',
-                                primaryContainer, () {
+                                onPrimary, () {
                               setState(() {
                                 _tabController.index = 1;
                               });
@@ -312,12 +320,13 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
         Container(
             height: iconWidth * 1.2,
             decoration: BoxDecoration(
+              border: Border.all(color: primary),
                 borderRadius: const BorderRadius.all(Radius.circular(25)),
                 color: color),
             child: Center(
               child: Text(text,
                   style:
-                      TextStyle(fontSize: fontSize, color: onPrimaryContainer)),
+                      TextStyle(fontSize: fontSize, color: primary)),
             )),
         contentWidth,
         onTap);

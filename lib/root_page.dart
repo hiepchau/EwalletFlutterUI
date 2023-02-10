@@ -12,7 +12,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
-
   @override
   State<RootApp> createState() => _RootAppState();
 }

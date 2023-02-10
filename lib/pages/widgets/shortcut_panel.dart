@@ -141,6 +141,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
+                                    settings: RouteSettings(name: "/root_page"),
                                     builder: (context) => PaymentScreen()));
                           },
                         ),
