@@ -1,5 +1,6 @@
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShortcutIcon extends StatelessWidget {
   final Widget icon;
@@ -42,14 +43,18 @@ class ShortcutIcon extends StatelessWidget {
                   ];
                 })(),
               ),
-              child: icon,
+              child: Padding(
+                padding: EdgeInsets.all(5.w),
+                child: FittedBox(
+                    child: icon),
+              ),
             ),
             const SizedBox(height: 5),
             Text(text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: primary,
-                  fontSize: 12,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                 )),
           ],
