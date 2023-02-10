@@ -50,7 +50,9 @@ class _SelectTransferPage extends State<SelectTransferPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                   child: Container(
-                    padding: MediaQuery.of(context).size.width > 350 ? EdgeInsets.all(10) : EdgeInsets.all(0),
+                    padding: MediaQuery.of(context).size.width > 350
+                        ? EdgeInsets.all(10)
+                        : EdgeInsets.all(0),
                     decoration: BoxDecoration(
                         color: white,
                         borderRadius:
@@ -149,7 +151,8 @@ class _SelectTransferPage extends State<SelectTransferPage> {
                           )),
                     )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height > 600 ? 100 :50,
+                      height:
+                          MediaQuery.of(context).size.height > 600 ? 100 : 50,
                     ),
                     Expanded(
                         child: Column(

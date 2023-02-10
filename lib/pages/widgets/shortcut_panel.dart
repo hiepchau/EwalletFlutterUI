@@ -1,6 +1,7 @@
 import 'package:ewallet/pages/qr_page.dart';
 import 'package:ewallet/pages/select_transfer_page.dart';
 import 'package:ewallet/pages/widgets/shortcut_icon.dart';
+import 'package:ewallet/pages/withdraw_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -154,7 +155,14 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                             ),
                             'Rút tiền',
                             iconWidth,
-                            maxWidth),
+                            maxWidth,
+                            onTap: () {
+                               Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        WithdrawPage()));
+                            },),
                         ShortcutIcon(
                           ImageIcon(
                             AssetImage('assets/images/icons/scannerIcon.png'),
