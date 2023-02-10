@@ -1,3 +1,4 @@
+import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../style/color.dart';
@@ -30,7 +31,7 @@ class _HistoryWidget extends State<HistoryWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=> PaymentSuccessScreen()));},
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(

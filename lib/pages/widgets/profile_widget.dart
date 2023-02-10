@@ -9,23 +9,23 @@ class ProfileWidget extends StatelessWidget {
   final String subtitle;
   final Color subtitleColor;
   final Color color;
-  // final Function onTap;
+  final Function onTap;
 
-  const ProfileWidget(
-      {Key? key,
-      required this.icon,
-      required this.iconColor,
-      required this.title,
-      required this.subtitle,
-      this.color = white,
-      this.subtitleColor = black})
-      : super(key: key);
+  const ProfileWidget({
+    Key? key,
+    required this.icon,
+    required this.iconColor,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+    this.color = white,
+    this.subtitleColor = black,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (_) => CardPage()));
-        // onTap();
+      onTap: (){
+        onTap();
       },
       child: Container(
         width: double.infinity,
@@ -54,40 +54,44 @@ class ProfileWidget extends StatelessWidget {
                         child: Icon(
                           icon,
                           color: iconColor,
-                          size: MediaQuery.of(context).size.width > 350
-                              ? 30
-                              : 25,
+                          size:
+                              MediaQuery.of(context).size.width > 350 ? 30 : 25,
                         ),
                       ),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width > 350 ? 10 : 25,
                     ),
-                    Text(
-                      title,
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width > 900
-                              ? 15
-                              : MediaQuery.of(context).size.width > 350
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width > 900
                                   ? 15
-                                  : 13,
-                          fontFamily: 'SVN-Gotham'),
+                                  : MediaQuery.of(context).size.width > 350
+                                      ? 15
+                                      : 13,
+                              fontFamily: 'SVN-Gotham'),
+                        ),
+                        Visibility(
+                          visible: subtitle != "",
+                          child: Text(
+                            subtitle,
+                            style: TextStyle(
+                                fontSize: MediaQuery.of(context).size.width >
+                                        900
+                                    ? 13
+                                    : MediaQuery.of(context).size.width > 350
+                                        ? 12
+                                        : 12,
+                                fontFamily: 'SVN-Gotham'),
+                          ),
+                        )
+                      ],
                     )
                   ],
-                ),
-                Expanded(
-                  child: Text(
-                    subtitle,
-                    textDirection: TextDirection.rtl,
-                    style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width > 900
-                            ? 15
-                            : MediaQuery.of(context).size.width > 350
-                                ? 15
-                                : 13,
-                        color: subtitleColor,
-                        fontFamily: 'SVN-Gotham'),
-                  ),
                 ),
                 const Icon(
                   Icons.keyboard_arrow_right,
