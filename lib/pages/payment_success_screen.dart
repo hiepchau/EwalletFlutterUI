@@ -25,7 +25,7 @@ class PaymentSuccessScreen extends StatelessWidget {
             child: Container(
                 child: Center(
               child: Text('Kết quả giao dịch',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -55,20 +55,28 @@ class PaymentSuccessScreen extends StatelessWidget {
                       color: Colors.green,
                       size: 48,
                     ),
-                    const Text('Giao dịch thành công',
+                    Text('Giao dịch thành công',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold)),
-                    const Text('500.000đ',
+                            fontSize: MediaQuery.of(context).size.width > 350
+                                ? 20
+                                : 15,
+                            fontWeight: FontWeight.bold)),
+                    Text('500.000đ',
                         style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold)),
+                            fontSize: MediaQuery.of(context).size.width > 350
+                                ? 30
+                                : 18,
+                            fontWeight: FontWeight.bold)),
                     Flexible(
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.lightGreen.shade200,
                             borderRadius:
-                                BorderRadius.all(Radius.circular(25))),
+                                const BorderRadius.all(Radius.circular(25))),
                         child: Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: MediaQuery.of(context).size.width > 350
+                              ? EdgeInsets.all(10)
+                              : EdgeInsets.all(5),
                           child: Text(
                             'Tiền đã được chuyển đến người nhận',
                             style: TextStyle(
@@ -79,6 +87,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 5,),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Container(
@@ -96,7 +105,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                             ['SĐT', '0123456789'],
                             ['Lời nhắn', 'Hiệp Châu yêu Khôi <3'],
                             ['Thời gian thanh toán', '18:05 - 30/11/2022'],
-                          ])),
+                          ], context)),
                         ),
                       ),
                     ),
@@ -116,15 +125,23 @@ class PaymentSuccessScreen extends StatelessWidget {
                               alignment: Alignment.centerLeft,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
+                                children: [
                                   Icon(Icons.info_outline),
                                   Padding(
-                                    padding:
-                                        EdgeInsets.only(bottom: 5.0, left: 5),
+                                    padding: MediaQuery.of(context).size.width >
+                                            350
+                                        ? EdgeInsets.only(bottom: 5.0, left: 5)
+                                        : EdgeInsets.only(bottom: 0, left: 5),
                                     child: Text(
                                       'Chi tiết giao dịch',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width >
+                                                    350
+                                                ? 15
+                                                : 12,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -134,12 +151,24 @@ class PaymentSuccessScreen extends StatelessWidget {
                               alignment: Alignment.centerRight,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                children: const [
+                                children: [
                                   Padding(
-                                    padding: EdgeInsets.only(bottom: 5.0),
+                                    padding:
+                                        MediaQuery.of(context).size.width > 350
+                                            ? EdgeInsets.only(bottom: 5.0)
+                                            : EdgeInsets.only(
+                                                bottom: 0,
+                                              ),
                                     child: Text(
                                       '221130-1234567',
-                                      style: (TextStyle(color: Colors.black54)),
+                                      style: (TextStyle(
+                                        color: Colors.black54,
+                                        fontSize:
+                                            MediaQuery.of(context).size.width >
+                                                    350
+                                                ? 15
+                                                : 12,
+                                      )),
                                     ),
                                   ),
                                   Icon(Icons.chevron_right_rounded),
@@ -197,7 +226,7 @@ class PaymentSuccessScreen extends StatelessWidget {
     ])));
   }
 
-  List<Widget> buildLines(List<List<String>> lines) {
+  List<Widget> buildLines(List<List<String>> lines, BuildContext context) {
     return lines.map((line) {
       return IntrinsicHeight(
         child: Row(
@@ -208,12 +237,20 @@ class PaymentSuccessScreen extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 line[0],
-                style: TextStyle(color: Colors.black54),
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: MediaQuery.of(context).size.width > 350 ? 15 : 12,
+                ),
               ),
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: Text(line[1]),
+              child: Text(
+                line[1],
+                style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.width > 350 ? 15 : 12,
+                ),
+              ),
             ),
           ],
         ),

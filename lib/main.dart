@@ -21,6 +21,6 @@ void main() {
           ),
         )),
     debugShowCheckedModeBanner: false,
-    home: kIsWeb ? const RootWebApp() : const LoginPage(), //TODO: change back to login page
+    home: const LoginPage(), //TODO: change back to login page
   ));
 }

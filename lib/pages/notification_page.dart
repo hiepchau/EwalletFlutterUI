@@ -3,6 +3,7 @@ import 'package:ewallet/pages/widgets/profile_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/wallet_lists.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../style/constants.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -175,25 +176,25 @@ class _NotificationPage extends State<NotificationPage> {
 
   List<Widget> listNotification = const [
     NotificationWidget(
-        icon: Icons.repeat_rounded,
+        icon: FontAwesomeIcons.moneyBillTransfer,
         iconColor: Colors.green,
         title: "Chuyển 200k cho Khôi Nghi",
         subtitle:
             "Bạn thực hiện giao dịch chuyển tiền cho Khôi Nghi với số tiền giao dịch là 200.000đ vào lúc 17:05 17/01/2023"),
     NotificationWidget(
-        icon: Icons.repeat_rounded,
+        icon: FontAwesomeIcons.moneyBillTransfer,
         iconColor: Colors.green,
         title: "Chuyển 200k cho Khôi Nghi",
         subtitle:
             "Bạn thực hiện giao dịch chuyển tiền cho Khôi Nghi với số tiền giao dịch là 200.000đ vào lúc 17:05 17/01/2023"),
     NotificationWidget(
-        icon: Icons.repeat_rounded,
+        icon: FontAwesomeIcons.moneyBillTransfer,
         iconColor: Colors.green,
         title: "Chuyển 200k cho Khôi Nghi",
         subtitle:
             "Bạn thực hiện giao dịch chuyển tiền cho Khôi Nghi với số tiền giao dịch là 200.000đ vào lúc 17:05 17/01/2023"),
     NotificationWidget(
-        icon: Icons.repeat_rounded,
+        icon: FontAwesomeIcons.moneyBillTransfer,
         iconColor: Colors.green,
         title: "Chuyển 200k cho Khôi Nghi",
         subtitle:
