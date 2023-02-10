@@ -12,10 +12,13 @@ class QRScannerScreen extends StatefulWidget {
 
 class _QRScannerState extends State<QRScannerScreen> {
   String _scanResult = "";
+  bool _isFlashOn = false;
 
   Future _scanQR(BuildContext context) async {
     try {
-      String qrResult = (await BarcodeScanner.scan()).rawContent;
+      String qrResult = (await BarcodeScanner.scan(
+              options: ScanOptions(autoEnableFlash: _isFlashOn)))
+          .rawContent;
       setState(() {
         _scanResult = qrResult;
         AppNav.pushWidget(context, PaymentScreen());
@@ -39,6 +42,12 @@ class _QRScannerState extends State<QRScannerScreen> {
         _scanResult = "Unknown Error $ex";
       });
     }
+  }
+
+  void _toggleFlash() {
+    setState(() {
+      _isFlashOn = !_isFlashOn;
+    });
   }
 
   @override
