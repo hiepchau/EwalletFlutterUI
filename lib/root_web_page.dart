@@ -137,7 +137,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                                   HistoryPage(),
                                   PromoPage(),
                                   AccountPage(),
-                                  QRScreen(),
+                                  Container() //TODO
                                 ],
                               ),
                           settings: settings);
@@ -189,7 +189,8 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                                                     0,
                                                     _walledShowAll
                                                         ? _walletData.length
-                                                        : min(_walletData.length,
+                                                        : min(
+                                                            _walletData.length,
                                                             _defWalletShow))
                                                 .map((e) => e.toWidget(null))
                                                 .toList(),

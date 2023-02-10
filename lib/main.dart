@@ -2,6 +2,7 @@ import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/pages/login_page.dart';
 import 'package:ewallet/root_page.dart';
 import 'package:ewallet/root_web_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,6 +21,6 @@ void main() {
           ),
         )),
     debugShowCheckedModeBanner: false,
-    home: const RootWebApp(), //TODO: change back to login page
+    home: kIsWeb ? const RootWebApp() : const LoginPage(), //TODO: change back to login page
   ));
 }
