@@ -1,3 +1,5 @@
+import 'package:ewallet/root_page.dart';
+import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {
@@ -11,8 +13,8 @@ class PaymentSuccessScreen extends StatelessWidget {
       AspectRatio(
         aspectRatio: 390 / 252,
         child: Container(
-            decoration: const BoxDecoration(
-                color: Colors.black38,
+            decoration: BoxDecoration(
+                color: primary,
                 borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(50),
                     bottomRight: Radius.circular(50)))),
@@ -53,69 +55,99 @@ class PaymentSuccessScreen extends StatelessWidget {
                       color: Colors.green,
                       size: 48,
                     ),
-                    const Text('Giao dịch thành công'),
-                    const Text('500.000đ'),
-                    Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.lightGreen,
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
-                      child: const Padding(
-                        padding: EdgeInsets.only(left: 3, right: 3),
-                        child: FittedBox(
-                            fit: BoxFit.fitHeight,
-                            child: Text(
-                              'Tiền đã được chuyển đến người nhận',
-                              style: TextStyle(fontSize: 8),
-                            )),
+                    const Text('Giao dịch thành công',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold)),
+                    const Text('500.000đ',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold)),
+                    Flexible(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.lightGreen.shade200,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(25))),
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text(
+                            'Tiền đã được chuyển đến người nhận',
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.green.shade700,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(25))),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5, right: 5, top: 20, bottom: 20),
-                        child: Column(
-                            children: buildLines([
-                          ['Người gửi', 'Hiệp Châu'],
-                          ['Người nhận', 'Khôi Nghi'],
-                          ['SĐT', '0123456789'],
-                          ['Lời nhắn', 'Hiệp Châu yêu Khôi <3'],
-                          ['Thời gian thanh toán', '18:05 - 30/11/2022'],
-                        ])),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(25))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 10, right: 10, top: 20, bottom: 20),
+                          child: Column(
+                              children: buildLines([
+                            ['Người gửi', 'Hiệp Châu'],
+                            ['Người nhận', 'Khôi Nghi'],
+                            ['SĐT', '0123456789'],
+                            ['Lời nhắn', 'Hiệp Châu yêu Khôi <3'],
+                            ['Thời gian thanh toán', '18:05 - 30/11/2022'],
+                          ])),
+                        ),
                       ),
                     ),
-                    Container(
-                        height: 3,
-                        decoration: const BoxDecoration(
-                          color: Colors.grey,
-                        )),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Icon(Icons.info_outline),
-                                Text('Chi tiết giao dịch'),
-                              ],
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Divider(
+                        color: grey,
+                        thickness: 0.5,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Icon(Icons.info_outline),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.only(bottom: 5.0, left: 5),
+                                    child: Text(
+                                      'Chi tiết giao dịch',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                Text('221130-123456789'),
-                                Icon(Icons.arrow_right),
-                              ],
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Padding(
+                                    padding: EdgeInsets.only(bottom: 5.0),
+                                    child: Text(
+                                      '221130-1234567',
+                                      style: (TextStyle(color: Colors.black54)),
+                                    ),
+                                  ),
+                                  Icon(Icons.chevron_right_rounded),
+                                ],
+                              ),
                             ),
-                          ),
-                        ])
+                          ]),
+                    )
                   ],
                 ),
               ),
@@ -128,16 +160,32 @@ class PaymentSuccessScreen extends StatelessWidget {
                   left: 40, right: 40, top: 10, bottom: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pushAndRemoveUntil(
+                      PageRouteBuilder(
+                        pageBuilder: (BuildContext context, animation,
+                            secondaryAnimation) {
+                          return const RootApp();
+                        },
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          final tween = Tween(begin: 0.0, end: 1.0);
+                          final fadeAnimation = animation.drive(tween);
+                          return FadeTransition(
+                            opacity: fadeAnimation,
+                            child: child,
+                          );
+                        },
+                      ),
+                      (route) => false);
                 },
                 child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.black45,
+                  decoration: BoxDecoration(
+                      color: primary,
                       borderRadius: BorderRadius.all(Radius.circular(25))),
-                  child: const Center(
+                  child: Center(
                     child: Text('Đóng',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: onPrimary,
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         )),
@@ -158,7 +206,10 @@ class PaymentSuccessScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.centerLeft,
-              child: Text(line[0]),
+              child: Text(
+                line[0],
+                style: TextStyle(color: Colors.black54),
+              ),
             ),
             Align(
               alignment: Alignment.centerRight,

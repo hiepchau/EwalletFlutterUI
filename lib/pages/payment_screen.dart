@@ -1,4 +1,5 @@
 import 'package:ewallet/pages/payment_success_screen.dart';
+import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -17,12 +18,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Decoration _buildThemeDecoration() {
     switch (_themeIndex) {
       case 0:
-        return const BoxDecoration(
+        return BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFE0E0E0),
+              onPrimary,
               Color(0xFFE0E0E0),
             ],
           ),
@@ -39,12 +40,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         );
       default:
-        return const BoxDecoration(
+        return BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFE0E0E0),
+              onPrimary,
               Color(0xFFE0E0E0),
             ],
           ),
@@ -56,41 +57,44 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          leading: BackButton(color: onPrimary),
+          backgroundColor: primary,
+        ),
         body: Column(
           children: [
             AspectRatio(
-              aspectRatio: 390 / 670,
+              aspectRatio: 390 / 600,
               child: Container(
+                padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                 //TODO: Add background image decoration
                 decoration: _buildThemeDecoration(),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final height = constraints.maxHeight;
-
-                    final suggestIconHeight = height * 14 / 339;
-
+            
+                    final suggestIconHeight = height * 14 / 250;
+            
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //Back button
-                          IconButton(
-                            onPressed: () => Navigator.pop(context),
-                            icon: const Icon(Icons.arrow_back_ios),
-                          ),
                           AspectRatio(
                             aspectRatio: 26 / 5,
                             child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  AspectRatio(
-                                      aspectRatio: 1,
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                        ),
-                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10.0),
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: CircleAvatar(
+                                        child: Image.asset(
+                                            'assets/images/icons/avatar.png'),
+                                      ),
+                                    ),
+                                  ),
+                                  
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -101,17 +105,25 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                             fontSize: 20,
                                             fontWeight: FontWeight.w500,
                                           )),
-                                      Text('Số dư: 100.000đ')
+                                      Text('Số dư: 900.000đ')
                                     ],
                                   )
                                 ]),
                           ),
                           AspectRatio(
                             aspectRatio: 69 / 10,
-                            child: TextField(
+                            child: TextFormField(
                               controller: _controller,
                               decoration: InputDecoration(
-                                hintText: 'Nhập mệnh giá',
+                                hoverColor: primaryContainer,
+                                focusColor: primary,
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: const Icon(Icons.search),
+                                border: UnderlineInputBorder(),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 10, horizontal: 15),
+                                hintText: "Nhập mệnh giá",
                                 suffixIcon: IconButton(
                                   onPressed: _controller.clear,
                                   icon: const Icon(Icons.clear),
@@ -119,8 +131,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 10,),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               buildSuggestButton(suggestIconHeight, '100.000'),
                               buildSuggestButton(
@@ -129,17 +142,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   suggestIconHeight, '10.000.000')
                             ],
                           ),
+                          SizedBox(height: 20,),
                           AspectRatio(
-                            aspectRatio: 344 / 28,
+                            aspectRatio: 344 / 35,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                const AspectRatio(
-                                    aspectRatio: 1, child: Icon(Icons.home)),
                                 Expanded(
                                   child: TextField(
                                     controller: _msgController,
-                                    decoration: const InputDecoration(
+                                    decoration: InputDecoration(
+                                      hoverColor: primaryContainer,
+                                      focusColor: primary,
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      prefixIcon: const Icon(Icons.message),
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 15),
                                       hintText: 'Bạn nhớ nhập lời nhắn nhé',
                                     ),
                                   ),
@@ -147,6 +167,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ],
                             ),
                           ),
+                          SizedBox(height: 20,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -173,34 +194,39 @@ class _PaymentScreenState extends State<PaymentScreen> {
               child: LayoutBuilder(builder: (context, constraints) {
                 final height = constraints.maxHeight;
 
-                final themeButtonHeight = (height - 10) / 2;
+                final themeButtonHeight = (height - 35) / 2;
 
                 return Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildThemeButton(themeButtonHeight, () {
-                          setState(() {
-                            _themeIndex = 0;
-                          });
-                        }),
-                        const SizedBox(width: 5),
-                        buildThemeButton(themeButtonHeight, () {
-                          setState(() {
-                            _themeIndex = 1;
-                          });
-                        }),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          buildThemeButton(themeButtonHeight, () {
+                            setState(() {
+                              _themeIndex = 0;
+                            });
+                          }),
+                          const SizedBox(width: 5),
+                          buildThemeButton(themeButtonHeight, () {
+                            setState(() {
+                              _themeIndex = 1;
+                            });
+                          }),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: themeButtonHeight,
                       child: AspectRatio(
-                          aspectRatio: 241 / 48,
+                          aspectRatio: 270 / 48,
                           child: Container(
                               margin: const EdgeInsets.all(0),
-                              decoration:
-                                  const BoxDecoration(color: Colors.black26),
+                              decoration: const BoxDecoration(
+                                  color: green,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10))),
                               child: FittedBox(
                                 fit: BoxFit.contain,
                                 child: TextButton(
@@ -208,6 +234,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
+                                          settings: RouteSettings(name: "/Payment"),
                                             builder: (context) =>
                                                 const PaymentSuccessScreen()));
                                   },
@@ -221,7 +248,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   ),
                                 ),
                               ))),
-                    )
+                    ),
+                    SizedBox(height: 10,)
                   ],
                 );
               }),
@@ -240,7 +268,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         height: height,
         decoration: BoxDecoration(
           color: Colors.black,
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
     );
@@ -260,12 +288,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: Colors.black45,
-            blurRadius: 10,
-            offset: Offset(0, 6),
-          )
+              color: grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: const Offset(0, 2)
+          ),
         ],
       ),
       child: FittedBox(

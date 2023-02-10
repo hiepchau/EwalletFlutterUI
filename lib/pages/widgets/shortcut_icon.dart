@@ -1,14 +1,15 @@
+import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 
 class ShortcutIcon extends StatelessWidget {
-  final IconData iconData;
+  final Widget icon;
   final String text;
   final double iconSize;
   final double maxSize;
   final bool shadow;
   final void Function()? onTap;
 
-  const ShortcutIcon(this.iconData, this.text, this.iconSize, this.maxSize,
+  const ShortcutIcon(this.icon, this.text, this.iconSize, this.maxSize,
       {Key? key, this.shadow = true, this.onTap})
       : super(key: key);
 
@@ -26,7 +27,7 @@ class ShortcutIcon extends StatelessWidget {
               width: iconSize,
               height: iconSize,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: onPrimary,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: (() {
                   if (!shadow) {
@@ -41,13 +42,14 @@ class ShortcutIcon extends StatelessWidget {
                   ];
                 })(),
               ),
-              child: Icon(iconData),
+              child: icon,
             ),
             const SizedBox(height: 5),
             Text(text,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 11,
+                style: TextStyle(
+                  color: primary,
+                  fontSize: 12,
                   fontWeight: FontWeight.w500,
                 )),
           ],

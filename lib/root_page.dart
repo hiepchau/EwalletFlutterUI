@@ -4,13 +4,14 @@ import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
+import 'package:ewallet/pages/widgets/shortcut_panel.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RootApp extends StatefulWidget {
   const RootApp({Key? key}) : super(key: key);
-
   @override
   State<RootApp> createState() => _RootAppState();
 }
@@ -18,7 +19,7 @@ class RootApp extends StatefulWidget {
 class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
   int pageIndex = 0;
   GlobalKey key = GlobalKey();
-  late final tabController = TabController(length: 5, vsync: this);
+  late final tabController = TabController(length: 4, vsync: this);
 
   @override
   void initState() {
@@ -33,16 +34,24 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            selectedTab(4);
+            showModalBottomSheet(
+              context: context, 
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(30))
+              ),
+              builder: (BuildContext context) {
+              return const ShortcutPanel();
+            });
+            //selectedTab(4);
             // Navigator.push(context, MaterialPageRoute(builder: (context) => const QRScreen()));
           });
         },
         backgroundColor: primary,
         shape: const CircleBorder(),
-        child: Image.asset(
-          'assets/images/icons/qrcode.gif',
-          height: 30,
-          width: 30,
+        child: Icon(
+          FontAwesomeIcons.wallet,
+          size: 30,
+          color: onPrimary,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -54,7 +63,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
     List<IconData> iconsItems = [
       MaterialCommunityIcons.home,
       MaterialCommunityIcons.history,
-      MaterialCommunityIcons.wallet,
+      MaterialCommunityIcons.ticket_percent,
       MaterialCommunityIcons.account,
     ];
     return AnimatedBottomNavigationBar(
@@ -85,7 +94,6 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
         HistoryPage(),
         PromoPage(),
         AccountPage(),
-        QRScreen(),
       ],
     );
   }
