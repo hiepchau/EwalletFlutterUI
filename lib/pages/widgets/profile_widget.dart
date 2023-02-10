@@ -85,7 +85,7 @@ class ProfileWidget extends StatelessWidget {
                                     ? 13
                                     : MediaQuery.of(context).size.width > 350
                                         ? 12
-                                        : 12,
+                                        : 11,
                                 fontFamily: 'SVN-Gotham'),
                           ),
                         )

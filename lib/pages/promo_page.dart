@@ -191,7 +191,7 @@ class _PromoTabState extends State<_PromoTab> {
       double suggestIconHeight, String text, void Function()? onTap) {
     return Container(
       width: 100,
-      height: suggestIconHeight,
+      height: MediaQuery.of(context).size.width > 350 ? suggestIconHeight : suggestIconHeight*1.2,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
@@ -315,6 +315,7 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
         Icon(
           icon,
           color: iconColor,
+          size: MediaQuery.of(context).size.width > 350 ? 35 : 20,
         ),
         iconWidth,
         Container(

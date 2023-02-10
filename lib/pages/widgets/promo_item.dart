@@ -80,20 +80,27 @@ class PromoItem extends StatelessWidget {
                     Image.asset('assets/images/icons/baeminIcon.png'),
                     Text(title,
                         style: TextStyle(
-                            fontSize: 13,
+                            fontSize: MediaQuery.of(context).size.width > 350
+                                ? 13
+                                : 11,
                             fontWeight: FontWeight.bold,
                             color: primary)),
                     Text(subTitle,
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: MediaQuery.of(context).size.width > 350
+                                ? 13
+                                : 12,
                             fontWeight: FontWeight.bold,
                             color: primary)),
-                    Text(description,
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.black,
-                        )),
+                    Container(
+                      child: Text(description,
+                      textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.black,
+                          )),
+                    ),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -127,17 +134,28 @@ class PromoItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 10,bottom: 5),
+                            padding: const EdgeInsets.only(left: 10, bottom: 5),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(FontAwesomeIcons.coins, size: 20, color: Colors.amber,),
-                                  SizedBox(width: 5,),
+                                  Icon(
+                                    FontAwesomeIcons.coins,
+                                    size: 20,
+                                    color: Colors.amber,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
                                   Text(price,
                                       style: TextStyle(
-                                          fontSize: 13,
+                                          fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .width >
+                                                  350
+                                              ? 13
+                                              : 11,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.green)),
                                 ],
@@ -145,12 +163,16 @@ class PromoItem extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 10, bottom: 5),
+                            padding:
+                                const EdgeInsets.only(right: 10, bottom: 5),
                             child: Align(
                                 alignment: Alignment.centerRight,
                                 child: Text(actionTitle,
                                     style: TextStyle(
-                                        fontSize: 13,
+                                        fontSize: MediaQuery.of(context).size.width >
+                                                    350
+                                                ? 13
+                                                : 11,
                                         fontWeight: FontWeight.bold,
                                         color: primary))),
                           )

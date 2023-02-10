@@ -1,12 +1,7 @@
-import 'dart:math';
-
-import 'package:ewallet/pages/payment_screen.dart';
 import 'package:ewallet/pages/qr_page.dart';
 import 'package:ewallet/pages/select_transfer_page.dart';
-import 'package:ewallet/pages/widgets/icon_label.dart';
 import 'package:ewallet/pages/widgets/shortcut_icon.dart';
 import 'package:ewallet/style/color.dart';
-import 'package:ewallet/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -23,7 +18,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
   Widget build(BuildContext context) {
     const iconWidth = 40.0;
     return AspectRatio(
-      aspectRatio: 70 / 40,
+      aspectRatio: 70 / 45,
       child: Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -40,7 +35,6 @@ class _ShortcutPanel extends State<ShortcutPanel> {
           padding: const EdgeInsets.only(top: 20),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              var width = constraints.maxWidth;
               var maxWidth = iconWidth * 1.5;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,7 +64,8 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 15),
                               hintText: "Tìm kiếm",
-                              hintStyle: TextStyle(color: primary),
+                              hintStyle: TextStyle(color: primary,
+                              ),
                               border: const OutlineInputBorder(
                                   borderSide: BorderSide.none,
                                   borderRadius:
@@ -103,7 +98,10 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                                     ? "Số dư ví: 900.000.000đ"
                                     : "Số dư ví: ************",
                                     style: TextStyle(
-                                      color: primary
+                                      color: primary,
+                                      fontSize: MediaQuery.of(context).size.width > 350
+                                            ? 15
+                                            : 13
                                     ),
                               ),
                               GestureDetector(
@@ -114,7 +112,9 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                                   isVisible
                                       ? FontAwesomeIcons.eye
                                       : FontAwesomeIcons.eyeSlash,
-                                  size: 20,
+                                  size: MediaQuery.of(context).size.width > 350
+                                      ? 20
+                                      : 15,
                                   color: primary,
                                 ),
                               ),
