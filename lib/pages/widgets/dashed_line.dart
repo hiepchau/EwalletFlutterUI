@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomSeparator extends StatelessWidget {
-  const CustomSeparator({Key? key, this.height = 1, this.color = Colors.black})
+class DashedLine extends StatelessWidget {
+  const DashedLine({Key? key, this.height = 1, this.color = Colors.black})
       : super(key: key);
   final double height;
   final Color color;
@@ -9,14 +9,13 @@ class CustomSeparator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints) {
-        final boxWidth = constraints.constrainWidth();
-        const dashWidth = 7.0;
+      builder: (context, constraints) {
+        final boxWidth = constraints.maxWidth;
+        const dashWidth = 1.2;
         final dashHeight = height;
         final dashCount = (boxWidth / (2 * dashWidth)).floor();
-        return Flex(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          direction: Axis.horizontal,
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(dashCount, (_) {
             return SizedBox(
               width: dashWidth,

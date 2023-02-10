@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:barcode_scan2/barcode_scan2.dart';
+import 'package:ewallet/app_navigator.dart';
+import 'package:ewallet/pages/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,12 +12,16 @@ class QRScannerScreen extends StatefulWidget {
 
 class _QRScannerState extends State<QRScannerScreen> {
   String _scanResult = "";
+  bool _isFlashOn = false;
 
-  Future _scanQR() async {
+  Future _scanQR(BuildContext context) async {
     try {
-      String qrResult = (await BarcodeScanner.scan()).rawContent;
+      String qrResult = (await BarcodeScanner.scan(
+              options: ScanOptions(autoEnableFlash: _isFlashOn)))
+          .rawContent;
       setState(() {
         _scanResult = qrResult;
+        AppNav.pushWidget(context, PaymentScreen());
       });
     } on PlatformException catch (ex) {
       if (ex.code == BarcodeScanner.cameraAccessDenied) {
@@ -38,6 +44,12 @@ class _QRScannerState extends State<QRScannerScreen> {
     }
   }
 
+  void _toggleFlash() {
+    setState(() {
+      _isFlashOn = !_isFlashOn;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -47,7 +59,9 @@ class _QRScannerState extends State<QRScannerScreen> {
         children: <Widget>[
           TextButton(
             child: Text("Scan QR code"),
-            onPressed: _scanQR,
+            onPressed: () {
+              _scanQR(context);
+            },
           ),
           Text(_scanResult),
         ],

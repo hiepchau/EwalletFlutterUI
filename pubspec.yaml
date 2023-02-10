@@ -22,7 +22,9 @@ dependencies:
   expandable_page_view: ^1.0.17
   barcode_widget: ^2.0.1
   flutter_countdown_timer: ^4.1.0
-
+  qr_code_scanner: ^1.0.1
+  intl: ^0.18.0
+  flutter_screenutil: ^5.6.1
 
 dev_dependencies:
   flutter_test:

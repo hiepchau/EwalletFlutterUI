@@ -1,12 +1,9 @@
-import 'package:ewallet/root_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ewallet/pages/widgets/sign_in.dart';
 import 'package:ewallet/pages/widgets/sign_up.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/utils/bubble_indicator_painter.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-
-import '../style/constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -52,9 +49,9 @@ class _LoginPageState extends State<LoginPage>
                   CustomTheme.loginGradientStart,
                   CustomTheme.loginGradientEnd
                 ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 1.0),
-                stops: <double>[0.0, 1.0],
+                begin: const FractionalOffset(0.0, 0.0),
+                end: const FractionalOffset(1.0, 1.0),
+                stops: const <double>[0.0, 1.0],
                 tileMode: TileMode.clamp),
           ),
           child: Column(
@@ -62,14 +59,18 @@ class _LoginPageState extends State<LoginPage>
             children: <Widget>[
               Padding(
                 padding: kIsWeb
-                    ? EdgeInsets.only(top: 50.0)
-                    : EdgeInsets.only(top: 75.0),
+                    ? (MediaQuery.of(context).size.height <= 600)
+                        ? const EdgeInsets.only(top: 25.0)
+                        : const EdgeInsets.only(top: 50.0)
+                    : const EdgeInsets.only(top: 75.0),
                 child: Image(
-                    height:
-                        MediaQuery.of(context).size.height > 800 ? 191.0 : 150,
+                    height: MediaQuery.of(context).size.height > 800
+                        ? 191.0
+                        : (MediaQuery.of(context).size.height <= 600)
+                            ? 100
+                            : 150,
                     fit: BoxFit.fill,
-                    image: AssetImage('assets/images/login_logo.jpg')
-                        as ImageProvider),
+                    image: const AssetImage('assets/images/login_logo.jpg')),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),

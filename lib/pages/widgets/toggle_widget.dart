@@ -2,35 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import '../../style/color.dart';
 
-class ProfileWidget extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
+class ToggleWidget extends StatefulWidget {
+  final ImageProvider icon;
   final String title;
   final String subtitle;
   final Color subtitleColor;
   final Color color;
   final Function onTap;
 
-  const ProfileWidget({
+  const ToggleWidget({
     Key? key,
     required this.icon,
-    required this.iconColor,
     required this.title,
     required this.subtitle,
     required this.onTap,
     this.color = white,
     this.subtitleColor = black,
   }) : super(key: key);
+
+  @override
+  _ToggleWidget createState() => _ToggleWidget();
+}
+
+class _ToggleWidget extends State<ToggleWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        onTap();
+      onTap: () {
+        widget.onTap();
       },
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: color,
+          color: widget.color,
           boxShadow: [
             BoxShadow(
               color: grey.withOpacity(0.01),
@@ -51,11 +55,8 @@ class ProfileWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width > 350 ? 40 : 20,
                       height: MediaQuery.of(context).size.width > 350 ? 40 : 20,
                       child: Center(
-                        child: Icon(
-                          icon,
-                          color: iconColor,
-                          size:
-                              MediaQuery.of(context).size.width > 350 ? 30 : 25,
+                        child: Image(
+                          image: widget.icon,
                         ),
                       ),
                     ),
@@ -66,7 +67,7 @@ class ProfileWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          title,
+                          widget.title,
                           style: TextStyle(
                               fontSize: MediaQuery.of(context).size.width > 900
                                   ? 15
@@ -76,9 +77,9 @@ class ProfileWidget extends StatelessWidget {
                               fontFamily: 'SVN-Gotham'),
                         ),
                         Visibility(
-                          visible: subtitle != "",
+                          visible: widget.subtitle != "",
                           child: Text(
-                            subtitle,
+                            widget.subtitle,
                             style: TextStyle(
                                 fontSize: MediaQuery.of(context).size.width >
                                         900
@@ -90,13 +91,9 @@ class ProfileWidget extends StatelessWidget {
                           ),
                         )
                       ],
-                    )
+                    ),
                   ],
                 ),
-                const Icon(
-                  Icons.keyboard_arrow_right,
-                  color: grey,
-                )
               ])
             ],
           ),
