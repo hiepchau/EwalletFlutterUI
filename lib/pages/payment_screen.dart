@@ -29,13 +29,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
           ),
         );
       case 1:
-        return const BoxDecoration(
+        return BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Colors.cyanAccent,
-              Colors.cyan,
+              primaryContainer,
+              primary,
             ],
           ),
         );
@@ -57,6 +57,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           leading: BackButton(color: onPrimary),
           backgroundColor: primary,
@@ -72,9 +73,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final height = constraints.maxHeight;
-            
+
                     final suggestIconHeight = height * 14 / 250;
-            
+
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -94,7 +95,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                       ),
                                     ),
                                   ),
-                                  
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -131,7 +131,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -142,7 +144,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                   suggestIconHeight, '10.000.000')
                             ],
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(
+                            height: 20,
+                          ),
                           AspectRatio(
                             aspectRatio: 344 / 35,
                             child: Row(
@@ -167,7 +171,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -203,13 +209,24 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          buildThemeButton(themeButtonHeight, () {
+                          buildThemeButton(Colors.grey.shade300, themeButtonHeight, Visibility(
+                                  visible: _themeIndex == 0,
+                                  child: const Icon(
+                                    Icons.check_circle_outline_rounded,
+                                    color: green,
+                                  )), () {
                             setState(() {
                               _themeIndex = 0;
                             });
                           }),
                           const SizedBox(width: 5),
-                          buildThemeButton(themeButtonHeight, () {
+                          buildThemeButton(Colors.blue, themeButtonHeight,
+                              Visibility(
+                                  visible: _themeIndex == 1,
+                                  child: const Icon(
+                                    Icons.check_circle_outline_rounded,
+                                    color: green,
+                                  )), () {
                             setState(() {
                               _themeIndex = 1;
                             });
@@ -234,7 +251,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          settings: RouteSettings(name: "/Payment"),
                                             builder: (context) =>
                                                 const PaymentSuccessScreen()));
                                   },
@@ -249,7 +265,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 ),
                               ))),
                     ),
-                    SizedBox(height: 10,)
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 );
               }),
@@ -260,16 +278,22 @@ class _PaymentScreenState extends State<PaymentScreen> {
     );
   }
 
-  Widget buildThemeButton(double height, void Function() onTap) {
+  Widget buildThemeButton(
+    Color color,
+    double height,
+    Widget child,
+    void Function() onTap,
+  ) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: height,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: color,
           borderRadius: BorderRadius.circular(15),
         ),
+        child: child
       ),
     );
   }
@@ -293,8 +317,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
               color: grey.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: const Offset(0, 2)
-          ),
+              offset: const Offset(0, 2)),
         ],
       ),
       child: FittedBox(

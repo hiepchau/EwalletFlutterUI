@@ -183,17 +183,19 @@ class _AccountPage extends State<AccountPage> {
                   style: TextStyle(color: primary),
                 ),
               ),
-              const ProfileWidget(
+              ProfileWidget(
                 icon: Icons.receipt_long,
                 iconColor: Colors.yellow,
                 title: 'Quản lý thanh toán',
                 subtitle: "",
+                onTap: (){},
               ),
-              const ProfileWidget(
+              ProfileWidget(
                 icon: Icons.shield,
                 iconColor: Colors.green,
                 title: 'Bảo mật',
                 subtitle: "",
+                onTap: (){},
               ),
             ]),
           ),
@@ -226,18 +228,20 @@ class _AccountPage extends State<AccountPage> {
                       blurRadius: 5,
                       offset: const Offset(0, 2))
                 ]),
-            child: Column(children: const [
+            child: Column(children: [
               ProfileWidget(
                 icon: Icons.settings,
                 iconColor: Colors.grey,
                 title: 'Cài đặt ứng dụng',
                 subtitle: "",
+                onTap: (){},
               ),
               ProfileWidget(
                 icon: Icons.headset_mic,
                 iconColor: Colors.green,
                 title: 'Trung tâm trợ giúp',
                 subtitle: "",
+                onTap: (){},
               ),
             ]),
           ),

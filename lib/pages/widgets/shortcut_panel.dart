@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:ewallet/pages/payment_screen.dart';
 import 'package:ewallet/pages/qr_page.dart';
+import 'package:ewallet/pages/select_transfer_page.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
 import 'package:ewallet/pages/widgets/shortcut_icon.dart';
 import 'package:ewallet/style/color.dart';
@@ -141,8 +142,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    settings: RouteSettings(name: "/root_page"),
-                                    builder: (context) => PaymentScreen()));
+                                    builder: (context) => SelectTransferPage()));
                           },
                         ),
                         ShortcutIcon(
@@ -166,7 +166,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const QRScreen('QRCODE')));
+                                        const QRScreen('QRSCANNER')));
                           },
                         ),
                         ShortcutIcon(
@@ -182,7 +182,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const QRScreen('QRSCANNER')));
+                                        const QRScreen('QRCODE')));
                           },
                         ),
                       ],          
