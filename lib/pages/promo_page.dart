@@ -6,10 +6,12 @@ import 'package:ewallet/pages/widgets/icon_label.dart';
 import 'package:ewallet/pages/widgets/promo_item.dart';
 import 'package:ewallet/pages/widgets/shortcut_icon.dart';
 import 'package:ewallet/pages/widgets/shortcut_panel.dart';
+import 'package:ewallet/style/color.dart';
 import 'package:ewallet/utils/list_utils.dart';
 import 'package:ewallet/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Promo {
   final String title;
@@ -118,18 +120,28 @@ class _PromoTabState extends State<_PromoTab> {
         return ListView(
           shrinkWrap: false,
           children: [
-            Row(
-              children: const [
-                Icon(
-                  Icons.fire_hydrant_alt_rounded,
-                ),
-                Text('Deal \'hời\' chỉ từ 2 xu'),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal:15.0),
+              child: Row(
+                children: const [
+                  Icon(
+                    FontAwesomeIcons.fire,
+                    color: Color.fromRGBO(252, 82, 44, 1),
+                  ),
+                  Text(
+                    'Deal \'hời\' chỉ từ 2 xu',
+                    style: TextStyle(color: Color.fromRGBO(237, 105, 74, 1)),
+                  ),
+                ],
+              ),
             ),
             Column(
                 children: ListUtils.join(
                     promoRows, (_) => const SizedBox(height: 10))),
-            Text('Khám phá quà mới'),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text('Khám phá quà mới'),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -215,62 +227,71 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(color: Colors.lightBlue),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: primary,
+        title: Text(
+          'Khuyến mãi',
+          style: TextStyle(color: onPrimary, fontSize: 18),
         ),
-        Column(
-          children: [
-            Expanded(
-                flex: 53,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final width = constraints.maxWidth;
+      ),
+      body: SafeArea(
+          child: Stack(
+        children: [
+          Column(
+            children: [
+              Expanded(
+                  flex: 53,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final width = constraints.maxWidth;
 
-                    final iconWidth = width * 25 / 390;
-                    final contentWidth = width * 100 / 390;
+                      final iconWidth = width * 25 / 390;
+                      final contentWidth = width * 100 / 390;
 
-                    final fontSize = 10.0;
+                      final fontSize = 10.0;
 
-                    return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          decorateFlexButton(
-                              iconWidth,
-                              fontSize,
-                              contentWidth,
-                              Icons.notification_add,
-                              '100.000đ',
-                              Colors.green, () {
-                            setState(() {
-                              _tabController.index = 0;
-                            });
-                          }),
-                          decorateFlexButton(
-                              iconWidth,
-                              fontSize,
-                              contentWidth,
-                              Icons.ac_unit,
-                              'Quà của tôi',
-                              Colors.cyanAccent, () {
-                            setState(() {
-                              _tabController.index = 1;
-                            });
-                          })
-                        ]);
-                  },
-                )),
-            Expanded(
-                flex: 670,
-                child: TabBarView(
-                    controller: _tabController,
-                    children: const [_PromoTab(), _PromoTab()])),
-          ],
-        )
-      ],
-    ));
+                      return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            decorateFlexButton(
+                                iconWidth,
+                                fontSize,
+                                contentWidth,
+                                FontAwesomeIcons.coins,
+                                Color.fromRGBO(238, 191, 1, 1),
+                                '100.000đ',
+                                primary, () {
+                              setState(() {
+                                _tabController.index = 0;
+                              });
+                            }),
+                            decorateFlexButton(
+                                iconWidth,
+                                fontSize,
+                                contentWidth,
+                                FontAwesomeIcons.gifts,
+                                onPrimaryContainer,
+                                'Quà của tôi',
+                                primaryContainer, () {
+                              setState(() {
+                                _tabController.index = 1;
+                              });
+                            })
+                          ]);
+                    },
+                  )),
+              Expanded(
+                  flex: 670,
+                  child: TabBarView(
+                      controller: _tabController,
+                      children: const [_PromoTab(), _PromoTab()])),
+            ],
+          )
+        ],
+      )),
+    );
   }
 
   Widget decorateFlexButton(
@@ -278,11 +299,15 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
       double fontSize,
       double contentWidth,
       IconData icon,
+      Color iconColor,
       String text,
       Color color,
       void Function()? onTap) {
     return buildFlexButton(
-        Icon(icon),
+        Icon(
+          icon,
+          color: iconColor,
+        ),
         iconWidth,
         Container(
             height: iconWidth * 1.2,
@@ -290,7 +315,9 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
                 borderRadius: const BorderRadius.all(Radius.circular(25)),
                 color: color),
             child: Center(
-              child: Text(text, style: TextStyle(fontSize: fontSize)),
+              child: Text(text,
+                  style:
+                      TextStyle(fontSize: fontSize, color: onPrimaryContainer)),
             )),
         contentWidth,
         onTap);

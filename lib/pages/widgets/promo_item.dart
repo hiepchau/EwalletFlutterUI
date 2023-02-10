@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 
 class _DashedLine extends StatelessWidget {
@@ -75,7 +76,7 @@ class PromoItem extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Icon(Icons.ac_unit),
+                    Image.asset('assets/images/icons/baeminIcon.png'),
                     Text(title),
                     Text(subTitle),
                     Text(description),
@@ -86,7 +87,7 @@ class PromoItem extends StatelessWidget {
                               height: decorateHeight,
                               width: decorateHeight / 2,
                               decoration: const BoxDecoration(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(100),
                                     bottomRight: Radius.circular(100),
@@ -100,7 +101,7 @@ class PromoItem extends StatelessWidget {
                               height: decorateHeight,
                               width: decorateHeight / 2,
                               decoration: const BoxDecoration(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(100),
                                     bottomLeft: Radius.circular(100),
