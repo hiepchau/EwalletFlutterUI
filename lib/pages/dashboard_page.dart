@@ -1,3 +1,4 @@
+import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/pages/notification_page.dart';
 import 'package:ewallet/pages/widgets/ad_mini_panel.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
@@ -34,7 +35,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
         ),
         actions: [
           IconButton(
-              onPressed: () => Navigator.push(
+              onPressed: () => AppNav.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const NotificationPage())),

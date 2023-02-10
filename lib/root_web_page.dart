@@ -76,7 +76,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
               Expanded(
                   flex: 790,
                   child: Container(
-                    decoration: const BoxDecoration(color: Colors.greenAccent),
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -110,7 +110,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                         Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: createTextButton('Đăng xuất', () {
-                            AppNav.push(context, PaymentSuccessScreen());
+                            AppNav.pushWidget(context, PaymentSuccessScreen());
                           }),
                         )
                       ],
@@ -126,7 +126,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
             Expanded(
                 flex: 790,
                 child: Container(
-                  decoration: const BoxDecoration(color: Colors.greenAccent),
+                  decoration: const BoxDecoration(color: Colors.grey),
                   child: Navigator(
                     key: AppNav.getWebNavKey(),
                     onGenerateRoute: (settings) {

@@ -5,6 +5,8 @@ import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../app_navigator.dart';
+
 class ShortcutPanel extends StatefulWidget {
   const ShortcutPanel({Key? key}) : super(key: key);
 
@@ -139,7 +141,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                           iconWidth,
                           maxWidth,
                           onTap: () {
-                            Navigator.push(
+                            AppNav.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => SelectTransferPage()));
@@ -162,7 +164,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                           iconWidth,
                           maxWidth,
                           onTap: () {
-                            Navigator.push(
+                            AppNav.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
@@ -178,7 +180,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                           iconWidth,
                           maxWidth,
                           onTap: () {
-                            Navigator.push(
+                            AppNav.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
