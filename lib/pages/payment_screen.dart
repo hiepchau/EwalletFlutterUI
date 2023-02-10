@@ -1,11 +1,56 @@
 import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:flutter/material.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
+  PaymentScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
   final _controller = TextEditingController();
   final _msgController = TextEditingController();
 
-  PaymentScreen({Key? key}) : super(key: key);
+  int _themeIndex = 0;
+
+  Decoration _buildThemeDecoration() {
+    switch (_themeIndex) {
+      case 0:
+        return const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFE0E0E0),
+              Color(0xFFE0E0E0),
+            ],
+          ),
+        );
+      case 1:
+        return const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.cyanAccent,
+              Colors.cyan,
+            ],
+          ),
+        );
+      default:
+        return const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFE0E0E0),
+              Color(0xFFE0E0E0),
+            ],
+          ),
+        );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +62,7 @@ class PaymentScreen extends StatelessWidget {
               aspectRatio: 390 / 670,
               child: Container(
                 //TODO: Add background image decoration
-                decoration: const BoxDecoration(color: Colors.redAccent),
+                decoration: _buildThemeDecoration(),
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final height = constraints.maxHeight;
@@ -34,27 +79,32 @@ class PaymentScreen extends StatelessWidget {
                           ),
                           AspectRatio(
                             aspectRatio: 26 / 5,
-                            child: Row(children: [
-                              AspectRatio(
-                                  aspectRatio: 1,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  )),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text('Nguyễn Văn A',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w500,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  AspectRatio(
+                                      aspectRatio: 1,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.black,
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                        ),
                                       )),
-                                  Text('Số dư: 100.000đ')
-                                ],
-                              )
-                            ]),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: const [
+                                      Text('Nguyễn Văn A',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w500,
+                                          )),
+                                      Text('Số dư: 100.000đ')
+                                    ],
+                                  )
+                                ]),
                           ),
                           AspectRatio(
                             aspectRatio: 69 / 10,
@@ -130,9 +180,17 @@ class PaymentScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        buildThemeButton(themeButtonHeight),
+                        buildThemeButton(themeButtonHeight, () {
+                          setState(() {
+                            _themeIndex = 0;
+                          });
+                        }),
                         const SizedBox(width: 5),
-                        buildThemeButton(themeButtonHeight),
+                        buildThemeButton(themeButtonHeight, () {
+                          setState(() {
+                            _themeIndex = 1;
+                          });
+                        }),
                       ],
                     ),
                     SizedBox(
@@ -174,13 +232,16 @@ class PaymentScreen extends StatelessWidget {
     );
   }
 
-  Widget buildThemeButton(double height) {
-    return Container(
-      width: height,
-      height: height,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(25),
+  Widget buildThemeButton(double height, void Function() onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: height,
+        height: height,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(25),
+        ),
       ),
     );
   }
