@@ -1,3 +1,4 @@
+import 'package:ewallet/root_web_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:ewallet/style/color.dart';
@@ -143,14 +144,14 @@ class _SignInState extends State<SignIn> {
               Container(
                 margin: const EdgeInsets.only(top: 170.0),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                  borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   boxShadow: <BoxShadow>[
                     BoxShadow(
                       color: CustomTheme.loginGradientStart,
-                      offset: Offset(1.0, 6.0),
+                      offset: const Offset(1.0, 6.0),
                       blurRadius: 20.0,
                     ),
-                    BoxShadow(
+                    const BoxShadow(
                       color: CustomTheme.loginGradientEnd,
                       offset: Offset(1.0, 6.0),
                       blurRadius: 20.0,
@@ -161,8 +162,8 @@ class _SignInState extends State<SignIn> {
                         CustomTheme.loginGradientEnd,
                         CustomTheme.loginGradientStart
                       ],
-                      begin: FractionalOffset(0.2, 0.2),
-                      end: FractionalOffset(1.0, 1.0),
+                      begin: const FractionalOffset(0.2, 0.2),
+                      end: const FractionalOffset(1.0, 1.0),
                       stops: <double>[0.0, 1.0],
                       tileMode: TileMode.clamp),
                 ),
@@ -196,7 +197,7 @@ class _SignInState extends State<SignIn> {
             padding: kIsWeb
                 ? MediaQuery.of(context).size.height <= 600
                     ? const EdgeInsets.only(top: 10)
-                    : EdgeInsets.only(top: 30.0)
+                    : const EdgeInsets.only(top: 30.0)
                 : const EdgeInsets.only(top: 10),
             child: TextButton(
                 onPressed: () {},
