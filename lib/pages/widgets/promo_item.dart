@@ -34,7 +34,20 @@ class _DashedLine extends StatelessWidget {
 }
 
 class PromoItem extends StatelessWidget {
-  const PromoItem({Key? key}) : super(key: key);
+  final String title;
+  final String subTitle;
+  final String description;
+  final String price;
+  final String actionTitle;
+
+  const PromoItem(
+      {Key? key,
+        required this.title,
+        required this.subTitle,
+        required this.description,
+        this.price = '',
+        required this.actionTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -63,9 +76,9 @@ class PromoItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(Icons.ac_unit),
-                    Text('Baemin'),
-                    Text('Giảm 10.000đ'),
-                    Text('Cho đơn từ 50.000đ'),
+                    Text(title),
+                    Text(subTitle),
+                    Text(description),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -80,9 +93,9 @@ class PromoItem extends StatelessWidget {
                                   ))),
                           const Expanded(
                               child: Padding(
-                            padding: EdgeInsets.only(left: 4, right: 4),
-                            child: _DashedLine(),
-                          )),
+                                padding: EdgeInsets.only(left: 4, right: 4),
+                                child: _DashedLine(),
+                              )),
                           Container(
                               height: decorateHeight,
                               width: decorateHeight / 2,
@@ -103,13 +116,13 @@ class PromoItem extends StatelessWidget {
                             child: Row(
                               children: [
                                 Icon(Icons.currency_exchange),
-                                Text('2 xu')
+                                Text(price)
                               ],
                             ),
                           ),
                           Align(
                               alignment: Alignment.centerRight,
-                              child: Text('Đổi ngay'))
+                              child: Text(actionTitle))
                         ],
                       ),
                     )

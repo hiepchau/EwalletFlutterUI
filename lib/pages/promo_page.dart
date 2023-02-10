@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ewallet/pages/notification_page.dart';
 import 'package:ewallet/pages/widgets/ad_mini_panel.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
@@ -9,106 +11,162 @@ import 'package:ewallet/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class PromoPage extends StatelessWidget {
-  const PromoPage({Key? key}) : super(key: key);
+class Promo {
+  final String title;
+  final String subTitle;
+  final String description;
+  final String price;
+  final String actionTitle;
+
+  Promo(this.title, this.subTitle, this.description, this.price,
+      this.actionTitle);
+
+  static List<Promo> generateRandomPromos(int count) {
+    final random = Random();
+    final titles = [
+      'Baemin',
+      'Grab',
+      'Shopee',
+      'Tiki',
+      'Lazada',
+      'Zalora',
+      'Traveloka',
+      'Gojek',
+      'Tokopedia',
+      'Bukalapak'
+    ];
+    final subTitles = [
+      'Giảm 10.000đ',
+      'Giảm 20.000đ',
+      'Giảm 30.000đ',
+      'Giảm 10%',
+    ];
+    final descriptions = [
+      'Cho đơn từ 50.000đ',
+      'Cho đơn từ 100.000đ',
+      'Cho đơn từ 150.000đ',
+      'Cho đơn có sản phầm từ 200.000đ',
+    ];
+    final prices = [
+      '2 xu',
+      '3 xu',
+      '4 xu',
+      '5 xu',
+    ];
+    final actionTitles = ['Đổi ngay'];
+    final result = <Promo>[];
+    for (int i = 0; i < count; i++) {
+      final title = titles[random.nextInt(titles.length)];
+      final subTitle = subTitles[random.nextInt(subTitles.length)];
+      final description = descriptions[random.nextInt(descriptions.length)];
+      final price = prices[random.nextInt(prices.length)];
+      final actionTitle = actionTitles[random.nextInt(actionTitles.length)];
+      result.add(Promo(title, subTitle, description, price, actionTitle));
+    }
+    return result;
+  }
+
+  Widget toWidget() {
+    return PromoItem(
+      title: title,
+      subTitle: subTitle,
+      description: description,
+      price: price,
+      actionTitle: actionTitle,
+    );
+  }
+}
+
+class _PromoTab extends StatefulWidget {
+  const _PromoTab({Key? key}) : super(key: key);
+
+  @override
+  State<_PromoTab> createState() => _PromoTabState();
+}
+
+class _PromoTabState extends State<_PromoTab> {
+  final List<List<Promo>> _hotPromos = [
+    Promo.generateRandomPromos(4),
+    Promo.generateRandomPromos(6),
+    Promo.generateRandomPromos(3),
+  ];
+  int _promoIndex = 0;
+
+  final _hotDealPromo = Promo.generateRandomPromos(4);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Stack(
-      children: [
-        Container(
-          decoration: const BoxDecoration(color: Colors.lightBlue),
-        ),
-        Column(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final height = constraints.maxHeight;
+
+        final promoItemWidth = width * 150 / 390;
+        final buttonHeight = height * 28 / 720;
+
+        final promoRows = WidgetUtils.rowEvenlyWidthDivideWrap(
+                width,
+                promoItemWidth,
+                2,
+                _hotDealPromo
+                    .map((e) =>
+                        SizedBox(width: promoItemWidth, child: e.toWidget()))
+                    .toList())
+            .map((e) => Row(children: e))
+            .toList();
+
+        return ListView(
+          shrinkWrap: false,
           children: [
-            Expanded(
-                flex: 53,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final width = constraints.maxWidth;
-
-                    final iconWidth = width * 25 / 390;
-                    final contentWidth = width * 100 / 390;
-
-                    final fontSize = 10.0;
-
-                    return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          decorateFlexButton(iconWidth, fontSize, contentWidth,
-                              Icons.notification_add, '100.000đ', Colors.green),
-                          decorateFlexButton(iconWidth, fontSize, contentWidth,
-                              Icons.ac_unit, 'Quà của tôi', Colors.cyanAccent)
-                        ]);
-                  },
-                )),
-            Expanded(
-                flex: 670,
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final width = constraints.maxWidth;
-                    final height = constraints.maxHeight;
-
-                    final promoItemWidth = width * 150 / 390;
-                    final buttonHeight = height * 28 / 720;
-
-                    final promoRows = WidgetUtils.rowEvenlyWidthDivideWrap(
+            Row(
+              children: const [
+                Icon(
+                  Icons.fire_hydrant_alt_rounded,
+                ),
+                Text('Deal \'hời\' chỉ từ 2 xu'),
+              ],
+            ),
+            Column(
+                children: ListUtils.join(
+                    promoRows, (_) => const SizedBox(height: 10))),
+            Text('Khám phá quà mới'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                buildRoundButton(buttonHeight, 'Tất cả', () {
+                  setState(() {
+                    _promoIndex = 0;
+                  });
+                }),
+                buildRoundButton(buttonHeight, 'Mua sắm', () {
+                  setState(() {
+                    _promoIndex = 1;
+                  });
+                }),
+                buildRoundButton(buttonHeight, 'Điện thoại', () {
+                  setState(() {
+                    _promoIndex = 2;
+                  });
+                }),
+              ],
+            ),
+            Column(
+                children: ListUtils.join(
+                    WidgetUtils.rowEvenlyWidthDivideWrap(
                             width,
                             promoItemWidth,
                             2,
-                            List.generate(
-                                4,
-                                (index) => SizedBox(
-                                    width: promoItemWidth, child: PromoItem())))
+                            _hotPromos[_promoIndex]
+                                .map((e) => SizedBox(
+                                    width: promoItemWidth, child: e.toWidget()))
+                                .toList())
                         .map((e) => Row(children: e))
-                        .toList();
-
-                    final hotPromoRows = WidgetUtils.rowEvenlyWidthDivideWrap(
-                            width,
-                            promoItemWidth,
-                            2,
-                            List.generate(
-                                4,
-                                (index) => SizedBox(
-                                    width: promoItemWidth, child: PromoItem())))
-                        .map((e) => Row(children: e))
-                        .toList();
-
-                    return ListView(
-                      shrinkWrap: false,
-                      children: [
-                        Row(
-                          children: const [
-                            Icon(
-                              Icons.fire_hydrant_alt_rounded,
-                            ),
-                            Text('Deal \'hời\' chỉ từ 2 xu'),
-                          ],
-                        ),
-                        Column(
-                            children: ListUtils.join(
-                                promoRows, (_) => const SizedBox(height: 10))),
-                        Text('Khám phá quà mới'),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            buildRoundButton(buttonHeight, 'Tất cả', () {}),
-                            buildRoundButton(buttonHeight, 'Mua sắm', () {}),
-                            buildRoundButton(buttonHeight, 'Điện thoại', () {}),
-                          ],
-                        ),
-                        Column(
-                            children: ListUtils.join(hotPromoRows,
-                                (_) => const SizedBox(height: 10))),
-                      ],
-                    );
-                  },
-                )),
+                        .toList(),
+                    (_) => const SizedBox(height: 10))),
           ],
-        )
-      ],
-    ));
+        );
+      },
+    );
   }
 
   Widget buildRoundButton(
@@ -137,9 +195,92 @@ class PromoPage extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget decorateFlexButton(double iconWidth, double fontSize,
-      double contentWidth, IconData icon, String text, Color color) {
+class PromoPage extends StatefulWidget {
+  const PromoPage({Key? key}) : super(key: key);
+
+  @override
+  State<PromoPage> createState() => _PromoPageState();
+}
+
+class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(initialIndex: 0, length: 2, vsync: this);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Stack(
+      children: [
+        Container(
+          decoration: const BoxDecoration(color: Colors.lightBlue),
+        ),
+        Column(
+          children: [
+            Expanded(
+                flex: 53,
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final width = constraints.maxWidth;
+
+                    final iconWidth = width * 25 / 390;
+                    final contentWidth = width * 100 / 390;
+
+                    final fontSize = 10.0;
+
+                    return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          decorateFlexButton(
+                              iconWidth,
+                              fontSize,
+                              contentWidth,
+                              Icons.notification_add,
+                              '100.000đ',
+                              Colors.green, () {
+                            setState(() {
+                              _tabController.index = 0;
+                            });
+                          }),
+                          decorateFlexButton(
+                              iconWidth,
+                              fontSize,
+                              contentWidth,
+                              Icons.ac_unit,
+                              'Quà của tôi',
+                              Colors.cyanAccent, () {
+                            setState(() {
+                              _tabController.index = 1;
+                            });
+                          })
+                        ]);
+                  },
+                )),
+            Expanded(
+                flex: 670,
+                child: TabBarView(
+                    controller: _tabController,
+                    children: const [_PromoTab(), _PromoTab()])),
+          ],
+        )
+      ],
+    ));
+  }
+
+  Widget decorateFlexButton(
+      double iconWidth,
+      double fontSize,
+      double contentWidth,
+      IconData icon,
+      String text,
+      Color color,
+      void Function()? onTap) {
     return buildFlexButton(
         Icon(icon),
         iconWidth,
@@ -151,35 +292,39 @@ class PromoPage extends StatelessWidget {
             child: Center(
               child: Text(text, style: TextStyle(fontSize: fontSize)),
             )),
-        contentWidth);
+        contentWidth,
+        onTap);
   }
 
-  Widget buildFlexButton(
-      Widget flex, double flexWidth, Widget content, double contentWidth) {
+  Widget buildFlexButton(Widget flex, double flexWidth, Widget content,
+      double contentWidth, void Function()? onTap) {
     double flexOver = flexWidth * 0.5;
     double flexRemain = flexWidth - flexOver;
     return SizedBox(
       width: flexRemain + contentWidth,
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: flexRemain),
-              child: SizedBox(
-                width: contentWidth,
-                child: content,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: flexRemain),
+                child: SizedBox(
+                  width: contentWidth,
+                  child: content,
+                ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: SizedBox(
-              width: flexWidth,
-              child: flex,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SizedBox(
+                width: flexWidth,
+                child: flex,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
