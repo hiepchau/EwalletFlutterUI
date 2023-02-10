@@ -318,6 +318,7 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
         Icon(
           icon,
           color: iconColor,
+          size: MediaQuery.of(context).size.width > 350 ? 35 : 20,
         ),
         iconWidth,
         Container(

@@ -65,7 +65,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         body: Column(
           children: [
             AspectRatio(
-              aspectRatio: 390 / 600,
+              aspectRatio: MediaQuery.of(context).size.height > 600 ? 390 / 600 : 350/455,
               child: Container(
                 padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                 //TODO: Add background image decoration
@@ -74,7 +74,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                   builder: (context, constraints) {
                     final height = constraints.maxHeight;
 
-                    final suggestIconHeight = height * 14 / 250;
+                    final suggestIconHeight = MediaQuery.of(context).size.height > 600 ? height * 14 / 250 : height * 14 / 275;
 
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

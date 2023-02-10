@@ -8,8 +8,10 @@ import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
+import 'package:ewallet/pages/widgets/profile_widget.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/utils/widget_utils.dart';
+import 'package:ewallet/wallet_lists.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 
@@ -45,8 +47,7 @@ class _WalletData {
 
 class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
   late final tabController = TabController(length: 5, vsync: this);
-  bool _walletExpanded = true;
-  bool _walledShowAll = false;
+  bool isVisible = false;
   final _defWalletShow = 3;
 
   final List<_WalletData> _walletData = [
@@ -157,67 +158,48 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-                                ExpansionPanelList(
-                                  expansionCallback: (index, isExpanded) {
+                            Theme(
+                                data: Theme.of(context)
+                                    .copyWith(dividerColor: Colors.transparent),
+                                child: ExpansionTile(
+                                  onExpansionChanged: (temp) {
                                     setState(() {
-                                      _walletExpanded = !_walletExpanded;
+                                      isVisible = temp;
                                     });
                                   },
-                                  children: [
-                                    ExpansionPanel(
-                                      headerBuilder: (context, isExpanded) {
-                                        return ListTile(
-                                          title: Text('Tài khoản/Thẻ'),
-                                        );
-                                      },
-                                      body: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[200],
-                                              border: Border(
-                                                top: BorderSide(
-                                                    width: 5.0,
-                                                    color: Colors
-                                                        .lightBlue.shade600),
-                                                bottom: BorderSide(
-                                                    width: 5.0,
-                                                    color: Colors
-                                                        .lightBlue.shade900),
-                                              )),
-                                          child: Column(
-                                            children: _walletData
-                                                .sublist(
-                                                    0,
-                                                    _walledShowAll
-                                                        ? _walletData.length
-                                                        : min(
-                                                            _walletData.length,
-                                                            _defWalletShow))
-                                                .map((e) => e.toWidget(null))
-                                                .toList(),
-                                          )),
-                                      isExpanded: _walletExpanded,
-                                    ),
-                                  ],
-                                )
-                              ] +
-                              (_walledShowAll
-                                  ? []
-                                  : [
-                                      TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              _walledShowAll = true;
-                                            });
-                                          },
-                                          child: Text(
-                                              'Xem tất cả (${_walletData.length - _defWalletShow})'))
-                                    ]) +
-                              [
-                                createNavButton(Icons.newspaper,
-                                    'Quản lý thanh toán', () {}, null),
-                                createNavButton(
-                                    Icons.new_releases, 'Bảo mật', () {}, null),
-                              ],
+                                  childrenPadding: const EdgeInsets.all(5),
+                                  title: const Text("Tài khoản/Ví"),
+                                  children: _buildExpandableContent(walletList),
+                                )),
+                            Visibility(
+                              visible: isVisible,
+                              child: Text(
+                                "Xem tất cả (3)",
+                                style: TextStyle(color: primary),
+                              ),
+                            ),
+                            ProfileWidget(
+                              icon: Icons.receipt_long,
+                              iconColor: Colors.yellow,
+                              title: 'Quản lý thanh toán',
+                              subtitle: "",
+                              onTap: () {},
+                            ),
+                            ProfileWidget(
+                              icon: Icons.settings,
+                              iconColor: Colors.grey,
+                              title: 'Cài đặt ứng dụng',
+                              subtitle: "",
+                              onTap: () {},
+                            ),
+                            ProfileWidget(
+                              icon: Icons.headset_mic,
+                              iconColor: Colors.green,
+                              title: 'Trung tâm trợ giúp',
+                              subtitle: "",
+                              onTap: () {},
+                            ),
+                          ],
                         ),
                       )),
                 )),
@@ -265,5 +247,110 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
     setState(() {
       tabController.index = index;
     });
+  }
+
+  List<Widget> _buildExpandableContent(List wallet_lists) {
+    List<Widget> columnContent = [];
+
+    for (var content in wallet_lists) {
+      if (content["name"] == "TPBank") {
+        columnContent.add(
+          ListTile(
+            title: Text(
+              content["name"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
+            trailing: Text(
+              content["card_Number"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
+            leading: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/icons/tpbankIcon.png',
+                  width: 25,
+                  height: 25,
+                )),
+          ),
+        );
+      }
+      if (content["name"] == "VietcomBank") {
+        columnContent.add(
+          ListTile(
+            title: Text(
+              content["name"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
+            trailing: Text(
+              content["card_Number"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
+            leading: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/icons/vietcombankIcon.png',
+                  width: 25,
+                  height: 25,
+                )),
+          ),
+        );
+      }
+      if (content["name"] == "Ví") {
+        columnContent.add(
+          ListTile(
+            title: Text(
+              content["name"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
+            trailing: Text(
+              content["balance"],
+              style: TextStyle(
+                fontSize: MediaQuery.of(context).size.width > 900
+                    ? 15
+                    : MediaQuery.of(context).size.width > 350
+                        ? 15
+                        : 13,
+              ),
+            ),
+            leading: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/icons/blackWalletIcon.png',
+                )),
+          ),
+        );
+      }
+    }
+    return columnContent;
   }
 }
