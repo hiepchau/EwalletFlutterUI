@@ -184,10 +184,11 @@ class _SignInState extends State<SignIn> {
                     onPressed: () {
                       CustomSnackBar(
                           context, const Text('Login button pressed'));
-                      Navigator.push(
+                      Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
                             builder: (context) => kIsWeb ? const RootWebApp() : const RootApp()),
+                        (_) => false,
                       );
                     }),
               )
