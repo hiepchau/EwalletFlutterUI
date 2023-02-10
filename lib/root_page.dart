@@ -4,6 +4,7 @@ import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
 import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
+import 'package:ewallet/pages/widgets/payment_confirm.dart';
 import 'package:ewallet/pages/widgets/shortcut_panel.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,7 @@ class _RootAppState extends State<RootApp> with TickerProviderStateMixin {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30))
               ),
               builder: (BuildContext context) {
-              return const ShortcutPanel();
+              return const ShortcutPanel(); //const PaymentConfirm();
             });
             //selectedTab(4);
             // Navigator.push(context, MaterialPageRoute(builder: (context) => const QRScreen()));

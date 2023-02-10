@@ -5,36 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class _DashedLine extends StatelessWidget {
-  const _DashedLine({Key? key, this.height = 1, this.color = Colors.black})
-      : super(key: key);
-  final double height;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final boxWidth = constraints.maxWidth;
-        const dashWidth = 1.2;
-        final dashHeight = height;
-        final dashCount = (boxWidth / (2 * dashWidth)).floor();
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(dashCount, (_) {
-            return SizedBox(
-              width: dashWidth,
-              height: dashHeight,
-              child: DecoratedBox(
-                decoration: BoxDecoration(color: color),
-              ),
-            );
-          }),
-        );
-      },
-    );
-  }
-}
+import 'dashed_line.dart';
 
 class PromoItem extends StatelessWidget {
   final String title;
@@ -120,7 +91,7 @@ class PromoItem extends StatelessWidget {
                           const Expanded(
                               child: Padding(
                             padding: EdgeInsets.only(left: 4, right: 4),
-                            child: _DashedLine(),
+                            child: DashedLine(),
                           )),
                           Container(
                               height: decorateHeight,
