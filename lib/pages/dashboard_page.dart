@@ -17,8 +17,10 @@ class Dashboard extends StatefulWidget {
   _Dashboard createState() => _Dashboard();
 }
 
-class _Dashboard extends State<Dashboard> {
+class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
   bool isVisible = false;
+  late final _adsTabController = TabController(length: 3, vsync: this);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,28 +100,68 @@ class _Dashboard extends State<Dashboard> {
                           List<Widget> shortcuts =
                               WidgetUtils.rowEvenlyWidthDivideWrap(
                                       width, labelWidth, 4, [
-                            ShortcutIcon(Icon(Icons.phone_android,color: primary,),
-                                'Nạp tiền ĐT', iconLabelWidth, labelWidth),
+                            ShortcutIcon(
+                                Icon(
+                                  Icons.phone_android,
+                                  color: primary,
+                                ),
+                                'Nạp tiền ĐT',
+                                iconLabelWidth,
+                                labelWidth),
                             const ShortcutIcon(
-                                Icon(Icons.receipt_long,color: Colors.yellow,),
+                                Icon(
+                                  Icons.receipt_long,
+                                  color: Colors.yellow,
+                                ),
                                 'Thanh toán hóa đơn',
                                 iconLabelWidth,
                                 labelWidth),
-                            const ShortcutIcon(Icon(Icons.shield,color: Colors.green,),
-                                'Bảo hiểm', iconLabelWidth, labelWidth),
                             const ShortcutIcon(
-                                Icon(FontAwesomeIcons.piggyBank,color: Colors.pink,),
+                                Icon(
+                                  Icons.shield,
+                                  color: Colors.green,
+                                ),
+                                'Bảo hiểm',
+                                iconLabelWidth,
+                                labelWidth),
+                            const ShortcutIcon(
+                                Icon(
+                                  FontAwesomeIcons.piggyBank,
+                                  color: Colors.pink,
+                                ),
                                 'Tài khoản tích lũy',
                                 iconLabelWidth,
                                 labelWidth),
-                            ShortcutIcon(Icon(FontAwesomeIcons.simCard,color: primary,),
-                                'Nạp 3G/4G', iconLabelWidth, labelWidth),
-                            ShortcutIcon(Image.asset('assets/images/icons/vetc-logo.png'), 'VETC',
-                                iconLabelWidth, labelWidth),
-                            ShortcutIcon(Icon(FontAwesomeIcons.ticket,color: primary,),
-                                'Đặt vé phim', iconLabelWidth, labelWidth),
-                            ShortcutIcon(Icon(Icons.widgets,color: primary,),
-                                'Tất cả', iconLabelWidth, labelWidth),
+                            ShortcutIcon(
+                                Icon(
+                                  FontAwesomeIcons.simCard,
+                                  color: primary,
+                                ),
+                                'Nạp 3G/4G',
+                                iconLabelWidth,
+                                labelWidth),
+                            ShortcutIcon(
+                                Image.asset(
+                                    'assets/images/icons/vetc-logo.png'),
+                                'VETC',
+                                iconLabelWidth,
+                                labelWidth),
+                            ShortcutIcon(
+                                Icon(
+                                  FontAwesomeIcons.ticket,
+                                  color: primary,
+                                ),
+                                'Đặt vé phim',
+                                iconLabelWidth,
+                                labelWidth),
+                            ShortcutIcon(
+                                Icon(
+                                  Icons.widgets,
+                                  color: primary,
+                                ),
+                                'Tất cả',
+                                iconLabelWidth,
+                                labelWidth),
                           ])
                                   .map((e) => Row(
                                         crossAxisAlignment:
@@ -134,7 +176,9 @@ class _Dashboard extends State<Dashboard> {
                                   (i) => const SizedBox(height: 10)));
                         },
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
@@ -173,13 +217,17 @@ class _Dashboard extends State<Dashboard> {
                                             color: primary,
                                           ),
                                         )),
-                                        const SizedBox(height: 20,)
+                                    const SizedBox(
+                                      height: 20,
+                                    )
                                   ] +
                                   ListUtils.join(shortcuts,
                                       (i) => const SizedBox(height: 10)));
                         },
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
@@ -253,17 +301,40 @@ class _Dashboard extends State<Dashboard> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(5),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                  width: 75,
-                  height: 75,
-                  child: Image.asset(
-                    "assets/images/icons/cantfind.png",
-                  )),
+              Expanded(
+                  child: TabBarView(
+                controller: _adsTabController,
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.fitHeight,
+                            image: AssetImage(
+                                "assets/images/icons/cantfind.png"))),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        image: DecorationImage(
+                            fit: BoxFit.fitHeight,
+                            image: AssetImage(
+                                "assets/images/icons/cantfind.png"))),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.greenAccent,
+                        image: DecorationImage(
+                            fit: BoxFit.fitHeight,
+                            image: AssetImage(
+                                "assets/images/icons/cantfind.png"))),
+                  )
+                ],
+              )),
               Text(
                 "Đây là quảng cáo",
                 style: TextStyle(
