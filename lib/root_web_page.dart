@@ -5,6 +5,7 @@ import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/pages/account_page.dart';
 import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
+import 'package:ewallet/pages/login_page.dart';
 import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
@@ -110,7 +111,10 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                         Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: createTextButton('Đăng xuất', () {
-                            AppNav.pushWidget(context, PaymentSuccessScreen());
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(builder: (_) {
+                              return const LoginPage();
+                            }), (route) => false);
                           }),
                         )
                       ],
