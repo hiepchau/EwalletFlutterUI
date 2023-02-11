@@ -192,8 +192,8 @@ class PaymentSuccessScreen extends StatelessWidget {
                   left: 40, right: 40, top: 10, bottom: 10),
               child: GestureDetector(
                 onTap: () {
-                  AppNav.popUntil(context, (route) => route.isFirst);
-                  /*Navigator.of(context).pushAndRemoveUntil(
+                  //AppNav.popUntil(context, (route) => route.isFirst);
+                  Navigator.of(context).pushAndRemoveUntil(
                       PageRouteBuilder(
                         pageBuilder: (BuildContext context, animation,
                             secondaryAnimation) {
@@ -209,7 +209,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      (route) => false);*/
+                      (route) => false);
                 },
                 child: Container(
                   decoration: BoxDecoration(

@@ -42,7 +42,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
           padding: const EdgeInsets.only(top: 20),
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final iconWidth = 35.w;
+              final iconWidth = 35.0;
               var maxWidth = iconWidth * 1.5;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
