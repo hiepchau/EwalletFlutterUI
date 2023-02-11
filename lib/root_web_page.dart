@@ -162,7 +162,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                           child: Column(
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                padding: const EdgeInsets.symmetric(vertical: 10),
                                 child: ShortcutPanel(),
                               ),
                               Theme(

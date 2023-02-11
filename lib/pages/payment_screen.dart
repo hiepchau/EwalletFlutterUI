@@ -2,6 +2,7 @@ import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:ewallet/pages/widgets/payment_confirm.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../app_navigator.dart';
 
@@ -76,9 +77,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     final height = constraints.maxHeight;
-
-                    final suggestIconHeight = MediaQuery.of(context).size.height > 600 ? height * 14 / 250 : height * 14 / 275;
-
+          
+                    final suggestIconHeight = 28.h;
+          
                     return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -202,9 +203,9 @@ class _PaymentScreenState extends State<PaymentScreen> {
             Expanded(
               child: LayoutBuilder(builder: (context, constraints) {
                 final height = constraints.maxHeight;
-
+          
                 final themeButtonHeight = (height - 35) / 2;
-
+          
                 return Column(
                   children: [
                     Padding(
@@ -331,7 +332,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
         child: Center(
           child: TextButton(
             onPressed: onTap,
-            child: Text(text, style: const TextStyle(fontSize: 20)),
+            child: Text(text, style: TextStyle(fontSize: 13.sp)),
           ),
         ),
       ),
