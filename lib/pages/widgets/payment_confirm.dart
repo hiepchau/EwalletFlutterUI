@@ -28,7 +28,7 @@ class PaymentConfirm extends StatelessWidget {
                             Center(
                               child: Text('Xác nhận giao dịch',
                                   style: TextStyle(
-                                    fontSize: 20.sp,
+                                    fontSize: 15,
                                     fontWeight: FontWeight.w700,
                                   )),
                             ),
@@ -38,7 +38,7 @@ class PaymentConfirm extends StatelessWidget {
                                     onTap: () {},
                                     child: Icon(
                                       Icons.close,
-                                      size: 20.w,
+                                      size: 20,
                                     )))
                           ],
                         )),
@@ -70,27 +70,27 @@ class PaymentConfirm extends StatelessWidget {
                                     children: <Widget>[
                                           Icon(
                                             Icons.currency_exchange_rounded,
-                                            size: 30.w,
+                                            size: 30,
                                             color: green,
                                           ),
                                           Text(
                                             '1.000.000đ',
                                             style: TextStyle(
-                                                fontSize: 20.sp,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           Text(
                                             'Chuyển tiền đến Khôi Nghi',
                                             style: TextStyle(
-                                                fontSize: 11.sp,
+                                                fontSize: 11,
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           SizedBox(
-                                            height: 10.h,
+                                            height: 5,
                                           ),
                                           DashedLine(),
                                           SizedBox(
-                                            height: 10.h,
+                                            height: 5,
                                           ),
                                         ] +
                                         buildLines([
@@ -136,7 +136,7 @@ class PaymentConfirm extends StatelessWidget {
                                         children: [
                                           Icon(FontAwesomeIcons.wallet),
                                           SizedBox(
-                                            width: 10.w,
+                                            width: 10,
                                           ),
                                           Column(
                                             crossAxisAlignment:
@@ -144,17 +144,17 @@ class PaymentConfirm extends StatelessWidget {
                                             children: [
                                               Text('Nguồn tiền thanh toán',
                                                   style: TextStyle(
-                                                      fontSize: 15.sp)),
+                                                      fontSize: 15)),
                                               Text('Số dư: 100.000.000đ',
                                                   style: TextStyle(
-                                                      fontSize: 12.sp))
+                                                      fontSize: 12))
                                             ],
                                           )
                                         ],
                                       ),
                                       Text(
                                         'Thay đổi',
-                                        style: TextStyle(fontSize: 12.sp,color: primary),
+                                        style: TextStyle(fontSize: 12,color: primary),
                                       )
                                     ],
                                   ),
@@ -189,7 +189,7 @@ class PaymentConfirm extends StatelessWidget {
                             'Xác nhận giao dịch',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20.sp,
+                                fontSize: 15,
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
@@ -206,7 +206,7 @@ class PaymentConfirm extends StatelessWidget {
                           ),
                           Text('Bảo mật tuyệt đối theo chuẩn cao nhất',
                               style: TextStyle(
-                                fontSize: 10.sp,
+                                fontSize: 10,
                                 fontWeight: FontWeight.w300,
                               ))
                         ],
@@ -231,7 +231,7 @@ class PaymentConfirm extends StatelessWidget {
                 line[0],
                 style: TextStyle(
                   color: Colors.black54,
-                  fontSize: 11.sp,
+                  fontSize: 11,
                 ),
               ),
             ),
@@ -240,7 +240,7 @@ class PaymentConfirm extends StatelessWidget {
               child: Text(
                 line[1],
                 style: TextStyle(
-                  fontSize: 11.sp,
+                  fontSize: 11,
                 ),
               ),
             ),

@@ -257,10 +257,10 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
 
                       // final iconWidth = width * 25 / 390;
                       // final contentWidth = width * 100 / 390;
-                      final iconWidth = 25.0.w;
-                      final contentWidth = 100.0.w;
+                      final iconWidth = 25.0;
+                      final contentWidth = 100.0;
 
-                      final fontSize = 10.0.sp;
+                      final fontSize = 10.0;
 
                       return Row(
                           mainAxisAlignment: MainAxisAlignment.center,

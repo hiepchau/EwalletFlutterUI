@@ -28,5 +28,5 @@ void main() {
           home: child, //TODO: change back to login page
         );
       },
-      child: kIsWeb ? const RootWebApp() : const LoginPage()));
+      child: const LoginPage()));
 }

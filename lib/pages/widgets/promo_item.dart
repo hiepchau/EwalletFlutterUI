@@ -50,8 +50,8 @@ class PromoItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                        width: 30.h,
-                        height: 30.h,
+                        width: 30,
+                        height: 30,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(
@@ -61,18 +61,18 @@ class PromoItem extends StatelessWidget {
                         )),
                     Text(title,
                         style: TextStyle(
-                            fontSize: 13.sp,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: primary)),
                     Text(subTitle,
                         style: TextStyle(
-                            fontSize: 15.sp,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: primary)),
                     Text(description,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 11.sp,
+                          fontSize: 11,
                           fontWeight: FontWeight.w300,
                           color: Colors.black,
                         )),
@@ -117,7 +117,7 @@ class PromoItem extends StatelessWidget {
                                 children: [
                                   Icon(
                                     FontAwesomeIcons.coins,
-                                    size: 20.h,
+                                    size: 20,
                                     color: Colors.amber,
                                   ),
                                   SizedBox(
@@ -125,7 +125,7 @@ class PromoItem extends StatelessWidget {
                                   ),
                                   Text(price,
                                       style: TextStyle(
-                                          fontSize: 13.sp,
+                                          fontSize: 11,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.green)),
                                 ],
@@ -139,7 +139,7 @@ class PromoItem extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: Text(actionTitle,
                                     style: TextStyle(
-                                        fontSize: 13.sp,
+                                        fontSize: 11,
                                         fontWeight: FontWeight.bold,
                                         color: primary))),
                           )

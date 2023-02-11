@@ -35,7 +35,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
         ),
         actions: [
           IconButton(
-              onPressed: () => AppNav.push(
+              onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const NotificationPage())),
@@ -83,7 +83,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                           Text(
                             "Dịch vụ",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: primary,
                             ),
@@ -96,7 +96,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          final iconLabelWidth = 40.0.w;
+                          final iconLabelWidth = 30.0;
                           final labelWidth = iconLabelWidth * 1.5;
 
                           List<Widget> shortcuts =
@@ -184,7 +184,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          final iconLabelWidth = 40.0.w;
+                          final iconLabelWidth = 30.0;
                           final labelWidth = iconLabelWidth * 1.5;
 
                           List<Widget> shortcuts =
@@ -214,7 +214,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                                         child: Text(
                                           "Đề xuất:",
                                           style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                             color: primary,
                                           ),
@@ -233,7 +233,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          final iconLabelWidth = 40.0.w;
+                          final iconLabelWidth = 30.0;
                           final labelWidth = iconLabelWidth * 1.5;
 
                           List<Widget> shortcuts =
@@ -263,7 +263,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                                         child: Text(
                                           "Có thể bạn quan tâm:",
                                           style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold,
                                             color: primary,
                                           ),

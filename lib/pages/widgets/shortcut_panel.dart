@@ -204,7 +204,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                           iconWidth,
                           maxWidth,
                           onTap: () {
-                            AppNav.push(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>

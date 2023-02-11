@@ -56,7 +56,7 @@ class ShortcutIcon extends StatelessWidget {
                   color: primary,
                   fontSize: MediaQuery.of(context).size.width > 900
                                       ? 15
-                                      : 15,
+                                      : 11,
                   fontWeight: FontWeight.w500,
                 )),
           ],
