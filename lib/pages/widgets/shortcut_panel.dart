@@ -6,6 +6,7 @@ import 'package:ewallet/pages/withdraw_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../app_navigator.dart';
@@ -21,9 +22,8 @@ class _ShortcutPanel extends State<ShortcutPanel> {
   bool isVisible = false;
   @override
   Widget build(BuildContext context) {
-    const iconWidth = 40.0;
     return AspectRatio(
-      aspectRatio: MediaQuery.of(context).size.width > 900 ? 70 / 35 : 70 / 45,
+      aspectRatio: MediaQuery.of(context).size.width > 900 ? 70 / 40 : 70 / 45,
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -42,6 +42,7 @@ class _ShortcutPanel extends State<ShortcutPanel> {
           padding: const EdgeInsets.only(top: 20),
           child: LayoutBuilder(
             builder: (context, constraints) {
+              final iconWidth = 35.w;
               var maxWidth = iconWidth * 1.5;
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

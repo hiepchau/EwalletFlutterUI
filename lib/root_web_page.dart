@@ -5,6 +5,7 @@ import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/pages/account_page.dart';
 import 'package:ewallet/pages/dashboard_page.dart';
 import 'package:ewallet/pages/history_page.dart';
+import 'package:ewallet/pages/login_page.dart';
 import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
@@ -85,7 +86,6 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                         createTabButton('Dashboard', 0),
                         createTabButton('Lịch sử', 1),
                         createTabButton('Khuyến mãi', 2),
-                        createTabButton('Trợ giúp', 3),
                       ],
                     ),
                   )),
@@ -93,7 +93,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                   flex: 1280 - 790,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.white,
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -110,7 +110,10 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                         Padding(
                           padding: const EdgeInsets.only(right: 15),
                           child: createTextButton('Đăng xuất', () {
-                            AppNav.pushWidget(context, PaymentSuccessScreen());
+                            Navigator.pushAndRemoveUntil(context,
+                                MaterialPageRoute(builder: (_) {
+                              return const LoginPage();
+                            }), (route) => false);
                           }),
                         )
                       ],
@@ -137,7 +140,6 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                                   Dashboard(),
                                   HistoryPage(),
                                   PromoPage(),
-                                  Container(),
                                    //TODO
                                 ],
                               ),
@@ -159,7 +161,10 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: <Widget>[
-                              ShortcutPanel(),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                child: ShortcutPanel(),
+                              ),
                               Theme(
                                   data: Theme.of(context)
                                       .copyWith(dividerColor: Colors.transparent),
