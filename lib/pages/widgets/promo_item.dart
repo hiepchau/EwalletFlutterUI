@@ -2,38 +2,10 @@ import 'dart:math';
 
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class _DashedLine extends StatelessWidget {
-  const _DashedLine({Key? key, this.height = 1, this.color = Colors.black})
-      : super(key: key);
-  final double height;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final boxWidth = constraints.maxWidth;
-        const dashWidth = 1.2;
-        final dashHeight = height;
-        final dashCount = (boxWidth / (2 * dashWidth)).floor();
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(dashCount, (_) {
-            return SizedBox(
-              width: dashWidth,
-              height: dashHeight,
-              child: DecoratedBox(
-                decoration: BoxDecoration(color: color),
-              ),
-            );
-          }),
-        );
-      },
-    );
-  }
-}
+import 'dashed_line.dart';
 
 class PromoItem extends StatelessWidget {
   final String title;
@@ -77,30 +49,33 @@ class PromoItem extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset('assets/images/icons/baeminIcon.png'),
+                    Container(
+                        width: 30.h,
+                        height: 30.h,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                                'assets/images/icons/baeminIcon.png'),
+                            fit: BoxFit.cover,
+                          ),
+                        )),
                     Text(title,
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width > 350
-                                ? 13
-                                : 11,
+                            fontSize: 13.sp,
                             fontWeight: FontWeight.bold,
                             color: primary)),
                     Text(subTitle,
                         style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width > 350
-                                ? 13
-                                : 12,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.bold,
                             color: primary)),
-                    Container(
-                      child: Text(description,
-                      textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w300,
-                            color: Colors.black,
-                          )),
-                    ),
+                    Text(description,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black,
+                        )),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -116,7 +91,7 @@ class PromoItem extends StatelessWidget {
                           const Expanded(
                               child: Padding(
                             padding: EdgeInsets.only(left: 4, right: 4),
-                            child: _DashedLine(),
+                            child: DashedLine(),
                           )),
                           Container(
                               height: decorateHeight,
@@ -142,7 +117,7 @@ class PromoItem extends StatelessWidget {
                                 children: [
                                   Icon(
                                     FontAwesomeIcons.coins,
-                                    size: 20,
+                                    size: 20.h,
                                     color: Colors.amber,
                                   ),
                                   SizedBox(
@@ -150,12 +125,7 @@ class PromoItem extends StatelessWidget {
                                   ),
                                   Text(price,
                                       style: TextStyle(
-                                          fontSize: MediaQuery.of(context)
-                                                      .size
-                                                      .width >
-                                                  350
-                                              ? 13
-                                              : 11,
+                                          fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.green)),
                                 ],
@@ -169,10 +139,7 @@ class PromoItem extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: Text(actionTitle,
                                     style: TextStyle(
-                                        fontSize: MediaQuery.of(context).size.width >
-                                                    350
-                                                ? 13
-                                                : 11,
+                                        fontSize: 13.sp,
                                         fontWeight: FontWeight.bold,
                                         color: primary))),
                           )

@@ -1,3 +1,4 @@
+import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/root_page.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +88,9 @@ class PaymentSuccessScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 5,),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15.0),
                       child: Container(
@@ -189,7 +192,8 @@ class PaymentSuccessScreen extends StatelessWidget {
                   left: 40, right: 40, top: 10, bottom: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(
+                  AppNav.popUntil(context, (route) => route.isFirst);
+                  /*Navigator.of(context).pushAndRemoveUntil(
                       PageRouteBuilder(
                         pageBuilder: (BuildContext context, animation,
                             secondaryAnimation) {
@@ -205,7 +209,7 @@ class PaymentSuccessScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      (route) => false);
+                      (route) => false);*/
                 },
                 child: Container(
                   decoration: BoxDecoration(

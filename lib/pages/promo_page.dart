@@ -11,6 +11,7 @@ import 'package:ewallet/utils/list_utils.dart';
 import 'package:ewallet/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Promo {
@@ -130,7 +131,7 @@ class _PromoTabState extends State<_PromoTab> {
                   ),
                   Text(
                     'Deal \'hời\' chỉ từ 2 xu',
-                    style: TextStyle(color: Color.fromRGBO(237, 105, 74, 1),fontSize: 18),
+                    style: TextStyle(color: Color.fromRGBO(237, 105, 74, 1), fontSize: 18),
                   ),
                 ],
               ),
@@ -190,8 +191,8 @@ class _PromoTabState extends State<_PromoTab> {
   Widget buildRoundButton(
       double suggestIconHeight, String text, void Function()? onTap) {
     return Container(
-      width: 100,
-      height: MediaQuery.of(context).size.width > 350 ? suggestIconHeight : suggestIconHeight*1.2,
+      width: 100.w,
+      height: suggestIconHeight,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(25),
@@ -208,7 +209,7 @@ class _PromoTabState extends State<_PromoTab> {
         child: Center(
           child: TextButton(
             onPressed: onTap,
-            child: Text(text, style: const TextStyle(fontSize: 30)),
+            child: Text(text, style: TextStyle(fontSize: 30.sp)),
           ),
         ),
       ),
@@ -254,10 +255,12 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
                     builder: (context, constraints) {
                       final width = constraints.maxWidth;
 
-                      final iconWidth = width * 25 / 390;
-                      final contentWidth = width * 100 / 390;
+                      // final iconWidth = width * 25 / 390;
+                      // final contentWidth = width * 100 / 390;
+                      final iconWidth = 25.0.w;
+                      final contentWidth = 100.0.w;
 
-                      final fontSize = 10.0;
+                      final fontSize = 10.0.sp;
 
                       return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -357,7 +360,7 @@ class _PromoPageState extends State<PromoPage> with TickerProviderStateMixin {
               alignment: Alignment.centerLeft,
               child: SizedBox(
                 width: flexWidth,
-                child: flex,
+                child: FittedBox(child: flex),
               ),
             ),
           ],

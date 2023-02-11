@@ -4,6 +4,7 @@ import 'package:ewallet/style/color.dart';
 import 'package:ewallet/wallet_lists.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../app_navigator.dart';
 import '../style/constants.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -156,7 +157,7 @@ class _NotificationPage extends State<NotificationPage> {
                       : 10,
             ),
             TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => AppNav.pop(context),
                 child: Container(
                   height: 35,
                   width: 150,

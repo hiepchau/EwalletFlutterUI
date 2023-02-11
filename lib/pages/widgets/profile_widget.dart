@@ -68,6 +68,7 @@ class ProfileWidget extends StatelessWidget {
                         Text(
                           title,
                           style: TextStyle(
+                              color: primary,
                               fontSize: MediaQuery.of(context).size.width > 900
                                   ? 15
                                   : MediaQuery.of(context).size.width > 350

@@ -1,3 +1,4 @@
+import 'package:ewallet/app_navigator.dart';
 import 'package:ewallet/pages/notification_page.dart';
 import 'package:ewallet/pages/widgets/ad_mini_panel.dart';
 import 'package:ewallet/pages/widgets/icon_label.dart';
@@ -8,6 +9,7 @@ import 'package:ewallet/utils/list_utils.dart';
 import 'package:ewallet/utils/widget_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Dashboard extends StatefulWidget {
@@ -33,7 +35,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
         ),
         actions: [
           IconButton(
-              onPressed: () => Navigator.push(
+              onPressed: () => AppNav.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const NotificationPage())),
@@ -94,8 +96,8 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          const iconLabelWidth = 40.0;
-                          const labelWidth = iconLabelWidth * 1.5;
+                          final iconLabelWidth = 40.0.w;
+                          final labelWidth = iconLabelWidth * 1.5;
 
                           List<Widget> shortcuts =
                               WidgetUtils.rowEvenlyWidthDivideWrap(
@@ -108,7 +110,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                                 'Nạp tiền ĐT',
                                 iconLabelWidth,
                                 labelWidth),
-                            const ShortcutIcon(
+                            ShortcutIcon(
                                 Icon(
                                   Icons.receipt_long,
                                   color: Colors.yellow,
@@ -116,7 +118,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                                 'Thanh toán hóa đơn',
                                 iconLabelWidth,
                                 labelWidth),
-                            const ShortcutIcon(
+                            ShortcutIcon(
                                 Icon(
                                   Icons.shield,
                                   color: Colors.green,
@@ -124,7 +126,7 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                                 'Bảo hiểm',
                                 iconLabelWidth,
                                 labelWidth),
-                            const ShortcutIcon(
+                            ShortcutIcon(
                                 Icon(
                                   FontAwesomeIcons.piggyBank,
                                   color: Colors.pink,
@@ -182,19 +184,19 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          const iconLabelWidth = 40.0;
-                          const labelWidth = iconLabelWidth * 1.5;
+                          final iconLabelWidth = 40.0.w;
+                          final labelWidth = iconLabelWidth * 1.5;
 
                           List<Widget> shortcuts =
                               WidgetUtils.rowEvenlyWidthDivideWrap(
                                       width, labelWidth, 4, [
-                            const ShortcutIcon(Icon(Icons.abc_outlined),
+                            ShortcutIcon(Icon(Icons.abc_outlined),
                                 'Mua vé máy bay', iconLabelWidth, labelWidth),
-                            const ShortcutIcon(Icon(Icons.access_alarm_rounded),
+                            ShortcutIcon(Icon(Icons.access_alarm_rounded),
                                 'KFC', iconLabelWidth, labelWidth),
-                            const ShortcutIcon(Icon(Icons.add_box_rounded),
+                            ShortcutIcon(Icon(Icons.add_box_rounded),
                                 'Jolibee', iconLabelWidth, labelWidth),
-                            const ShortcutIcon(Icon(Icons.add_circle), 'Uniqlo',
+                            ShortcutIcon(Icon(Icons.add_circle), 'Uniqlo',
                                 iconLabelWidth, labelWidth),
                           ])
                                   .map((e) => Row(
@@ -231,19 +233,19 @@ class _Dashboard extends State<Dashboard> with TickerProviderStateMixin {
                       LayoutBuilder(
                         builder: (context, constraints) {
                           final width = constraints.maxWidth;
-                          const iconLabelWidth = 40.0;
-                          const labelWidth = iconLabelWidth * 1.5;
+                          final iconLabelWidth = 40.0.w;
+                          final labelWidth = iconLabelWidth * 1.5;
 
                           List<Widget> shortcuts =
                               WidgetUtils.rowEvenlyWidthDivideWrap(
                                       width, labelWidth, 4, [
-                            const ShortcutIcon(Icon(Icons.abc_outlined),
+                            ShortcutIcon(Icon(Icons.abc_outlined),
                                 'Mua vé máy bay', iconLabelWidth, labelWidth),
-                            const ShortcutIcon(Icon(Icons.access_alarm_rounded),
+                            ShortcutIcon(Icon(Icons.access_alarm_rounded),
                                 'KFC', iconLabelWidth, labelWidth),
-                            const ShortcutIcon(Icon(Icons.add_box_rounded),
-                                'Jolibee', iconLabelWidth, labelWidth),
-                            const ShortcutIcon(Icon(Icons.add_circle), 'Uniqlo',
+                            ShortcutIcon(Icon(Icons.add_box_rounded), 'Jolibee',
+                                iconLabelWidth, labelWidth),
+                            ShortcutIcon(Icon(Icons.add_circle), 'Uniqlo',
                                 iconLabelWidth, labelWidth),
                           ])
                                   .map((e) => Row(

@@ -7,7 +7,7 @@ packages:
       name: animated_bottom_navigation_bar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.0+1"
   async:
     dependency: transitive
     description:
@@ -21,7 +21,7 @@ packages:
       name: barcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "2.2.3"
   barcode_scan2:
     dependency: "direct main"
     description:
@@ -35,7 +35,7 @@ packages:
       name: barcode_widget
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.3"
   boolean_selector:
     dependency: transitive
     description:
@@ -132,6 +132,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.6.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -148,7 +155,7 @@ packages:
       name: font_awesome_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "10.3.0"
+    version: "10.4.0"
   intl:
     dependency: "direct main"
     description:
@@ -211,7 +218,7 @@ packages:
       name: qr
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "3.0.1"
   qr_code_scanner:
     dependency: "direct main"
     description:
