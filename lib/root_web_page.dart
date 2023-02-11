@@ -86,7 +86,6 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                         createTabButton('Dashboard', 0),
                         createTabButton('Lịch sử', 1),
                         createTabButton('Khuyến mãi', 2),
-                        createTabButton('Trợ giúp', 3),
                       ],
                     ),
                   )),
@@ -94,7 +93,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                   flex: 1280 - 790,
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Colors.white,
                     ),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -141,7 +140,6 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                                   Dashboard(),
                                   HistoryPage(),
                                   PromoPage(),
-                                  Container(),
                                    //TODO
                                 ],
                               ),
@@ -163,7 +161,10 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: <Widget>[
-                              ShortcutPanel(),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                child: ShortcutPanel(),
+                              ),
                               Theme(
                                   data: Theme.of(context)
                                       .copyWith(dividerColor: Colors.transparent),
