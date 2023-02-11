@@ -1,5 +1,6 @@
 import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:ewallet/pages/qr_page.dart';
+import 'package:ewallet/pages/widgets/payment_confirm.dart';
 import 'package:ewallet/pages/widgets/profile_widget.dart';
 import 'package:ewallet/pages/widgets/toggle_widget.dart';
 import 'package:ewallet/style/color.dart';
@@ -151,11 +152,7 @@ class _WithdrawPage extends State<WithdrawPage> {
                               title: 'Rút tiền về ngân hàng',
                               subtitle: "Miễn phí",
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const PaymentSuccessScreen()));
+                                showModal();
                               },
                             ),
                             ProfileWidget(
@@ -164,11 +161,8 @@ class _WithdrawPage extends State<WithdrawPage> {
                                 title: 'Rút tiền tại điểm giao dịch',
                                 subtitle: "Miễn phí",
                                 onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const PaymentSuccessScreen()));
+                                   showModal();
+                                      
                                 }),
                           ]),
                         ),
@@ -349,11 +343,7 @@ class _WithdrawPage extends State<WithdrawPage> {
                                                                 10))),
                                                 child: TextButton(
                                                   onPressed: () {
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                const PaymentSuccessScreen()));
+                                                    showModal();
                                                   },
                                                   child: const Text(
                                                     'Tiếp tục',
@@ -380,4 +370,12 @@ class _WithdrawPage extends State<WithdrawPage> {
       ),
     );
   }
+
+  showModal() => showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+      builder: (BuildContext context) {
+        return const PaymentConfirm(); //const PaymentConfirm();
+      });
 }

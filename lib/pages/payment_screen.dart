@@ -1,4 +1,5 @@
 import 'package:ewallet/pages/payment_success_screen.dart';
+import 'package:ewallet/pages/widgets/payment_confirm.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:flutter/material.dart';
 
@@ -250,11 +251,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
                                 fit: BoxFit.contain,
                                 child: TextButton(
                                   onPressed: () {
-                                    AppNav.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const PaymentSuccessScreen()));
+                                    showModalBottomSheet(
+                                        context: context,
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.vertical(
+                                                top: Radius.circular(30))),
+                                        builder: (BuildContext context) {
+                                          return const PaymentConfirm(); //const PaymentConfirm();
+                                        });
                                   },
                                   child: const Text(
                                     'Tiếp tục',
