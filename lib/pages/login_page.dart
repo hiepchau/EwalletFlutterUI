@@ -65,13 +65,21 @@ class _LoginPageState extends State<LoginPage>
                         : const EdgeInsets.only(top: 50.0)
                     : const EdgeInsets.only(top: 75.0),
                 child: Icon(
-                    size: MediaQuery.of(context).size.height > 800
-                        ? 191.0
-                        : (MediaQuery.of(context).size.height <= 600)
-                            ? 100
-                            : 150,
-                    FontAwesomeIcons.piggyBank,
-                    color: Colors.pink,),
+                  size: MediaQuery.of(context).size.height > 800
+                      ? 150.0
+                      : (MediaQuery.of(context).size.height <= 600)
+                          ? 90
+                          : 150,
+                  FontAwesomeIcons.piggyBank,
+                  color: Colors.white,
+                  shadows: [
+                    BoxShadow(
+                      color: Colors.black45,
+                      blurRadius: 15,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
