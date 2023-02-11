@@ -1,8 +1,10 @@
 import 'package:ewallet/pages/qr_page.dart';
 import 'package:ewallet/pages/select_transfer_page.dart';
 import 'package:ewallet/pages/widgets/shortcut_icon.dart';
+import 'package:ewallet/pages/widgets/snackbar.dart';
 import 'package:ewallet/pages/withdraw_page.dart';
 import 'package:ewallet/style/color.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,11 +23,13 @@ class _ShortcutPanel extends State<ShortcutPanel> {
   Widget build(BuildContext context) {
     const iconWidth = 40.0;
     return AspectRatio(
-      aspectRatio: 70 / 45,
+      aspectRatio: MediaQuery.of(context).size.width > 900 ? 70 / 35 : 70 / 45,
       child: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+          borderRadius: MediaQuery.of(context).size.width > 900
+              ? BorderRadius.all(Radius.circular(30))
+              : BorderRadius.vertical(top: Radius.circular(30)),
           boxShadow: [
             BoxShadow(
               color: Colors.black45,
@@ -63,11 +67,15 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                               focusColor: primary,
                               filled: true,
                               fillColor: Colors.white,
-                              prefixIcon: Icon(Icons.search, color: primary,),
+                              prefixIcon: Icon(
+                                Icons.search,
+                                color: primary,
+                              ),
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 10, horizontal: 15),
                               hintText: "Tìm kiếm",
-                              hintStyle: TextStyle(color: primary,
+                              hintStyle: TextStyle(
+                                color: primary,
                               ),
                               border: const OutlineInputBorder(
                                   borderSide: BorderSide.none,
@@ -76,7 +84,9 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                             ),
                           )),
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -100,12 +110,12 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                                 isVisible
                                     ? "Số dư ví: 900.000.000đ"
                                     : "Số dư ví: ************",
-                                    style: TextStyle(
-                                      color: primary,
-                                      fontSize: MediaQuery.of(context).size.width > 350
+                                style: TextStyle(
+                                    color: primary,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width > 350
                                             ? 15
-                                            : 13
-                                    ),
+                                            : 13),
                               ),
                               GestureDetector(
                                 onTap: (() => setState(() {
@@ -142,27 +152,28 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                           iconWidth,
                           maxWidth,
                           onTap: () {
-                            AppNav.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SelectTransferPage()));
-                          },
-                        ),
-                        ShortcutIcon(
-                            Icon(
-                              Icons.wallet,
-                              color: primary,
-                            ),
-                            'Rút tiền',
-                            iconWidth,
-                            maxWidth,
-                            onTap: () {
-                               Navigator.push(
+                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        WithdrawPage()));
-                            },),
+                                        SelectTransferPage()));
+                          },
+                        ),
+                        ShortcutIcon(
+                          Icon(
+                            Icons.wallet,
+                            color: primary,
+                          ),
+                          'Rút tiền',
+                          iconWidth,
+                          maxWidth,
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => WithdrawPage()));
+                          },
+                        ),
                         ShortcutIcon(
                           ImageIcon(
                             AssetImage('assets/images/icons/scannerIcon.png'),
@@ -172,11 +183,16 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                           iconWidth,
                           maxWidth,
                           onTap: () {
-                            AppNav.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const QRScreen('QRSCANNER')));
+                            kIsWeb
+                                ? CustomSnackBar(
+                                    context,
+                                    Text(
+                                        "Bạn không thể thử dụng QR Pay khi ở bản web"))
+                                : AppNav.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const QRScreen('QRSCANNER')));
                           },
                         ),
                         ShortcutIcon(
@@ -195,12 +211,11 @@ class _ShortcutPanel extends State<ShortcutPanel> {
                                         const QRScreen('QRCODE')));
                           },
                         ),
-                      ],          
-                             
+                      ],
                     ),
                     SizedBox(
                       height: 15,
-                    )  
+                    )
                   ],
                 ),
               );

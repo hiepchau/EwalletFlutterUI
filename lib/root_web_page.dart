@@ -9,6 +9,7 @@ import 'package:ewallet/pages/payment_success_screen.dart';
 import 'package:ewallet/pages/promo_page.dart';
 import 'package:ewallet/pages/qr_page.dart';
 import 'package:ewallet/pages/widgets/profile_widget.dart';
+import 'package:ewallet/pages/widgets/shortcut_panel.dart';
 import 'package:ewallet/style/color.dart';
 import 'package:ewallet/utils/widget_utils.dart';
 import 'package:ewallet/wallet_lists.dart';
@@ -82,10 +83,9 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         createTabButton('Dashboard', 0),
-                        createTabButton('Chuyển và nhận tiền', 1),
-                        createTabButton('Ví', 2),
-                        createTabButton('Lịch sử', 3),
-                        createTabButton('Trợ giúp', 4),
+                        createTabButton('Lịch sử', 1),
+                        createTabButton('Khuyến mãi', 2),
+                        createTabButton('Trợ giúp', 3),
                       ],
                     ),
                   )),
@@ -119,7 +119,7 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
             ],
           )),
       body: Container(
-        decoration: const BoxDecoration(color: Colors.grey),
+        decoration: const BoxDecoration(color: Colors.white70),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -137,8 +137,8 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                                   Dashboard(),
                                   HistoryPage(),
                                   PromoPage(),
-                                  AccountPage(),
-                                  Container() //TODO
+                                  Container(),
+                                   //TODO
                                 ],
                               ),
                           settings: settings);
@@ -147,61 +147,57 @@ class _RootWebAppState extends State<RootWebApp> with TickerProviderStateMixin {
                 )),
             Expanded(
                 flex: 1280 - 790,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 25, right: 25, top: 40, bottom: 40),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Theme(
-                                data: Theme.of(context)
-                                    .copyWith(dividerColor: Colors.transparent),
-                                child: ExpansionTile(
-                                  onExpansionChanged: (temp) {
-                                    setState(() {
-                                      isVisible = temp;
-                                    });
-                                  },
-                                  childrenPadding: const EdgeInsets.all(5),
-                                  title: const Text("Tài khoản/Ví"),
-                                  children: _buildExpandableContent(walletList),
-                                )),
-                            Visibility(
-                              visible: isVisible,
-                              child: Text(
-                                "Xem tất cả (3)",
-                                style: TextStyle(color: primary),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 25, right: 25, top: 40, bottom: 40),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: <Widget>[
+                              ShortcutPanel(),
+                              Theme(
+                                  data: Theme.of(context)
+                                      .copyWith(dividerColor: Colors.transparent),
+                                  child: ExpansionTile(
+                                    onExpansionChanged: (temp) {
+                                      setState(() {
+                                        isVisible = temp;
+                                      });
+                                    },
+                                    childrenPadding: const EdgeInsets.all(5),
+                                    title: const Text("Tài khoản/Ví"),
+                                    children: _buildExpandableContent(walletList),
+                                  )),
+                              Visibility(
+                                visible: isVisible,
+                                child: Text(
+                                  "Xem tất cả (3)",
+                                  style: TextStyle(color: primary),
+                                ),
                               ),
-                            ),
-                            ProfileWidget(
-                              icon: Icons.receipt_long,
-                              iconColor: Colors.yellow,
-                              title: 'Quản lý thanh toán',
-                              subtitle: "",
-                              onTap: () {},
-                            ),
-                            ProfileWidget(
-                              icon: Icons.settings,
-                              iconColor: Colors.grey,
-                              title: 'Cài đặt ứng dụng',
-                              subtitle: "",
-                              onTap: () {},
-                            ),
-                            ProfileWidget(
-                              icon: Icons.headset_mic,
-                              iconColor: Colors.green,
-                              title: 'Trung tâm trợ giúp',
-                              subtitle: "",
-                              onTap: () {},
-                            ),
-                          ],
-                        ),
-                      )),
+                              ProfileWidget(
+                                icon: Icons.receipt_long,
+                                iconColor: Colors.yellow,
+                                title: 'Quản lý thanh toán',
+                                subtitle: "",
+                                onTap: () {},
+                              ),
+                              ProfileWidget(
+                                icon: Icons.settings,
+                                iconColor: Colors.grey,
+                                title: 'Cài đặt ứng dụng',
+                                subtitle: "",
+                                onTap: () {},
+                              ),
+                            ],
+                          ),
+                        )),
+                  ),
                 )),
           ],
         ),
